@@ -2,7 +2,7 @@
 @section('contenido')
 	<div class="row">
 		<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-		<h3><a href="javascript:history.back()" class="fa fa-back" style="color: #222d32;"></a> Nuevo trabajador</h3>
+			<h3><a href="javascript:history.back()" class="fa fa-back" style="color: #222d32;"></a> Detalles trabajador: {{$trabajadores->nombre_trabajador}}</h3>
 			@if(count($errors)>0)
 			<div class="alert alert-danger">
 				<ul>
@@ -14,33 +14,37 @@
 			@endif
 		</div>
 	</div>
-			{!!Form::open(array('url'=>'administracion/trabajadores','method'=>'POST','autocomplete'=>'off'))!!}
-			{{Form::token()}}
+			
+            
 			<div class="row">
-				<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
 					<div class="form-group">
 						<label for="nombre">Nombre</label>
-						<input type="text" required value="{{old('nombre')}}" name="nombre" class="form-control" placeholder="Nombre">
+						<input type="text" value="{{$trabajadores->nombre_trabajador}}" name="nombre" class="form-control" readonly placeholder="Nombre">
 					</div>
 				</div>
 				<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
 					<div class="form-group">
 						<label for="email">Email</label>
-						<input type="email" value="{{old('email')}}" name="email" class="form-control" placeholder="Email">
+						<input type="email" value="{{$trabajadores->email}}" name="email" class="form-control" readonly placeholder="Email">
 					</div>
 				</div>
 				<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
 					<div class="form-group">
 						<label for="telefono">Teléfono</label>
-						<input type="text" value="{{old('telefono')}}" name="telefono" class="form-control" placeholder="Teléfono">
+						<input type="text" value="{{$trabajadores->telefono}}" name="telefono" class="form-control" readonly placeholder="Teléfono">
 					</div>
 				</div>
 				<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
 					<div class="form-group">
 						<label>Tipo de trabajador</label>
-						<select name="idtipoTrabajador" class="form-control">
+						<select name="idtipoTrabajador" disabled class="form-control">
 							@foreach($tipos as $tip)
+							@if($tip->idtipo_trabajador==$trabajadores->idtipo_trabajador)
+							<option value="{{$tip->idtipo_trabajador}}" selected>{{$tip->tipo_trabajador}}</option>
+							@else
 							<option value="{{$tip->idtipo_trabajador}}">{{$tip->tipo_trabajador}}</option>
+							@endif
 							@endforeach
 						</select>
 					</div>
@@ -48,9 +52,13 @@
 				<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
 					<div class="form-group">
 						<label>Rol del trabajador</label>
-						<select name="rol" class="form-control">
+						<select name="rol" disabled class="form-control">
 							@foreach($roles as $rol)
-							<option value="{{$rol->idrol}}">{{$rol->nombre_rol}}</option>
+							@if($rol->idrol==$trabajadores->idrol)
+							<option value="{{$rol->idrol}}" selected>{{$rol->nombre_rol}}</option>
+							else
+							<option value="{{$rol->idrol}}" >{{$rol->nombre_rol}}</option>
+							@endif
 							@endforeach
 						</select>
 					</div>
@@ -58,22 +66,22 @@
 				<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
 					<div class="form-group">
 						<label>Horario del trabajador</label>
-						<select name="horario" class="form-control">
+						<select name="horario" disabled class="form-control">
 							@foreach($horarios as $hor)
+							@if($hor->idhorario==$trabajadores->idhorario)
+							<option value="{{$hor->idhorario}}" selected>{{$hor->hora_entrada}} - {{$hor->hora_salida}}</option>
+							@else
 							<option value="{{$hor->idhorario}}">{{$hor->hora_entrada}} - {{$hor->hora_salida}}</option>
+							@endif
 							@endforeach
 						</select>
 					</div>
 				</div>
 				<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
 					<div class="form-group">
-						<button class="btn btn-primary" type="submit">Guardar</button>
-						<a href="{{url('administracion/trabajadores')}}"><button class="btn btn-danger" type="reset">Borrar cambios</button></a>
+                    <a href="{{url('administracion/trabajadores')}}"><button class="btn btn-primary">Aceptar</button></a>
 					</div>
 				</div>
 			</div>
 			
-			
-
-			{!!Form::close()!!}
 @endsection

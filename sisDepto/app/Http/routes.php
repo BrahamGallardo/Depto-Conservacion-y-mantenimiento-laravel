@@ -17,6 +17,7 @@ Route::get('/', function () {
 
 Route::resource('administracion/trabajadores','TrabajadorController');
 Route::resource('seguridad/usuario','UsuarioController');
+Route::get('administracion/detalles/{id}', 'TrabajadorController@details');
 Route::auth();
 
 Route::get('/home', 'HomeController@index');

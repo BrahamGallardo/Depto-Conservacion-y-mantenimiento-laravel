@@ -1997,6 +1997,9 @@
 .fa-map-pin:before {
   content: "\f276";
 }
+.fa-back:before {
+  content: "\f053";
+}
 .fa-map-signs:before {
   content: "\f277";
 }

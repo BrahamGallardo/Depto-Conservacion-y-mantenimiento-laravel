@@ -60,6 +60,19 @@ class TrabajadorController extends Controller
     	return view("administracion.trabajadores.show",["trabajador"=>Trabajadores::findOrFail($id)]);
     }
 
+	public function details($id){
+		$trabajadores=Trabajadores::findOrFail($id);
+    	$tipos=DB::table('tipos_trabajador')->get();
+		$roles=DB::table('roles')->get();
+		$horarios=DB::table('horarios')->get();
+		$estados=DB::table('estados_trabajador')->get();
+    	return view("administracion.trabajadores.details",["trabajadores"=>$trabajadores,"tipos"=>$tipos,"roles"=>$roles,"horarios"=>$horarios,"estados"=>$estados]);
+    }
+	public function detail($id){
+		return Redirect::to('administracion/trabajadores');
+    }
+	
+
 
     public function edit($id){
 		$trabajadores=Trabajadores::findOrFail($id);

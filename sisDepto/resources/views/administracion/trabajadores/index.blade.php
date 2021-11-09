@@ -27,6 +27,8 @@
 						<td>{{ $tra->estado_trabajador}}</td>
 						<td>{{ $tra->email}}</td>
 						<td>
+						
+							<a href="detalles/{{$tra->idtrabajador}}"><button class="btn btn-default">Detalles</button></a>
 							<a href="{{URL::action('TrabajadorController@edit',$tra->idtrabajador)}}"><button class="btn btn-info">Editar</button></a>
 							<a href="" data-target="#modal-delete-{{$tra->idtrabajador}}" data-toggle="modal"><button class="btn btn-danger">Eliminar</button></a>
 						</td>
