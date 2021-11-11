@@ -15,8 +15,8 @@ Route::get('/', function () {
     return view('auth/login');
 });
 
-Route::resource('administracion/trabajadores','TrabajadorController');
-Route::resource('seguridad/usuario','UsuarioController');
+Route::resource('administracion/trabajadores', 'TrabajadorController');
+Route::resource('seguridad/usuario', 'UsuarioController');
 Route::get('administracion/detalles/{id}', 'TrabajadorController@details');
 Route::auth();
 

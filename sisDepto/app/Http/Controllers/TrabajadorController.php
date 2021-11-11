@@ -24,7 +24,7 @@ class TrabajadorController extends Controller
     		$trabajadores=DB::table('trabajadores as t')
 			->join('roles as r', 't.idrol','=','r.idrol')
 			->join('estados_trabajador as et', 't.idestado','=','et.idestado_trabajador')
-			->select('idtrabajador','t.nombre_trabajador','r.nombre_rol','et.estado_trabajador','email')
+			->select('idtrabajador','t.nombre_trabajador','r.nombre_rol','et.estado_trabajador','telefono')
 			->where('t.nombre_trabajador','LIKE','%'.$query.'%')
 			->where('estado_trabajador','!=','Inactivo')
 			->orderBy('idtrabajador','desc')->paginate(7);

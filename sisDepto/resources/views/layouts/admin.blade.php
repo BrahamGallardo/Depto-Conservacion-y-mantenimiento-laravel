@@ -18,6 +18,7 @@
     <link rel="apple-touch-icon" href="{{asset('img/favicon.png')}}">
     <link rel="shortcut icon" href="{{asset('img/favicon.png')}}">
     <link rel="stylesheet" href="{{asset('css/bootstrap-select.min.css')}}">
+
   </head>
   <body class="hold-transition skin-blue sidebar-mini">
     <div class="wrapper">
