@@ -109,6 +109,7 @@
                 <li><a href="#"><i class="fa fa-circle-o"></i> Solicitudes</a></li>
                 <li><a href="#"><i class="fa fa-circle-o"></i> Cotizaciones</a></li>
                 <li><a href="#"><i class="fa fa-circle-o"></i> Ordenes</a></li>
+                <li><a href="{{url('administracion/trabajadores')}}"><i class="fa fa-circle-o"></i> Folios</a></li>
                 <li><a href="#"><i class="fa fa-circle-o"></i> Actas entrega</a></li>
                 <li><a href="#"><i class="fa fa-circle-o"></i> Acuses</a></li>
               </ul>
@@ -147,7 +148,7 @@
                 <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
-                <li><a href="#"><i class="fa fa-circle-o"></i> Articulo</a></li>
+                <li><a href="{{url('almacen/articulos')}}"><i class="fa fa-circle-o"></i> Articulo</a></li>
                 <li><a href="#"><i class="fa fa-circle-o"></i> Categoria</a></li>
               </ul>
             </li>
