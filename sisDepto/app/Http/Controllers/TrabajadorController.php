@@ -51,7 +51,7 @@ class TrabajadorController extends Controller
 		$trabajador->idrol=$request->get('rol');
 		$trabajador->idestado='1';
         $trabajador->idhorario=$request->get('horario');
-		$trabajador->save();
+		$trabajador->save(); /* update*/
 		return Redirect::to('administracion/trabajadores');
     }
 
