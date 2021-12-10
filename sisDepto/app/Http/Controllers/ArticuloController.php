@@ -13,9 +13,13 @@ use DB;
 use PhpOffice\PhpWord\Style\Language;
 use PhpOffice\PhpWord\Style\ListItem;
 
+
+
+use PhpOffice\PhpWord\SimpleType\Jc;
+
 class ArticuloController extends Controller
 {
-	
+
 	public function __construct()
 	{
 		$this->middleware('auth');
@@ -43,12 +47,11 @@ class ArticuloController extends Controller
 		return view("almacen.articulos.solicitar", ["articulos" => $articulos, "unidad" => $unidad]);
 	}
 
-	public function generar(Request $request)
+	public function generar2(Request $request)
 	{
 		try {
 			$template = new \PhpOffice\PhpWord\TemplateProcessor('plantilla.docx');
 
-			
 
 			$template->setValue('tabla_art', $request->get('mytext'));
 
@@ -63,6 +66,39 @@ class ArticuloController extends Controller
 		} catch (\PhpOffice\PhpWord\Exception\Exception $e) {
 			return back($e->getCode());
 		}
+	}
+	public function generar(Request $request)
+	{
+		$documento = new \PhpOffice\PhpWord\PhpWord();
+		$propiedades = $documento->getDocInfo();
+		$propiedades->setCreator("Luis Cabrera Benito");
+		$propiedades->setTitle("Tablas");
+		$seccion = $documento->addSection();
+		$estiloTabla = [
+			"borderColor" => "000000",
+			"alignment" => Jc::LEFT,
+			"borderSize" => 10,
+			"cellMargin" => 10,
+		];
+		// Guardarlo para usarlo más tarde
+		$documento->addTableStyle("estilo2", $estiloTabla);
+		$tabla = $seccion->addTable("estilo2");
+		for ($fila = 0; $fila < $request->get('mytext'); $fila++) {
+			$tabla->addRow();
+			for ($numeroCelda = 0; $numeroCelda < 5; $numeroCelda++) {
+				$celda = $tabla->addCell();
+				$celda->addText(sprintf("Posición %d x %d", $fila, $numeroCelda));
+			}
+		}
+
+		$filename = "myfile.docx"; // Nombre del archivo que se va a crear
+		$documento->save($filename, "Word2007"); // Guardamos el archivo
+
+		header("Content-Disposition: attachment; filename=$filename"); // Vamos a dar la opcion para descargar el archivo
+		readfile($filename);  // leemos el archivo para que se "descargue"
+		unlink($filename); // eliminamos el archivo del servidor
+
+
 	}
 
 	public function create()
