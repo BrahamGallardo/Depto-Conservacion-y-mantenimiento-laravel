@@ -19,6 +19,8 @@ Route::resource('administracion/trabajadores', 'TrabajadorController');
 Route::resource('almacen/articulos', 'ArticuloController');
 Route::resource('seguridad/usuario', 'UsuarioController');
 Route::get('administracion/detalles/{id}', 'TrabajadorController@details');
+Route::get('almacen/solicitar/{id}', 'ArticuloController@solicitar');
+Route::get('/download', 'ArticuloController@generar');
 Route::auth();
 
 Route::get('/home', 'HomeController@index');

@@ -27,7 +27,7 @@ class TrabajadorController extends Controller
 			->select('idtrabajador','t.nombre_trabajador','r.nombre_rol','et.estado_trabajador','telefono')
 			->where('t.nombre_trabajador','LIKE','%'.$query.'%')
 			->where('estado_trabajador','!=','Inactivo')
-			->orderBy('idtrabajador','desc')->paginate(7);
+			->orderBy('idtrabajador','desc')->paginate(9);
     		return view('administracion.trabajadores.index',["trabajadores"=>$trabajadores,"searchText"=>$query]);
     	}
 

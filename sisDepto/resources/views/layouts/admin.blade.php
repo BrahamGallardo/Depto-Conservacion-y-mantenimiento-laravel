@@ -18,7 +18,7 @@
     <link rel="apple-touch-icon" href="{{asset('img/favicon.png')}}">
     <link rel="shortcut icon" href="{{asset('img/favicon.png')}}">
     <link rel="stylesheet" href="{{asset('css/bootstrap-select.min.css')}}">
-
+    
   </head>
   <body class="hold-transition skin-blue sidebar-mini">
     <div class="wrapper">
@@ -221,14 +221,21 @@
 
       
     <!-- jQuery 2.1.4 -->
+    
     <script src="{{asset('js/jQuery-2.1.4.min.js')}}"></script>
     @stack('scripts')
     <!-- Bootstrap 3.3.5 -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="{{asset('js/bootstrap.min.js')}}"></script>
     <!-- AdminLTE App -->
     <script src="{{asset('js/app.min.js')}}"></script>
 
     <script src="{{asset('js/jsimage.js')}}"></script>
+    
+    <script src="{{asset('js/bootstrap-select.min.js')}}"></script>
+
+    
+    
     
   </body>
 </html>
