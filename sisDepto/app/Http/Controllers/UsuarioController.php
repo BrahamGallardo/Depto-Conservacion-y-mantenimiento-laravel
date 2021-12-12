@@ -18,7 +18,7 @@ class UsuarioController extends Controller
     public function index(Request $request){
     	if($request){
     		$query=trim($request->get('searchText'));
-    		$usuarios=DB::table('users')->where('name','LIKE','%'.$query.'%')->orderBy('id','desc')->paginate(7);
+    		$usuarios=DB::table('users')->where('name','LIKE','%'.$query.'%')->orderBy('id','desc')->paginate(9);
     		return view('seguridad.usuario.index',["usuarios"=>$usuarios,"searchText"=>$query]);
     	}
     }

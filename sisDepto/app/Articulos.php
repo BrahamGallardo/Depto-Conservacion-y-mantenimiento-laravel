@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Articulos extends Model
 {
     protected $table='articulos';
-    protected $primaryKey='idarticulos';
+    protected $primaryKey='codigo';
     public $timestamps=false;
 
     protected $fillable=[
