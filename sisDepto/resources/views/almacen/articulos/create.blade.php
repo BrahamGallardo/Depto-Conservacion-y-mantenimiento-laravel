@@ -23,9 +23,10 @@
 						<label>Artículo</label>
 						<select name="pidarticulo" id="pidarticulo" class="form-control selectpicker" data-live-search="true">
 							@foreach($articulos as $articulo)
-							<option value="{{$articulo->codigo}}_{{$articulo->unidad}}">{{$articulo->articulo}}</option>
+							<option value="{{$articulo->codigo}}_{{$articulo->unidad}}_{{$articulo->nombre_articulo}}">{{$articulo->articulo}}</option>
 							@endforeach
 						</select>
+						<input type="hidden" name="nombre" id="pnombre" class="form-control" value="{{$articulo->nombre_articulo}}">
 					</div>
 				</div>
 				<div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
@@ -89,6 +90,14 @@
 	function mostrarValores() {
 		datosArticulo = document.getElementById('pidarticulo').value.split('_');
 		$("#punidad").val(datosArticulo[1]);
+		datosArticulo = document.getElementById('pidarticulo').value.split('_');
+		$("#pnombre").val(datosArticulo[2]);
+	}
+	function cambiarValores() {
+		datosArticulo = document.getElementById('pidarticulo').value.split('_');
+		$("#punidad").val(datosArticulo[1]);
+		datosArticulo = document.getElementById('pidarticulo').value.split('_');
+		$("#pnombre").val(datosArticulo[2]);
 	}
 
 	function agregar() {
@@ -96,9 +105,10 @@
 		articulo = $("#pidarticulo option:selected").text();
 		cantidad = $("#pcantidad").val();
 		unidad = $("#punidad").val();
+		nombre_articulo = $("#pnombre").val();
 
 		if (idarticulo != "" && cantidad != "" && cantidad > 0) {
-			var fila = '<tr class="selected" id="fila' + cont + '" name="fila' + cont + '"> <td><button type="button" class="btn btn-warning" onclick="eliminar(' + cont + ');">x</button></td> <td><input type="hidden" name="idarticulo[' + cont + ']" value="' + idarticulo + '">' + articulo + '</td> <td><input type="hidden" name="cantidad[' + cont + ']" value="' + cantidad + '">' + cantidad + '</td> <td><input type="hidden" name="unidad[' + cont + ']" value="' + unidad + '">' + unidad + 's</td>   </tr>';
+			var fila = '<tr class="selected" id="fila' + cont + '" name="fila' + cont + '"> <td><button type="button" class="btn btn-warning" onclick="eliminar(' + cont + ');">x</button></td> <td><input type="hidden" name="idarticulo[' + cont + ']" value="' + nombre_articulo + '"> ' + articulo + ' </td> <td><input type="hidden" name="cantidad[' + cont + ']" value="' + cantidad + '">' + cantidad + '</td> <td><input type="hidden" name="unidad[' + cont + ']" value="' + unidad + '">' + unidad + 's</td>   </tr>';
 			cont++;
 			limpiar();
 			evaluar();
@@ -111,6 +121,7 @@
 	function limpiar() {
 		$("#pcantidad").val("");
 		$("#punidad").val("");
+		$("#pnombre").val("");
 	}
 
 	function evaluar() {
@@ -126,7 +137,7 @@
 
 	function eliminar(index) {
 		$("#fila" + index).remove();
-		cont--;
+		//cont--;
 		evaluar();
 	}
 </script>

@@ -149,7 +149,8 @@
               </a>
               <ul class="treeview-menu">
                 <li><a href="{{url('almacen/articulos')}}"><i class="fa fa-circle-o"></i> Articulo</a></li>
-                <li><a href="#"><i class="fa fa-circle-o"></i> Categoria</a></li>
+                <li><a href="#"><i class="fa fa-circle-o"></i> Ingresos</a></li>
+                <li><a href="#"><i class="fa fa-circle-o"></i> Egresos</a></li>
               </ul>
             </li>
              <li>
