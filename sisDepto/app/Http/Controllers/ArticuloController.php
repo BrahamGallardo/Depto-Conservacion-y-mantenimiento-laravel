@@ -31,7 +31,8 @@ class ArticuloController extends Controller
 	JOIN tipos_articulo AS t 
 	ON `art`.`tipo` = t.idtipo_articulo 
 	JOIN unidades_articulo AS u 
-	ON art.unidad = u.idunidad;*/
+	ON art.unidad = u.idunidad;
+	*/
 	public function index(Request $request)
 	{
 		if ($request) {
@@ -41,12 +42,125 @@ class ArticuloController extends Controller
 				->join('unidades_articulo as u', 'art.unidad', '=', 'u.idunidad')
 				->select('codigo', 'art.nombre_articulo', 't.tipo_articulo', 'art.cantidad', 'u.unidad')
 				->where('art.nombre_articulo', 'LIKE', '%' . $query . '%')
+				->orwhere('art.codigo', 'LIKE', '%' . $query . '%')
 				->orderBy('codigo', 'asc')->paginate(9);
 			return view('almacen.articulos.index', ["articulos" => $articulos, "searchText" => $query]);
 		}
 	}
+	/*
+	SELECT  art.numero_articulo
+	FROM `articulos` AS art 
+	WHERE art.tipo = 1
+	ORDER BY art.numero_articulo DESC;
+	*/
+	public function create()
+	{
+		$electricos = DB::table('articulos as art')
+			->select( DB::raw('MAX(art.numero_articulo) AS num'))
+			->where('art.tipo', '=', '1')
+			->orderBy('art.numero_articulo', 'desc')->get();
+		$plomeria = DB::table('articulos as art')
+			->select(DB::raw('MAX(art.numero_articulo) AS num'))
+			->where('art.tipo', '=', '2')
+			->orderBy('art.numero_articulo', 'desc')->get();
+		$varios = DB::table('articulos as art')
+			->select(DB::raw('MAX(art.numero_articulo) AS num'))
+			->where('art.tipo', '=', '3')
+			->orderBy('art.numero_articulo', 'desc')->get();
+		$dentales = DB::table('articulos as art')
+			->select(DB::raw('MAX(art.numero_articulo) AS num'))
+			->where('art.tipo', '=', '4')
+			->orderBy('art.numero_articulo', 'desc')->get();
+		$limpieza = DB::table('articulos as art')
+			->select(DB::raw('MAX(art.numero_articulo) AS num'))
+			->where('art.tipo', '=', '5')
+			->orderBy('art.numero_articulo', 'desc')->get();
+		$papeleria = DB::table('articulos as art')
+			->select(DB::raw('MAX(art.numero_articulo) AS num'))
+			->where('art.tipo', '=', '6')
+			->orderBy('art.numero_articulo', 'desc')->get();
+		$refris = DB::table('articulos as art')
+			->select(DB::raw('MAX(art.numero_articulo) AS num'))
+			->where('art.tipo', '=', '7')
+			->orderBy('art.numero_articulo', 'desc')->get();
+		$herra = DB::table('articulos as art')
+			->select(DB::raw('MAX(art.numero_articulo) AS num'))
+			->where('art.tipo', '=', '8')
+			->orderBy('art.numero_articulo', 'desc')->get();
+		$tipos = DB::table('tipos_articulo')->get();
+		$unidad = DB::table('unidades_articulo')->get();
+		return view(
+			"almacen.articulos.create",
+			[
+				"tipos" => $tipos, "unidad" => $unidad,
+				"electricos" => $electricos, "plomeria" => $plomeria,
+				"varios" => $varios, "dentales" => $dentales,
+				"limpieza" => $limpieza, "papeleria" => $papeleria,
+				"refris" => $refris, "herra" => $herra,
+			]
+		);
+	}
+
+	public function store(ArticuloFormRequest $request)
+	{
+		$articulo = new Articulos;
+		$articulo->codigo = $request->get('codigo');
+		$articulo->nombre_articulo = $request->get('nombre');
+		$articulo->tipo = $request->get('idtipoArticulo');
+		$articulo->unidad = $request->get('idtipoUnidad');
+		$articulo->cantidad = $request->get('cantidad');
+		$articulo->ubicacion = $request->get('ubicacion');
+		$articulo->observaciones = $request->get('observaciones');
+		$articulo->numero_articulo = $request->get('number');
+		$articulo->save(); /* update*/
+		return Redirect::to('almacen/articulos');
+	}
+
+	public function show($id)
+	{
+		return view("almacen.articulos.show", ["articulo" => Articulos::findOrFail($id)]);
+	}
+
+	public function edit($codigo)
+	{
+		$articulos = DB::table('articulos as art')
+			->select('codigo', 'nombre_articulo', 'tipo', 'unidad', 'cantidad', 'ubicacion', 'observaciones')
+			->where('codigo', '=', '' . $codigo . '')->first();
+		$tipos = DB::table('tipos_articulo')->get();
+		$unidad = DB::table('unidades_articulo')->get();
+		return view("almacen.articulos.edit", ["articulos" => $articulos, "tipos" => $tipos, "unidad" => $unidad]);
+	}
+
+
+	public function update(ArticuloFormRequest $request, $id)
+	{
+		$articulo = Articulos::findOrFail($id);
+		$articulo->nombre_articulo = $request->get('nombre');
+		$articulo->tipo = $request->get('idtipoArticulo');
+		$articulo->unidad = $request->get('idtipoUnidad');
+		$articulo->cantidad = $request->get('cantidad');
+		$articulo->ubicacion = $request->get('ubicacion');
+		$articulo->observaciones = $request->get('observaciones');
+		$articulo->update();
+		return Redirect::to('almacen/articulos');
+	}
+
+	public function details($id)
+	{
+		$articulos = DB::table('articulos as art')
+			->select('codigo', 'nombre_articulo', 'tipo', 'unidad', 'cantidad', 'ubicacion', 'observaciones')
+			->where('codigo', '=', '' . $id . '')->first();
+		$tipos = DB::table('tipos_articulo')->get();
+		$unidad = DB::table('unidades_articulo')->get();
+		return view("almacen.articulos.details", ["articulos" => $articulos, "tipos" => $tipos, "unidad" => $unidad]);
+	}
+	public function detail($id)
+	{
+		return Redirect::to('almacen/articulos');
+	}
 
 	//Puede esliminarse este metodo
+	/*
 	public function generar2(Request $request)
 	{
 		try {
@@ -85,7 +199,7 @@ class ArticuloController extends Controller
 		} catch (\PhpOffice\PhpWord\Exception\Exception $e) {
 			return back($e->getCode());
 		}
-	}
+	}*/
 	/*public function generar(Request $request)
 	{
 		$documento = new \PhpOffice\PhpWord\PhpWord();
@@ -219,7 +333,6 @@ class ArticuloController extends Controller
 	ON art.tipo = t.idtipo_articulo 
 	JOIN unidades_articulo as u 
 	ON art.unidad = u.idunidad;
-	*/
 	public function create()
 	{
 		$tipo = DB::table('tipos_articulo')->get();
@@ -229,71 +342,11 @@ class ArticuloController extends Controller
 			->join('unidades_articulo as u', 'art.unidad', '=', 'u.idunidad')
 			->select(DB::raw('CONCAT(art.codigo," ",art.nombre_articulo) AS articulo'),'art.nombre_articulo', 'art.codigo', 't.tipo_articulo', 'u.unidad')
 			->get();
-		return view("almacen.articulos.create", ["tipo" => $tipo, "articulos" => $articulos]);
-	}
+		return view("almacen.ingresos.create", ["tipo" => $tipo, "articulos" => $articulos]);
+	} */
 
 
 	//A partir de acá no ocupo codigo
-	public function store(TrabajadorFormRequest $request)
-	{
-		$trabajador = new Trabajadores;
-		$trabajador->nombre_trabajador = $request->get('nombre');
-		$trabajador->email = $request->get('email');
-		$trabajador->telefono = $request->get('telefono');
-		$trabajador->idtipo_trabajador = $request->get('idtipoTrabajador');
-		$trabajador->idrol = $request->get('rol');
-		$trabajador->idestado = '1';
-		$trabajador->idhorario = $request->get('horario');
-		$trabajador->save();
-		return Redirect::to('administracion/trabajadores');
-	}
-
-
-	public function show($id)
-	{
-		return view("administracion.trabajadores.show", ["trabajador" => Trabajadores::findOrFail($id)]);
-	}
-
-	public function details($id)
-	{
-		$trabajadores = Trabajadores::findOrFail($id);
-		$tipos = DB::table('tipos_trabajador')->get();
-		$roles = DB::table('roles')->get();
-		$horarios = DB::table('horarios')->get();
-		$estados = DB::table('estados_trabajador')->get();
-		return view("administracion.trabajadores.details", ["trabajadores" => $trabajadores, "tipos" => $tipos, "roles" => $roles, "horarios" => $horarios, "estados" => $estados]);
-	}
-	public function detail($id)
-	{
-		return Redirect::to('administracion/trabajadores');
-	}
-
-
-
-	public function edit($id)
-	{
-		$trabajadores = Trabajadores::findOrFail($id);
-		$tipos = DB::table('tipos_trabajador')->get();
-		$roles = DB::table('roles')->get();
-		$horarios = DB::table('horarios')->get();
-		$estados = DB::table('estados_trabajador')->get();
-		return view("administracion.trabajadores.edit", ["trabajadores" => $trabajadores, "tipos" => $tipos, "roles" => $roles, "horarios" => $horarios, "estados" => $estados]);
-	}
-
-
-	public function update(TrabajadorFormRequest $request, $id)
-	{
-		$trabajador = Trabajadores::findOrFail($id);
-		$trabajador->nombre_trabajador = $request->get('nombre');
-		$trabajador->email = $request->get('email');
-		$trabajador->telefono = $request->get('telefono');
-		$trabajador->idtipo_trabajador = $request->get('idtipoTrabajador');
-		$trabajador->idrol = $request->get('rol');
-		$trabajador->idhorario = $request->get('horario');
-		$trabajador->update();
-		return Redirect::to('administracion/trabajadores');
-	}
-
 
 	public function destroy($id)
 	{

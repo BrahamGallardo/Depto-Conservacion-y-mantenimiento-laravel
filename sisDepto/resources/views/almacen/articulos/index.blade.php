@@ -2,7 +2,10 @@
 @section('contenido')
 <div class="row">
 	<div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
-		<h3>Listado de articulos <a href="articulos/create"><button class="btn btn-success">Solicitar</button></a></h3>
+		<h3>Listado de articulos
+			<a href="articulos/create"><button class="btn btn-success">Nuevo</button></a>
+			<a href="ingresos/create"><button class="btn btn-info">Solicitar</button></a>
+		</h3>
 		@include('almacen.articulos.search')
 	</div>
 </div>
@@ -12,15 +15,15 @@
 		<div class="table-responsive">
 			<style>
 				.peligro {
-					background-color: #dd4b39 ;
+					background-color: #dd4b39;
 				}
 
 				.notable {
-					background-color: #00c0ef ;
+					background-color: #00c0ef;
 				}
 
 				.advertencia {
-					background-color: #f39c12 ;
+					background-color: #f39c12;
 				}
 			</style>
 			<table class="table table-striped table-bordered table-condensed table-hover">
@@ -46,8 +49,8 @@
 
 							<td>{{ $art->unidad}}</td>
 							<td>
-								<a href="#"><button class="btn btn-default">Detalles</button></a>
-								<a href="solicitar/{{$art->codigo}}"><button class="btn btn-info">Solicitar</button></a>
+								<a href="detalles/{{$art->codigo}}"><button class="btn btn-default">Detalles</button></a>
+								<a href="{{URL::action('ArticuloController@edit',$art->codigo)}}"><button class="btn btn-info">Editar</button></a>
 							</td>
 				</tr>
 				@include('almacen.articulos.modal')

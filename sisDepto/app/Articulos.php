@@ -15,7 +15,7 @@ class Articulos extends Model
         'tipo',
         'unidad',
         'cantidad',
-        'ubicacion'
-        
+        'ubicacion',
+        'numero_articulo'
     ];
 }

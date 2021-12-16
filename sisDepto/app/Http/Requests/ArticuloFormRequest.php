@@ -24,11 +24,13 @@ class ArticuloFormRequest extends Request
     public function rules()
     {
         return [
-            'nombre'=>'required|max:70',
-            'tipo'=>'max:15',
-            'unidad'=>'max:15',
+            
+            'nombre'=>'required|max:100',
+            'idtipoArticulo'=>'max:50',
+            'idtipoUnidad'=>'max:25',
             'cantidad'=>'max:15',
-            'ubicación'=>'max:25'
+            'ubicación'=>'max:40',
+            'observaciones'=>'max:250'
         ];
     }
 }
