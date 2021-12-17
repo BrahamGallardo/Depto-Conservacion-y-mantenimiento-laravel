@@ -50,7 +50,7 @@
 							<td>{{ $art->unidad}}</td>
 							<td>
 								<a href="detalles/{{$art->codigo}}"><button class="btn btn-default">Detalles</button></a>
-								<a href="{{URL::action('ArticuloController@edit',$art->codigo)}}"><button class="btn btn-info">Editar</button></a>
+								<a href="{{URL::action('ArticuloController@edit',$art->codigo)}}"><button class="btn btn-primary">Editar</button></a>
 							</td>
 				</tr>
 				@include('almacen.articulos.modal')

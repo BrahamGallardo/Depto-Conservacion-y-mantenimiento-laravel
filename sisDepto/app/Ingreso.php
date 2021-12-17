@@ -13,8 +13,8 @@ class Ingreso extends Model
 
     protected $fillable=[
     	'tipo_comprobante',
-    	'num_comprobante',
     	'fecha_hora',
+        'estado'
     ];
     protected $guarded=[
     	

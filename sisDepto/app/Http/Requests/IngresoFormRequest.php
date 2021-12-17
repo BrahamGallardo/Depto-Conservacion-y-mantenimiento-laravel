@@ -13,7 +13,7 @@ class IngresoFormRequest extends Request
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,11 +24,10 @@ class IngresoFormRequest extends Request
     public function rules()
     {
         return [
-            'tipo_comprobante'=>'required|max:20',
-            'num_comprobante'=>'required|max:10',
-            'idarticulo'=>'required',
-            'cantidad'=>'required',
-            'precio_compra'=>'required'
+            'tipo_comprobante'=>'max:20',
+            'idarticulo'=>'max:20',
+            'cantidad'=>'max:20',
+            'unidad'=>'max:20'
         ];
     }
 }

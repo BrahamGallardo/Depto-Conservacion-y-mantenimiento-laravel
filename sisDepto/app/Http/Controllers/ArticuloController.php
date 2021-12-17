@@ -10,10 +10,6 @@ use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Input;
 use sisDepartamento\Http\Requests\ArticuloFormRequest;
 use DB;
-use PhpOffice\PhpWord\Style\Language;
-use PhpOffice\PhpWord\Style\ListItem;
-
-
 
 use PhpOffice\PhpWord\SimpleType\Jc;
 
@@ -348,11 +344,11 @@ class ArticuloController extends Controller
 
 	//A partir de acá no ocupo codigo
 
-	public function destroy($id)
+	/*public function destroy($id)
 	{
 		$trabajador = Trabajadores::findOrFail($id);
 		$trabajador->idestado = '5';
 		$trabajador->update();
 		return Redirect::to('administracion/trabajadores');
-	}
+	}*/
 }
