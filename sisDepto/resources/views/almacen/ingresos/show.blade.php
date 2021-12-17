@@ -22,46 +22,53 @@
 	<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
 		<div class="form-group">
 			<label>Estado</label>
-			<p>{{$ingresos->estado}}</p>
+			<p><input type="hidden" id="pestado" class="form-control" value="{{$ingresos->estado}}">{{$ingresos->estado}}</p>
 		</div>
 	</div>
 </div>
-<form action="/download" method="GET">
-	<div class="row">
-		<div class="panel panel-primary" style="border-color: #A9D0F5">
-			<div class="panel-body">
 
-				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-					<table id="detalles" class="table table-striped table-bordered table-condensed table-hover">
-						<thead style="background-color: #A9D0F5">
-							<th>Codigo</th>
-							<th>Artículo</th>
-							<th>Cantidad</th>
-							<th>Unidad</th>
-						</thead>
-						<tfoot>
+<div class="row">
+	<div class="panel panel-primary" style="border-color: #A9D0F5">
+		<div class="panel-body">
 
-						</tfoot>
-						<tbody>
-							@foreach($detalles as $det)
-							<tr>
-								<td>{{$det->codigo}}</td>
-								<td>{{$det->nombre_articulo}}</td>
-								<td>{{$det->cantidad}}</td>
-								<td>{{$det->unidad}}</td>
-							</tr>
-							@endforeach
-						</tbody>
-					</table>
-				</div>
-			</div>
-		</div>
-
-		<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12" id="guardar">
-			<div class="form-group">
-				<button class="btn btn-primary" id="btnsolicitar" type="submit">Descargar</button>
+			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+				<table id="detalles" class="table table-striped table-bordered table-condensed table-hover">
+					<thead style="background-color: #A9D0F5">
+						<th>Codigo</th>
+						<th>Artículo</th>
+						<th>Cantidad</th>
+						<th>Unidad</th>
+					</thead>
+					<tbody>
+						@foreach($detalles as $det)
+						<tr>
+							<td>{{$det->codigo}}</td>
+							<td>{{$det->nombre_articulo}}</td>
+							<td>{{$det->cantidad}}</td>
+							<td>{{$det->unidad}}</td>
+						</tr>
+						@endforeach
+					</tbody>
+				</table>
 			</div>
 		</div>
 	</div>
-</form>
+
+	<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12" id="guardar">
+		<div class="form-group">
+			<a href="{{url('almacen/ingresos')}}"><button class="btn btn-primary">Aceptar</button></a>
+			<button class="btn btn-info" id="btnsolicitar" type="submit">Descargar</button>
+			<a href="#modal-activar-{{$ingresos->idingreso}}" data-toggle="modal"><button class="btn btn-success" id="activarbtn">Activar</button></a>
+		</div>
+	</div>
+	@include('almacen.ingresos.modal-a')
+</div>
+@push ('scripts')
+<script>
+	unidad = $("#pestado").val();
+	if (unidad == "Realizado") {
+		$("#activarbtn").hide();
+	}
+</script>
+@endpush
 @endsection

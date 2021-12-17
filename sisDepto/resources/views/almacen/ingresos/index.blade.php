@@ -22,18 +22,16 @@
 				</thead>
 				@foreach($ingresos as $ing)
 				<tr>
-					<td>{{ $ing->idingreso}}</td>
+					<td id="idingreso" value="{{$ing->idingreso}}">{{$ing->idingreso}}</td>
 					<td>{{ $ing->fecha_hora}}</td>
 					<td>{{ $ing->archivo}}</td>
-					<td>{{ $ing->estado}}</td>
-					<td>
+					<td id="pestado" value="{{$ing->estado}}">{{$ing->estado}}</td>
+					<td id="btns">
 						<a href="{{URL::action('IngresosController@show',$ing->idingreso)}}"><button class="btn btn-default">Detalles</button></a>
-						<a href="#"><button class="btn btn-success">Activar</button></a>
-						<a href="#modal-delete-{{$ing->idingreso}}" data-toggle="modal"><button class="btn btn-danger">Anular</button></a>
+						<a href="#modal-delete-{{$ing->idingreso}}" data-toggle="modal"><button class="btn btn-danger" id="cancelbtn">Anular</button></a>
 					</td>
 				</tr>
 				@include('almacen.ingresos.modal')
-				@include('almacen.ingresos.modal-a')
 				@endforeach
 			</table>
 		</div>

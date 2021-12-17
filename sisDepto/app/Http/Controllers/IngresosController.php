@@ -18,6 +18,7 @@ use sisDepartamento\DetalleIngreso;
 use Response;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Redis;
+use sisDepartamento\Articulos;
 
 class IngresosController extends Controller
 {
@@ -86,10 +87,10 @@ class IngresosController extends Controller
     {
         $ingresos = DB::table('ingreso AS i')
             ->JOIN('detalle_ingreso as di', 'di.iddetalle_ingreso', '=', 'i.idingreso')
-            ->SELECT('i.idingreso', 'i.tipo_comprobante','i.fecha_hora', 'i.estado')
+            ->SELECT('i.idingreso', 'i.tipo_comprobante', 'i.fecha_hora', 'i.estado')
             ->WHERE('i.idingreso', '=', $id)
             ->first();
-            /* Consulta sql
+        /* Consulta sql
             SELECT articulos.codigo ,`articulos`.`nombre_articulo`, detalle_ingreso.cantidad, unidades_articulo.unidad 
             FROM `detalle_ingreso` 
             JOIN articulos ON detalle_ingreso.cod_articulo = articulos.codigo 
@@ -102,16 +103,47 @@ class IngresosController extends Controller
             ->SELECT('art.nombre_articulo', 'd.cantidad', 'art.codigo', 'u.unidad')
             ->WHERE('d.idingreso', '=', $id)
             ->get();
-            return view("almacen.ingresos.show",["ingresos"=>$ingresos,"detalles"=>$detalles]);
+        return view("almacen.ingresos.show", ["ingresos" => $ingresos, "detalles" => $detalles]);
     }
-    public function destroy($id){
+    public function destroy($id)
+    {
         $ingreso = Ingreso::findOrFail($id);
         $ingreso->estado = 'Cancelado';
         $ingreso->update();
         return Redirect::to('almacen/ingresos');
     }
-    public function activar($id){
+    public function activar($id)
+    {
         $ingreso = Ingreso::findOrFail($id);
+        $codigos = DB::table('detalle_ingreso AS di')
+            ->JOIN('articulos AS art', 'di.cod_articulo', '=', 'art.codigo')
+            ->SELECT('art.codigo as codigo')
+            ->WHERE('di.idingreso', '=', $id)
+            ->get();
+
+        foreach ($codigos as $canti) {
+            if ($ingreso->estado != 'Realizado') {
+                $cont = 0;
+                $articulo = Articulos::findOrFail($canti->codigo);
+                $newcantidad = DB::table('detalle_ingreso AS di')
+                    ->JOIN('articulos AS art', 'di.cod_articulo', '=', 'art.codigo')
+                    ->SELECT('art.cantidad')
+                    ->WHERE('di.cod_articulo', '=', $canti->codigo)
+                    ->get();
+                $oldcantidad = DB::table('detalle_ingreso AS di')
+                    ->JOIN('articulos AS art', 'di.cod_articulo', '=', 'art.codigo')
+                    ->SELECT('di.cantidad')
+                    ->WHERE('di.cod_articulo', '=', $canti->codigo)
+                    ->get();
+                var_dump($newcantidad);
+                var_dump($oldcantidad);
+                $cantidadtotal = $newcantidad[$cont]->cantidad + $oldcantidad[$cont]->cantidad;
+                $articulo->cantidad = $cantidadtotal;
+                $articulo->update();
+                $cont = $cont + 1;
+            }
+        }
+
         $ingreso->estado = 'Realizado';
         $ingreso->update();
         return Redirect::to('almacen/ingresos');

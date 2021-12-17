@@ -23,7 +23,7 @@ Route::get('administracion/detalles/{id}', 'TrabajadorController@details');
 Route::get('almacen/detalles/{id}', 'ArticuloController@details');
 Route::get('almacen/solicitar/{id}', 'ArticuloController@solicitar');
 Route::get('/download', 'IngresosController@generar');
-Route::get('/activar','IngresosController@activar');
+Route::get('/activar/{id}','IngresosController@activar');
 Route::auth();
 
 Route::get('/home', 'HomeController@index');
