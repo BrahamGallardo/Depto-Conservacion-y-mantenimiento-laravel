@@ -15,6 +15,9 @@
     <link rel="stylesheet" href="{{asset('plugins/icheck-bootstrap/icheck-bootstrap.min.css')}}" />
     <!-- Theme style -->
     <link rel="stylesheet" href="{{asset('dist/css/adminlte2.min.css ')}}" />
+    <link rel="apple-touch-icon" href="{{asset('img/favicon.png')}}">
+    <link rel="shortcut icon" href="{{asset('img/favicon.png')}}">
+    <link rel="stylesheet" href="{{asset('css/bootstrap-select.min.css')}}">
 
     <style>
         .login-page {

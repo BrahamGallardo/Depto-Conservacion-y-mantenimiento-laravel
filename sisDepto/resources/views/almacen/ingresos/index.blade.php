@@ -8,7 +8,13 @@
 		@include('almacen.ingresos.search')
 	</div>
 </div>
+<style>
+	.oculto {
+		pointer-events: none !important;
+		cursor: not-allowed !important;
 
+	}
+</style>
 <div class="row">
 	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 		<div class="table-responsive">
@@ -25,10 +31,14 @@
 					<td id="idingreso" value="{{$ing->idingreso}}">{{$ing->idingreso}}</td>
 					<td>{{ $ing->fecha_hora}}</td>
 					<td>{{ $ing->archivo}}</td>
-					<td id="pestado" value="{{$ing->estado}}">{{$ing->estado}}</td>
+					<td>{{$ing->estado}}</td>
 					<td id="btns">
 						<a href="{{URL::action('IngresosController@show',$ing->idingreso)}}"><button class="btn btn-default">Detalles</button></a>
+						@if($ing->estado != 'Pendiente')
+						<button class="btn btn-danger oculto disabled" id="cancelbtn">Anular</button>
+						@elseif($ing->estado == 'Pendiente')
 						<a href="#modal-delete-{{$ing->idingreso}}" data-toggle="modal"><button class="btn btn-danger" id="cancelbtn">Anular</button></a>
+						@endif
 					</td>
 				</tr>
 				@include('almacen.ingresos.modal')
