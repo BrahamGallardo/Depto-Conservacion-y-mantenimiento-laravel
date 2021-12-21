@@ -74,7 +74,7 @@
 		<div class="form-group">
 			<input name="_token" value="{{ csrf_token() }}" type="hidden"></input>
 			<button class="btn btn-primary" id="btnsolicitar" type="submit">Guardar</button>
-			<button class="btn btn-danger" type="reset">Cancelar</button>
+			<a href="{{url('almacen/ingresos')}}"> <button class="btn btn-danger" type="reset">Cancelar</button> </a>
 		</div>
 	</div>
 </div>

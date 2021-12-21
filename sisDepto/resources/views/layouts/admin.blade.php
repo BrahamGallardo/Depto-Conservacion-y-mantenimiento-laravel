@@ -107,13 +107,9 @@
               <i class="fa fa-angle-left pull-right"></i>
             </a>
             <ul class="treeview-menu">
-              <li><a href="#"><i class="fa fa-circle-o"></i> Expedientes</a></li>
-              <li><a href="#"><i class="fa fa-circle-o"></i> Solicitudes</a></li>
-              <li><a href="#"><i class="fa fa-circle-o"></i> Cotizaciones</a></li>
               <li><a href="#"><i class="fa fa-circle-o"></i> Ordenes</a></li>
               <li><a href="{{url('administracion/trabajadores')}}"><i class="fa fa-circle-o"></i> Folios</a></li>
               <li><a href="#"><i class="fa fa-circle-o"></i> Actas entrega</a></li>
-              <li><a href="#"><i class="fa fa-circle-o"></i> Acuses</a></li>
             </ul>
           </li>
 
@@ -126,7 +122,6 @@
             <ul class="treeview-menu">
               <li><a href="#"><i class="fa fa-circle-o"></i> Recursos</a></li>
               <li><a href="#"><i class="fa fa-circle-o"></i> Fondo revolvente</a></li>
-              <li><a href="#"><i class="fa fa-circle-o"></i> Tramites</a></li>
               <li><a href="#"><i class="fa fa-circle-o"></i> Remisiones</a></li>
             </ul>
           </li>
@@ -139,7 +134,7 @@
             <ul class="treeview-menu">
               <li><a href="{{url('administracion/trabajadores')}}"><i class="fa fa-circle-o"></i> Trabajadores</a></li>
               <li><a href="#"><i class="fa fa-circle-o"></i> Estimulos</a></li>
-              <li><a href="#"><i class="fa fa-circle-o"></i> Derechos trabajador</a></li>
+              <li><a href="#"><i class="fa fa-circle-o"></i> Permisos y vacaciones</a></li>
               <li><a href="{{url('seguridad/usuario')}}"><i class="fa fa-circle-o"></i> Usuarios</a></li>
             </ul>
           </li>
@@ -226,7 +221,7 @@
   <!--Fin-Contenido-->
   <footer class="main-footer">
     <div class="pull-right hidden-xs">
-      <b>Version</b> 0.8.0
+      <b>Version</b> 0.9.0
     </div>
     <strong>Copyright &copy; 2015-2021 <a href="https://www.oaxaca.gob.mx/salud/">SSO</a>.</strong> All rights reserved.
   </footer>

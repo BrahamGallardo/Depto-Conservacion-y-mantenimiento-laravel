@@ -17,11 +17,9 @@
 				.peligro {
 					background-color: #dd4b39;
 				}
-
 				.notable {
 					background-color: #00c0ef;
 				}
-
 				.advertencia {
 					background-color: #f39c12;
 				}

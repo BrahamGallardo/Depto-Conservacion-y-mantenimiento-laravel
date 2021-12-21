@@ -34,6 +34,7 @@ class IngresosController extends Controller
                 ->JOIN('detalle_ingreso as di', 'di.iddetalle_ingreso', '=', 'i.idingreso')
                 ->SELECT('i.idingreso', 'i.fecha_hora', 'di.archivo', 'i.estado')
                 ->where('i.idingreso', 'LIKE', '%' . $query . '%')
+                ->orwhere('i.estado', 'LIKE', '%' . $query . '%')
                 ->orderBy('i.idingreso', 'desc')->paginate(9);
             return view('almacen.ingresos.index', ["ingresos" => $ingresos, "searchText" => $query]);
         }
@@ -49,6 +50,7 @@ class IngresosController extends Controller
             ->get();
         return view("almacen.ingresos.create", ["tipo" => $tipo, "articulos" => $articulos]);
     }
+
     public function store(IngresoFormRequest $request)
     {
         try {
@@ -61,7 +63,6 @@ class IngresosController extends Controller
             $ingreso->estado = 'Pendiente';
             $ingreso->save();
 
-            $idarticulo = $request->get('idarticulo');
             $cantidad = $request->get('cantidad');
             $codigo = $request->get('codigo');
 
@@ -72,7 +73,6 @@ class IngresosController extends Controller
                 $detalle->cod_articulo = $codigo[$cont];
                 $detalle->cantidad = $cantidad[$cont];
                 $detalle->save();
-
                 $cont = $cont + 1;
             }
 
@@ -83,6 +83,7 @@ class IngresosController extends Controller
         }
         return Redirect::to('almacen/ingresos');
     }
+
     public function show($id)
     {
         $ingresos = DB::table('ingreso AS i')
@@ -103,8 +104,15 @@ class IngresosController extends Controller
             ->SELECT('art.nombre_articulo', 'd.cantidad', 'art.codigo', 'u.unidad')
             ->WHERE('d.idingreso', '=', $id)
             ->get();
-        return view("almacen.ingresos.show", ["ingresos" => $ingresos, "detalles" => $detalles]);
+        $arts = DB::table('detalle_ingreso AS d')
+            ->JOIN('articulos AS art', 'd.cod_articulo', '=', 'art.codigo')
+            ->JOIN('unidades_articulo AS u', 'art.unidad', '=', 'u.idunidad')
+            ->SELECT('art.nombre_articulo', 'd.cantidad', 'd.idingreso', 'u.unidad')
+            ->WHERE('d.idingreso', '=', $id)
+            ->first();
+        return view("almacen.ingresos.show", ["ingresos" => $ingresos, "detalles" => $detalles, "arts" => $arts]);
     }
+
     public function destroy($id)
     {
         $ingreso = Ingreso::findOrFail($id);
@@ -112,6 +120,7 @@ class IngresosController extends Controller
         $ingreso->update();
         return Redirect::to('almacen/ingresos');
     }
+
     public function activar($id)
     {
         $ingreso = Ingreso::findOrFail($id);
@@ -147,5 +156,155 @@ class IngresosController extends Controller
         $ingreso->estado = 'Realizado';
         $ingreso->update();
         return Redirect::to('almacen/ingresos');
+    }
+
+    public function generar(Request $request)
+    {
+        $detalles = DB::table('detalle_ingreso AS d')
+            ->JOIN('articulos AS art', 'd.cod_articulo', '=', 'art.codigo')
+            ->JOIN('unidades_articulo AS u', 'art.unidad', '=', 'u.idunidad')
+            ->SELECT('art.nombre_articulo', 'd.cantidad', 'art.codigo', 'u.unidad')
+            ->WHERE('d.idingreso', '=', $request->get('vingreso') )
+            ->get();
+
+        //Aqui inicia el documento
+        $documento = new \PhpOffice\PhpWord\PhpWord();
+        $propiedades = $documento->getDocInfo();
+        $propiedades->setCreator("Jesus");
+        $propiedades->setTitle("Solicitud");
+        $seccion = $documento->addSection();
+        $fuente1 = [
+            "name" => "Calibri",
+            "size" => 11,
+            "color" => "000000",
+            "bold" => true,
+        ];
+        $fuente2 = [
+            "name" => "Calibri",
+            "size" => 11,
+            "color" => "000000",
+            "bold" => false,
+        ];
+        $fuente3 = [
+            "name" => "Arial",
+            "size" => 10,
+            "color" => "000000",
+            "bold" => true,
+            "alignment" => Jc::CENTER #este no lo centra
+        ];
+        $estilo = $seccion->addTextRun([
+            "alignment" => Jc::RIGHT,
+            'lineHeight' => 1.5,
+        ]);
+        date_default_timezone_set('America/Mexico_City');
+        setlocale(LC_ALL, "es_MX.UTF-8"); #Esta parte no cambia el idioma
+        $meses = array("ENERO", "FEBRERO", "MARZO", "ABRIL", "MAYO", "JUNIO", "JULIO", "AGOSTO", "SEPTIEMBRE", "OCTUBRE", "NOVIEMBRE", "DICIEMBRE");
+
+        $estilo->addText("OAXACA DE JUÁREZ, OAX. A ", $fuente1);
+        $estilo->addText(date("d"), $fuente1);
+        $estilo->addText(" DE ", $fuente1);
+        $estilo->addText($meses[date('n') - 1], $fuente1);
+        $estilo->addText(" DE ", $fuente1);
+        $estilo->addText(date("Y"), $fuente1);
+        $estilo->addTextBreak(1);
+
+        $estilo = $seccion->addTextRun([
+            "alignment" => Jc::LEFT,
+            'lineHeight' => 1,
+        ]);
+
+        $estilo->addText("ING. GIOVANNY RODRIGUEZ REYES", $fuente1);
+        $estilo->addTextBreak(1);
+        $estilo->addText("DEL DEPARTAMENTO DE CONSERVACION", $fuente1);
+        $estilo->addTextBreak(1);
+        $estilo->addText("Y MANTENIMIENTO, OAX.", $fuente1);
+        $estilo->addTextBreak(1);
+        $estilo->addText("P R E S E N T E.", $fuente1);
+        //$estilo->addTextBreak(1);
+
+        $estilo = $seccion->addTextRun([
+            "alignment" => Jc::RIGHT,
+            'lineHeight' => 1,
+        ]);
+        $estilo->addText("AT´N. LIC. KAREN BERENICE RIVERA CRUZ", $fuente1);
+        $estilo->addTextBreak(1);
+        $estilo->addText("COORDINADORA ADMINISTRATIVA", $fuente1);
+        $estilo->addTextBreak(1);
+        $estilo->addText("DEL DEPTO. DE CONSERVACION Y MANTTO. ", $fuente1);
+        $estilo->addTextBreak(1);
+        $estilo->addText("AT´N. ING. PAULINO LOPEZ MODESTO", $fuente1);
+        $estilo->addTextBreak(1);
+        $estilo->addText("JEFE DE LA OFICINA DE MANTTO.", $fuente1);
+        $estilo->addTextBreak(1);
+
+        $estilo = $seccion->addTextRun([
+            "alignment" => Jc::BOTH
+        ]);
+        $estilo->addText("Por este conducto, hago de su conocimiento la lista de materiales que se han agotado en su totalidad, y que se requieren para que el personal técnico que labora en este departamento a su digno cargo, pueda contar con lo mínimo necesario para brindar los servicios que son requeridos en las distintas Unidades Médicas y Administrativas dependientes de los Servicios de Salud de Oaxaca.", $fuente2);
+        $estilo->addTextBreak(1);
+        // Guardarlo para usarlo más tarde
+
+        //Aqui inicia la tabla
+        //$seccion = $documento->addSection();
+        $estiloTabla = [
+            "borderColor" => "000000",
+            "alignment" => Jc::CENTER,
+            "borderSize" => 10,
+            "name" => "Arial",
+            "size" => 10,
+            "color" => "000000"
+        ]; 
+
+        // Guardarlo para usarlo más tarde
+        $documento->addTableStyle("estilo2", $estiloTabla);
+        $tabla = $seccion->addTable("estilo2");
+        $tabla->addRow();
+        $celda = $tabla->addCell();
+        $celda->addText("DESCRIPCIÓN", $fuente3);
+        $celda = $tabla->addCell();
+        $celda->addText("UNIDAD", $fuente3);
+        $celda = $tabla->addCell();
+        $celda->addText("CANTIDAD SOLICITADA", $fuente3);
+        foreach($detalles as $det) {
+            $tabla->addRow(); #Nueva fila
+            $celda = $tabla->addCell();
+            $celda->addText($det->nombre_articulo);
+            $celda = $tabla->addCell();
+            $celda->addText($det->cantidad);
+            $celda = $tabla->addCell();
+            $celda->addText($det->unidad);
+        }
+        //Hasta aquí
+        //inicia pie de pagina
+        $estilo = $seccion->addTextRun([
+            "alignment" => Jc::BOTH,
+            'lineHeight' => 1
+        ]);
+        $estilo->addTextBreak(1);
+        $estilo->addText("En espera de su valoración a lo solicitado, quedo de usted y reciba un cordial saludo.", $fuente2);
+        $estilo = $seccion->addTextRun([
+            "alignment" => Jc::CENTER
+        ]);
+        $estilo->addTextBreak(1);
+        $estilo->addTextBreak(1);
+        $estilo->addTextBreak(1);
+        $estilo->addText("A T E N T A M E N T E", $fuente1);
+        $estilo->addTextBreak(1);
+        $estilo->addTextBreak(1);
+        $estilo->addTextBreak(1);
+        $estilo->addTextBreak(1);
+        $estilo->addText("C. JESUS ANTONIO DIAZ MONTAÑO", $fuente1);
+        $estilo->addTextBreak(1);
+        $estilo->addText("ENCARGADO DEL ALMACEN DEL DEPARATAMENTO", $fuente1);
+        $estilo->addTextBreak(1);
+        $estilo->addText("DE CONSERVACION Y MANTENIMIENTO", $fuente1);
+
+        $filename = "Solicitud.docx"; // Nombre del archivo que se va a crear
+        $documento->save($filename, "Word2007"); // Guardamos el archivo
+
+        header("Content-Disposition: attachment; filename=$filename"); // Vamos a dar la opcion para descargar el archivo
+        readfile($filename);  // leemos el archivo para que se "descargue"
+        unlink($filename); // eliminamos el archivo del servidor
+
     }
 }

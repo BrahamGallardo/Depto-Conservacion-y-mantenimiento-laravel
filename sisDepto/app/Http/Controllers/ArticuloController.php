@@ -319,36 +319,4 @@ class ArticuloController extends Controller
 
 
 	}*/
-
-
-	/* SQL
-	SELECT CONCAT( art.codigo, " ", art.nombre_articulo ) 
-	AS articulo, art.codigo, art.nombre_articulo, t.tipo_articulo, u.unidad 
-	FROM articulos as art 
-	JOIN tipos_articulo as t 
-	ON art.tipo = t.idtipo_articulo 
-	JOIN unidades_articulo as u 
-	ON art.unidad = u.idunidad;
-	public function create()
-	{
-		$tipo = DB::table('tipos_articulo')->get();
-
-		$articulos = DB::table('articulos as art')
-			->join('tipos_articulo as t', 'art.tipo', '=', 't.idtipo_articulo')
-			->join('unidades_articulo as u', 'art.unidad', '=', 'u.idunidad')
-			->select(DB::raw('CONCAT(art.codigo," ",art.nombre_articulo) AS articulo'),'art.nombre_articulo', 'art.codigo', 't.tipo_articulo', 'u.unidad')
-			->get();
-		return view("almacen.ingresos.create", ["tipo" => $tipo, "articulos" => $articulos]);
-	} */
-
-
-	//A partir de acá no ocupo codigo
-
-	/*public function destroy($id)
-	{
-		$trabajador = Trabajadores::findOrFail($id);
-		$trabajador->idestado = '5';
-		$trabajador->update();
-		return Redirect::to('administracion/trabajadores');
-	}*/
 }
