@@ -46,7 +46,7 @@ class IngresosController extends Controller
         $articulos = DB::table('articulos as art')
             ->join('tipos_articulo as t', 'art.tipo', '=', 't.idtipo_articulo')
             ->join('unidades_articulo as u', 'art.unidad', '=', 'u.idunidad')
-            ->select(DB::raw('CONCAT(art.codigo," ",art.nombre_articulo) AS articulo'), 'art.nombre_articulo', 'art.codigo', 't.tipo_articulo', 'u.unidad')
+            ->select(DB::raw('CONCAT(art.codigo," - ",art.nombre_articulo) AS articulo'), 'art.nombre_articulo', 'art.codigo', 't.tipo_articulo', 'u.unidad')
             ->get();
         return view("almacen.ingresos.create", ["tipo" => $tipo, "articulos" => $articulos]);
     }

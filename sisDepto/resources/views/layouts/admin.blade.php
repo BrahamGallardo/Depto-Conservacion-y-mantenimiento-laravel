@@ -28,7 +28,7 @@
     <header class="main-header">
 
       <!-- Logo -->
-      <a href="" class="logo">
+      <a href="{{url('administracion/solicitudes')}}" class="logo">
         <!-- mini logo for sidebar mini 50x50 pixels -->
         <span class="logo-mini">SS<b>O</b></span>
         <!-- logo for regular state and mobile devices -->
@@ -109,7 +109,7 @@
             <ul class="treeview-menu">
               <li><a href="{{url('administracion/solicitudes')}}"><i class="fa fa-circle-o"></i> Ordenes</a></li>
               <li><a href="#"><i class="fa fa-circle-o"></i> Folios</a></li>
-              <li><a href="#"><i class="fa fa-circle-o"></i> Actas entrega</a></li>
+              <li><a href="{{url('administracion/seguimiento')}}"><i class="fa fa-circle-o"></i> Seguimientos</a></li>
             </ul>
           </li>
 
@@ -221,7 +221,7 @@
   <!--Fin-Contenido-->
   <footer class="main-footer">
     <div class="pull-right hidden-xs">
-      <b>Version</b> 0.9.0
+      <b>Version</b> 0.9.1
     </div>
     <strong>Copyright &copy; 2015-2021 <a href="https://www.oaxaca.gob.mx/salud/">SSO</a>.</strong> All rights reserved.
   </footer>

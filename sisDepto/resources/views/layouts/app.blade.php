@@ -30,7 +30,7 @@
 
     <div class="login-box">
         <div class="login-logo">
-            <a href="{{url('administracion/trabajadores')}}"><b>Depto </b>C y M</a>
+            <a href="{{url('administracion/solicitudes')}}"><b>Depto </b>C y M</a>
         </div>
 
         @yield('content')

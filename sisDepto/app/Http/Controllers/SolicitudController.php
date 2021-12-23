@@ -22,6 +22,10 @@ use sisDepartamento\Articulos;
 
 class SolicitudController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /* SQL
     SELECT soli.idsolicitud, soli.asunto, soli.unidad, soli.fecha_limite, soli.estado 
     FROM `solicitudes` AS soli WHERE soli.estado='En proceso';

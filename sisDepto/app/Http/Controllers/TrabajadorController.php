@@ -17,7 +17,6 @@ class TrabajadorController extends Controller
         $this->middleware('auth');
     }
 
-	
     public function index(Request $request){
     	if($request){
     		$query = trim($request->get('searchText'));
@@ -30,7 +29,6 @@ class TrabajadorController extends Controller
 			->orderBy('idtrabajador','desc')->paginate(9);
     		return view('administracion.trabajadores.index',["trabajadores"=>$trabajadores,"searchText"=>$query]);
     	}
-
     }
 
 
