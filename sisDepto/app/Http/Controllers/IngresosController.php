@@ -32,7 +32,7 @@ class IngresosController extends Controller
             $query = trim($request->get('searchText'));
             $ingresos = DB::table('ingreso AS i')
                 ->JOIN('detalle_ingreso as di', 'di.iddetalle_ingreso', '=', 'i.idingreso')
-                ->SELECT('i.idingreso', 'i.fecha_hora', 'di.archivo', 'i.estado')
+                ->SELECT('i.idingreso', 'i.fecha_hora', 'i.archivo', 'i.estado')
                 ->where('i.idingreso', 'LIKE', '%' . $query . '%')
                 ->orwhere('i.estado', 'LIKE', '%' . $query . '%')
                 ->orderBy('i.idingreso', 'desc')->paginate(9);
@@ -59,7 +59,7 @@ class IngresosController extends Controller
             $ingreso = new Ingreso;
             $ingreso->tipo_comprobante = $request->get('tipo_comprobante');
             $mytime = Carbon::now('America/Mexico_City');
-            $ingreso->fecha_hora = $mytime->toDateTimeString();
+            $ingreso->fecha_hora = $mytime->toDateString();
             $ingreso->estado = 'Pendiente';
             $ingreso->save();
 

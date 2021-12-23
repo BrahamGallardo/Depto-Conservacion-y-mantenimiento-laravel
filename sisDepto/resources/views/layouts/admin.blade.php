@@ -107,8 +107,8 @@
               <i class="fa fa-angle-left pull-right"></i>
             </a>
             <ul class="treeview-menu">
-              <li><a href="#"><i class="fa fa-circle-o"></i> Ordenes</a></li>
-              <li><a href="{{url('administracion/trabajadores')}}"><i class="fa fa-circle-o"></i> Folios</a></li>
+              <li><a href="{{url('administracion/solicitudes')}}"><i class="fa fa-circle-o"></i> Ordenes</a></li>
+              <li><a href="#"><i class="fa fa-circle-o"></i> Folios</a></li>
               <li><a href="#"><i class="fa fa-circle-o"></i> Actas entrega</a></li>
             </ul>
           </li>
@@ -156,7 +156,7 @@
             <ul class="treeview-menu">
               <li><a href="{{url('almacen/articulos')}}"><i class="fa fa-circle-o"></i> Articulo</a></li>
               <li><a href="{{url('almacen/ingresos')}}"><i class="fa fa-circle-o"></i> Ingresos</a></li>
-              <li><a href="#"><i class="fa fa-circle-o"></i> Egresos</a></li>
+              <li><a href="{{url('almacen/egresos')}}"><i class="fa fa-circle-o"></i> Egresos</a></li>
             </ul>
           </li>
           <li>

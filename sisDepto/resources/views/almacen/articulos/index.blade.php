@@ -5,6 +5,7 @@
 		<h3>Listado de articulos
 			<a href="articulos/create"><button class="btn btn-success">Nuevo</button></a>
 			<a href="ingresos/create"><button class="btn btn-info">Solicitar</button></a>
+			<a href="egresos/create"><button class="btn btn-warning">Requerir</button></a>
 		</h3>
 		@include('almacen.articulos.search')
 	</div>
@@ -17,9 +18,11 @@
 				.peligro {
 					background-color: #dd4b39;
 				}
+
 				.notable {
 					background-color: #00c0ef;
 				}
+
 				.advertencia {
 					background-color: #f39c12;
 				}

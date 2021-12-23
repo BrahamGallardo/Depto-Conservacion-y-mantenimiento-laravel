@@ -16,10 +16,14 @@ Route::get('/', function () {
 });
 
 Route::resource('administracion/trabajadores', 'TrabajadorController');
+Route::resource('administracion/solicitudes', 'SolicitudController');
+Route::resource('administracion/desarrollo', 'DetalleSolicitudController');
 Route::resource('almacen/articulos', 'ArticuloController');
 Route::resource('almacen/ingresos', 'IngresosController');
+Route::resource('almacen/egresos', 'EgresosController');
 Route::resource('seguridad/usuario', 'UsuarioController');
-Route::get('administracion/detalles/{id}', 'TrabajadorController@details');
+Route::get('administracion/trabajador/detalles/{id}', 'TrabajadorController@details');
+Route::get('administracion/solicitud/detalles/{id}', 'SolicitudController@details');
 Route::get('almacen/detalles/{id}', 'ArticuloController@details');
 Route::get('almacen/solicitar/{id}', 'ArticuloController@solicitar');
 Route::get('/download', 'IngresosController@generar');
