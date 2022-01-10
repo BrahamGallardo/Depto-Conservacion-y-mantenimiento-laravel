@@ -48,15 +48,12 @@ class SolicitudController extends Controller
             return view('administracion.solicitudes.index', ["solicitudes" => $solicitudes, "fechasemana" => $fechasemana, "fechahoy" => $fechahoy, "searchText" => $query]);
         }
     }
-    public function details($id)
-	{
-        $solicitud=Solicitudes::findOrFail($id);
-		return view("administracion.solicitudes.details", ["solicitud" => $solicitud]);
-	}
+
     public function create()
     {
         return view("administracion.solicitudes.create");
     }
+
     public function store(SolicitudFormRequest $request)
     {
         $solicitud=new Solicitudes;
@@ -71,10 +68,12 @@ class SolicitudController extends Controller
 		$solicitud->save(); /* update*/
 		return Redirect::to('administracion/solicitudes');
     }
+
     public function edit($id){
 		$solicitud=Solicitudes::findOrFail($id);
     	return view("administracion.solicitudes.edit",["solicitud"=>$solicitud]);
     }
+
     public function update(SolicitudFormRequest $request, $id){
     	$solicitud=Solicitudes::findOrFail($id);
         $solicitud->asunto=$request->get('asunto');
@@ -87,8 +86,14 @@ class SolicitudController extends Controller
         $solicitud->comentarios=$request->get('comentarios');
     	$solicitud->update();
     	return Redirect::to('administracion/solicitudes');
-
     }
+
+    public function show($id)
+	{
+        $solicitud=Solicitudes::findOrFail($id);
+		return view("administracion.solicitudes.details", ["solicitud" => $solicitud]);
+	}
+
     public function destroy($id){
     	$solicitud=Solicitudes::findOrFail($id);
     	$solicitud->estado='No procede';

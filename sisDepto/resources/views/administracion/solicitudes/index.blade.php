@@ -60,7 +60,7 @@
 							<td>{{ $soli->estado}}</td>
 							<td>
 
-								<a href="solicitud/detalles/{{$soli->idsolicitud}}"><button class="btn btn-default">Detalles</button></a>
+								<a href="{{URL::action('SolicitudController@show',$soli->idsolicitud)}}"><button class="btn btn-default">Detalles</button></a>
 								<a href="{{URL::action('SolicitudController@edit',$soli->idsolicitud)}}"><button class="btn btn-primary">Editar</button></a>
 								<a href="" data-target="#modal-delete-{{$soli->idsolicitud}}" data-toggle="modal"><button class="btn btn-danger">Eliminar</button></a>
 							</td>

@@ -31,14 +31,12 @@ class TrabajadorController extends Controller
     	}
     }
 
-
     public function create(){
 		$tipos=DB::table('tipos_trabajador')->get();
 		$roles=DB::table('roles')->get();
 		$horarios=DB::table('horarios')->get();
     	return view("administracion.trabajadores.create",["tipos"=>$tipos,"roles"=>$roles,"horarios"=>$horarios]);
     }
-
 
 	public function store(TrabajadorFormRequest $request){
 		$trabajador=new Trabajadores;
@@ -53,12 +51,7 @@ class TrabajadorController extends Controller
 		return Redirect::to('administracion/trabajadores');
     }
 
-
-    public function show($id){
-    	return view("administracion.trabajadores.show",["trabajador"=>Trabajadores::findOrFail($id)]);
-    }
-
-	public function details($id){
+	public function show($id){
 		$trabajadores=Trabajadores::findOrFail($id);
     	$tipos=DB::table('tipos_trabajador')->get();
 		$roles=DB::table('roles')->get();
@@ -66,12 +59,7 @@ class TrabajadorController extends Controller
 		$estados=DB::table('estados_trabajador')->get();
     	return view("administracion.trabajadores.details",["trabajadores"=>$trabajadores,"tipos"=>$tipos,"roles"=>$roles,"horarios"=>$horarios,"estados"=>$estados]);
     }
-	public function detail($id){
-		return Redirect::to('administracion/trabajadores');
-    }
 	
-
-
     public function edit($id){
 		$trabajadores=Trabajadores::findOrFail($id);
     	$tipos=DB::table('tipos_trabajador')->get();
@@ -80,7 +68,6 @@ class TrabajadorController extends Controller
 		$estados=DB::table('estados_trabajador')->get();
     	return view("administracion.trabajadores.edit",["trabajadores"=>$trabajadores,"tipos"=>$tipos,"roles"=>$roles,"horarios"=>$horarios,"estados"=>$estados]);
     }
-
 
     public function update(TrabajadorFormRequest $request, $id){
     	$trabajador=Trabajadores::findOrFail($id);
@@ -94,7 +81,6 @@ class TrabajadorController extends Controller
     	return Redirect::to('administracion/trabajadores');
 
     }
-
 
     public function destroy($id){
     	$trabajador=Trabajadores::findOrFail($id);

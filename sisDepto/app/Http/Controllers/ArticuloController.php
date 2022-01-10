@@ -38,7 +38,7 @@ class ArticuloController extends Controller
 				->join('unidades_articulo as u', 'art.unidad', '=', 'u.idunidad')
 				->select('codigo', 'art.nombre_articulo', 't.tipo_articulo', 'art.cantidad', 'u.unidad')
 				->where('art.nombre_articulo', 'LIKE', '%' . $query . '%')
-				->orwhere('art.codigo', 'LIKE', '%' . $query . '%')
+				->orwhere('t.tipo_articulo', 'LIKE', '%' . $query . '%')
 				->orderBy('codigo', 'asc')->paginate(9);
 			return view('almacen.articulos.index', ["articulos" => $articulos, "searchText" => $query]);
 		}
@@ -114,7 +114,12 @@ class ArticuloController extends Controller
 
 	public function show($id)
 	{
-		return view("almacen.articulos.show", ["articulo" => Articulos::findOrFail($id)]);
+		$articulos = DB::table('articulos as art')
+			->select('codigo', 'nombre_articulo', 'tipo', 'unidad', 'cantidad', 'ubicacion', 'observaciones')
+			->where('codigo', '=', '' . $id . '')->first();
+		$tipos = DB::table('tipos_articulo')->get();
+		$unidad = DB::table('unidades_articulo')->get();
+		return view("almacen.articulos.details", ["articulos" => $articulos, "tipos" => $tipos, "unidad" => $unidad]);
 	}
 
 	public function edit($codigo)
@@ -138,20 +143,6 @@ class ArticuloController extends Controller
 		$articulo->ubicacion = $request->get('ubicacion');
 		$articulo->observaciones = $request->get('observaciones');
 		$articulo->update();
-		return Redirect::to('almacen/articulos');
-	}
-
-	public function details($id)
-	{
-		$articulos = DB::table('articulos as art')
-			->select('codigo', 'nombre_articulo', 'tipo', 'unidad', 'cantidad', 'ubicacion', 'observaciones')
-			->where('codigo', '=', '' . $id . '')->first();
-		$tipos = DB::table('tipos_articulo')->get();
-		$unidad = DB::table('unidades_articulo')->get();
-		return view("almacen.articulos.details", ["articulos" => $articulos, "tipos" => $tipos, "unidad" => $unidad]);
-	}
-	public function detail($id)
-	{
 		return Redirect::to('almacen/articulos');
 	}
 

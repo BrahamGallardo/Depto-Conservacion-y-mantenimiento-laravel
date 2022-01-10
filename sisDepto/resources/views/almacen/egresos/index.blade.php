@@ -15,7 +15,7 @@
 				<thead>
 					<th>No. Salida</th>
 					<th>Fecha de salida</th>
-					<th>Razón</th>
+					<th>Justificación</th>
 					<th>Archivo</th>
 					<th>Comentarios</th>
 					<th>Opciones</th>

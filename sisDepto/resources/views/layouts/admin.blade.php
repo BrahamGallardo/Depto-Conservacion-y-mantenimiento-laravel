@@ -107,9 +107,9 @@
               <i class="fa fa-angle-left pull-right"></i>
             </a>
             <ul class="treeview-menu">
-              <li><a href="{{url('administracion/solicitudes')}}"><i class="fa fa-circle-o"></i> Ordenes</a></li>
-              <li><a href="#"><i class="fa fa-circle-o"></i> Folios</a></li>
               <li><a href="{{url('administracion/seguimiento')}}"><i class="fa fa-circle-o"></i> Seguimientos</a></li>
+              <li><a href="{{url('administracion/solicitudes')}}"><i class="fa fa-circle-o"></i> Solicitudes</a></li>
+              <li><a href="#"><i class="fa fa-circle-o"></i> Folios</a></li>
             </ul>
           </li>
 

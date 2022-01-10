@@ -55,8 +55,8 @@
 			</div>
 			<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
 				<div class="form-group">
-					<label>Razon</label>
-					<input type="text" name="prazon" id="prazon" class="form-control" placeholder="Razon de la salida de articulos">
+					<label>Justificación</label>
+					<input type="text" name="prazon" id="prazon" class="form-control" placeholder="Justificación de la salida de articulos">
 				</div>
 			</div>
 			<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">

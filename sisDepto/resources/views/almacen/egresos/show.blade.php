@@ -21,7 +21,7 @@
 	</div>
 	<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
 		<div class="form-group">
-			<label>Razón</label>
+			<label>Justificación</label>
 			<p>{{$egreso->razon}}</p>
 		</div>
 	</div>

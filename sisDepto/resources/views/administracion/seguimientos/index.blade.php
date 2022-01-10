@@ -24,13 +24,13 @@
 				@foreach($seguimientos as $seg)
 				<tr>
 					<td>{{ $seg->iddetalle_solicitud}}</td>
-					<td><a href="solicitud/detalles/{{$seg->solicitud}}">{{ $seg->solicitud}}</a></td>
+					<td><a href="{{URL::action('SolicitudController@show',$seg->solicitud)}}">{{ $seg->solicitud}}</a></td>
 					<td><a href="{{URL::action('EgresosController@show',$seg->egreso)}}">{{ $seg->egreso}}</a></td>
 					<td><a href="trabajador/detalles/{{$seg->idtrabajador}}">{{ $seg->nombre_trabajador}}</a></td>
 					<td>{{ $seg->estado}}</td>
 					<td>{{ $seg->fecha}}</td>
 					<td>
-						<a href="seguimiento/detalles/{{$seg->iddetalle_solicitud}}"><button class="btn btn-default">Detalles</button></a>
+						<a href="{{URL::action('DetalleSolicitudController@show',$seg->iddetalle_solicitud)}}"><button class="btn btn-default">Detalles</button></a>
 						<a href="{{URL::action('DetalleSolicitudController@edit',$seg->iddetalle_solicitud)}}"><button class="btn btn-primary">Editar</button></a>
 					</td>
 				</tr>
