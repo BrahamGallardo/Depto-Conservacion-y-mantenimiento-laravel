@@ -71,9 +71,6 @@ class DetalleSolicitudController extends Controller
         $detalle->save(); /* update*/
         return Redirect::to('administracion/seguimiento');
     }
-
-    public function show($id)
-    {
         /*
         Consulta sql
         SELECT d.solicitud, soli.asunto, soli.compromiso, soli.estado, d.egreso, tra.nombre_trabajador, d.fecha, d.total, d.folio, d.documento, soli.actualizacion, soli.comentarios
@@ -82,6 +79,8 @@ class DetalleSolicitudController extends Controller
         JOIN trabajadores AS tra ON d.trabajador = tra.idtrabajador
         WHERE d.iddetalle_solicitud = 2;
         */
+    public function show($id)
+    {
         $detalle = DB::table('detalle_solicitud AS d')
             ->JOIN('solicitudes AS soli', 'd.solicitud', '=', 'soli.idsolicitud')
             ->JOIN('trabajadores AS tra', 'd.trabajador', '=', 'tra.idtrabajador')
