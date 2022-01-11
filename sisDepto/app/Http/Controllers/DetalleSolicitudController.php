@@ -7,18 +7,8 @@ use Illuminate\Http\Request;
 use sisDepartamento\Http\Requests;
 use sisDepartamento\DetalleSolicitud;
 use Illuminate\Support\Facades\Redirect;
-use Illuminate\Support\Facades\Input;
 use sisDepartamento\Http\Requests\DetalleSolicitudFormRequest;
 use DB;
-use PhpOffice\PhpWord\Style\Language;
-use PhpOffice\PhpWord\Style\ListItem;
-use PhpOffice\PhpWord\SimpleType\Jc;
-use Carbon\Carbon;
-use sisDepartamento\DetalleEgreso;
-use Response;
-use Illuminate\Support\Collection;
-use Illuminate\Support\Facades\Redis;
-use sisDepartamento\Articulos;
 
 class DetalleSolicitudController extends Controller
 {
