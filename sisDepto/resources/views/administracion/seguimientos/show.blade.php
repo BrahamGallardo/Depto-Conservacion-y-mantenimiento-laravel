@@ -16,19 +16,14 @@
 </div>
 
 <div class="row">
-    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
-        <div class="form-group">
-            <label for="solicitud">Solicitud</label>
-            <input type="text" value="{{$detalle->solicitud}}" name="solicitud" class="form-control" readonly>
-        </div>
-    </div>
-    <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12">
+    
+    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
 		<div class="form-group">
 			<label for="nombre">Asunto</label>
 			<textarea class="form-control" readonly name="asunto" rows="4">{{$detalle->asunto}}</textarea>
 		</div>
 	</div>
-	<div class="col-lg-5 col-md-5 col-sm-5 col-xs-12">
+	<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
 		<div class="form-group">
 			<label for="nombre">Compromiso</label>
 			<textarea class="form-control" readonly name="compromiso" rows="4">{{$detalle->compromiso}}</textarea>

@@ -18,7 +18,7 @@
 {!!Form::open(array('url'=>'almacen/articulos','method'=>'POST','autocomplete'=>'off'))!!}
 {{Form::token()}}
 <div class="row">
-	
+
 	<div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
 		<div class="form-group">
 			<label for="codigo">Codigo</label>
@@ -96,6 +96,7 @@
 	</div>
 	<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
 		<div class="form-group">
+			<input name="_token" value="{{ csrf_token() }}" type="hidden"></input>
 			<button class="btn btn-primary" type="submit">Guardar</button>
 			<a href="#"><button class="btn btn-danger" type="reset">Borrar cambios</button></a>
 		</div>
@@ -113,49 +114,49 @@
 		if (tipo == 1) {
 			aux = document.getElementById('electricos').value;
 			aux++;
-			$("#pcodigo").val("ME"+aux);
+			$("#pcodigo").val("ME" + aux);
 			document.getElementById("number").value = aux;
 		}
 		if (tipo == 2) {
 			aux = document.getElementById('plomeria').value;
 			aux++;
-			$("#pcodigo").val("P"+aux);
+			$("#pcodigo").val("P" + aux);
 			document.getElementById("number").value = aux;
 		}
 		if (tipo == 3) {
 			aux = document.getElementById('varios').value;
 			aux++;
-			$("#pcodigo").val("V"+aux);
+			$("#pcodigo").val("V" + aux);
 			document.getElementById("number").value = aux;
 		}
 		if (tipo == 4) {
 			aux = document.getElementById('dentales').value;
 			aux++;
-			$("#pcodigo").val("D"+aux);
+			$("#pcodigo").val("D" + aux);
 			document.getElementById("number").value = aux;
 		}
 		if (tipo == 5) {
 			aux = document.getElementById('limpieza').value;
 			aux++;
-			$("#pcodigo").val("ML"+aux);
+			$("#pcodigo").val("ML" + aux);
 			document.getElementById("number").value = aux;
 		}
 		if (tipo == 6) {
 			aux = document.getElementById('papeleria').value;
 			aux++;
-			$("#pcodigo").val("MP"+aux);
+			$("#pcodigo").val("MP" + aux);
 			document.getElementById("number").value = aux;
 		}
 		if (tipo == 7) {
 			aux = document.getElementById('refris').value;
 			aux++;
-			$("#pcodigo").val("R"+aux);
+			$("#pcodigo").val("R" + aux);
 			document.getElementById("number").value = aux;
 		}
 		if (tipo == 8) {
 			aux = document.getElementById('herra').value;
 			aux++;
-			$("#pcodigo").val("H"+aux);
+			$("#pcodigo").val("H" + aux);
 			document.getElementById("number").value = aux;
 		}
 	}

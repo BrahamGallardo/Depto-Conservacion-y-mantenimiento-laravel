@@ -24,12 +24,12 @@ class OrdenesFormRequest extends Request
     public function rules()
     {
         return [
-            'unidad'=>'required|max:5',
-            'partida'=>'required|max:3',
+            'unidad'=>'required|max:55',
+            'partida'=>'required|max:30',
             'nombre_unidad'=>'max:35',
             'programa'=>'max:6',
             'proveedor'=>'required|max:85',
-            'domicilio'=>'max:6',
+            'domicilio'=>'max:65',
             'fecha'=>'max:25'
         ];
     }

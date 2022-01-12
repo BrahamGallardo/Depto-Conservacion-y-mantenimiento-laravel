@@ -13,10 +13,10 @@
 		<div class="table-responsive">
 			<table class="table table-striped table-bordered table-condensed table-hover">
 				<thead>
-					<th>No. orden</th>
-					<th>Unidad</th>
-					<th>Concepto</th>
-					<th>Proveedor</th>
+					<th >No. orden</th>
+					<th class="col-lg-2 col-md-2 col-sm-2 col-xs-12">Unidad</th>
+					<th class="col-lg-4 col-md-4 col-sm-4 col-xs-12">Concepto</th>
+					<th class="col-lg-2 col-md-2 col-sm-2 col-xs-12">Proveedor</th>
 					<th>Fecha</th>
 					<th>Opciones</th>
 				</thead>

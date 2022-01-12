@@ -24,7 +24,8 @@ Route::resource('almacen/ingresos', 'IngresosController');
 Route::resource('almacen/egresos', 'EgresosController');
 Route::resource('seguridad/usuario', 'UsuarioController');
 Route::get('almacen/solicitar/{id}', 'ArticuloController@solicitar');
-Route::get('/download', 'IngresosController@generar');
+Route::get('/download', 'OrdenesController@generar');
+Route::get('/downloadorden', 'IngresosController@generar');
 Route::get('/activar/{id}','IngresosController@activar');
 Route::auth();
 
