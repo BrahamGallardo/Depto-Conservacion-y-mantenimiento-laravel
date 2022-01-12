@@ -26,10 +26,10 @@ class OrdenesFormRequest extends Request
         return [
             'unidad'=>'required|max:55',
             'partida'=>'required|max:30',
-            'nombre_unidad'=>'max:35',
+            'nombre_unidad'=>'max:100',
             'programa'=>'max:6',
             'proveedor'=>'required|max:85',
-            'domicilio'=>'max:65',
+            'domicilio'=>'max:120',
             'fecha'=>'max:25'
         ];
     }

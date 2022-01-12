@@ -193,10 +193,8 @@
           <div class="col-md-12">
             <div class="box">
               <div class="box-header with-border">
-                <h3 class="box-title">Vista principal del sistema</h3>
                 <div class="box-tools pull-right">
-                  <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
-
+                  <button class="btn btn-box-tool" data-widget="collapse" style="margin-top: -9px;"><i class="fa fa-minus"></i></button>
                   <!-- <button class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button> -->
                 </div>
               </div>
@@ -222,7 +220,7 @@
   <!--Fin-Contenido-->
   <footer class="main-footer">
     <div class="pull-right hidden-xs">
-      <b>Version</b> 0.9.1
+      <b>Version</b> 0.9.4
     </div>
     <strong>Copyright &copy; 2015-2021 <a href="https://www.oaxaca.gob.mx/salud/">SSO</a>.</strong> All rights reserved.
   </footer>

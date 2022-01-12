@@ -16,10 +16,17 @@
 </div>
 <form action="/downloadorden" method="get">
 	<div class="row">
-		<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+		<input type="hidden" value="{{$ordenes->num_orden}}" name="num_orden">
+		<div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
+			<div class="form-group">
+				<label for="Fecha">Fecha</label>
+				<input type="text" value="{{$ordenes->fecha}}" name="fecha" class="form-control" readonly>
+			</div>
+		</div>
+		<div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
 			<div class="form-group">
 				<label for="Unidad">Clave de la unidad</label>
-				<input type="text" value="{{$ordenes->unidad}}" name="unidad" class="form-control" readonly placeholder="Sin unidad">
+				<input type="text" value="{{$ordenes->num_oficina}}" name="unidad" class="form-control" readonly placeholder="Sin unidad">
 			</div>
 		</div>
 		<div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
@@ -66,7 +73,7 @@
 		</div>
 		<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
 			<div class="form-group">
-				<a href="{{URL::action('OrdenesController@edit',$ordenes->num_orden)}}"><button class="btn btn-primary">Editar</button></a>
+				<a href="{{URL::action('OrdenesController@edit',$ordenes->num_orden)}}"><button type="button" class="btn btn-primary">Editar</button></a>
 				<button class="btn btn-link" id="btnsolicitar" type="submit">Descargar</button>
 			</div>
 		</div>
