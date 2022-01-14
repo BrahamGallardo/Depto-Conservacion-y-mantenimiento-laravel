@@ -19,6 +19,8 @@
   <link rel="apple-touch-icon" href="{{asset('img/favicon.png')}}">
   <link rel="shortcut icon" href="{{asset('img/favicon.png')}}">
   <link rel="stylesheet" href="{{asset('css/bootstrap-select.min.css')}}">
+  <!--Aqui es de startbootstrap -->
+  <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
 </head>
 
@@ -28,7 +30,7 @@
     <header class="main-header">
 
       <!-- Logo -->
-      <a href="{{url('administracion/solicitudes')}}" class="logo">
+      <a href="{{url('/home')}}" class="logo">
         <!-- mini logo for sidebar mini 50x50 pixels -->
         <span class="logo-mini">SS<b>O</b></span>
         <!-- logo for regular state and mobile devices -->
@@ -121,7 +123,6 @@
               <i class="fa fa-angle-left pull-right"></i>
             </a>
             <ul class="treeview-menu">
-              <li><a href="#"><i class="fa fa-circle-o"></i> Recursos</a></li>
               <li><a href="#"><i class="fa fa-circle-o"></i> Fondo revolvente</a></li>
               <li><a href="#"><i class="fa fa-circle-o"></i> Remisiones</a></li>
             </ul>
@@ -134,8 +135,7 @@
             </a>
             <ul class="treeview-menu">
               <li><a href="{{url('administracion/trabajadores')}}"><i class="fa fa-circle-o"></i> Trabajadores</a></li>
-              <li><a href="#"><i class="fa fa-circle-o"></i> Estimulos</a></li>
-              <li><a href="#"><i class="fa fa-circle-o"></i> Permisos y vacaciones</a></li>
+              <!--<li><a href="#"><i class="fa fa-circle-o"></i> Permisos y vacaciones</a></li>-->
               <li><a href="{{url('seguridad/usuario')}}"><i class="fa fa-circle-o"></i> Usuarios</a></li>
             </ul>
           </li>
@@ -235,12 +235,9 @@
   <script src="{{asset('js/bootstrap.min.js')}}"></script>
   <!-- AdminLTE App -->
   <script src="{{asset('js/app.min.js')}}"></script>
-
   <script src="{{asset('js/jsimage.js')}}"></script>
-
   <script src="{{asset('js/bootstrap-select.min.js')}}"></script>
-
-
+  
 
 
 </body>

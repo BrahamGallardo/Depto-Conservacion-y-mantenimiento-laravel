@@ -52,7 +52,7 @@ class ArticuloController extends Controller
 	public function create()
 	{
 		$electricos = DB::table('articulos as art')
-			->select( DB::raw('MAX(art.numero_articulo) AS num'))
+			->select(DB::raw('MAX(art.numero_articulo) AS num'))
 			->where('art.tipo', '=', '1')
 			->orderBy('art.numero_articulo', 'desc')->get();
 		$plomeria = DB::table('articulos as art')
@@ -115,7 +115,9 @@ class ArticuloController extends Controller
 	public function show($id)
 	{
 		$articulos = DB::table('articulos as art')
-			->select('codigo', 'nombre_articulo', 'tipo', 'unidad', 'cantidad', 'ubicacion', 'observaciones')
+			->JOIN('unidades_articulo AS uni', 'art.unidad', '=', 'uni.idunidad')
+			->JOIN('tipos_articulo AS t', 'art.tipo', '=', 't.idtipo_articulo')
+			->select('codigo', 'nombre_articulo', 't.tipo_articulo', 'tipo', 'uni.unidad as nombre_unidad', 'art.unidad', 'cantidad', 'ubicacion', 'observaciones')
 			->where('codigo', '=', '' . $id . '')->first();
 		$tipos = DB::table('tipos_articulo')->get();
 		$unidad = DB::table('unidades_articulo')->get();
@@ -143,7 +145,7 @@ class ArticuloController extends Controller
 		$articulo->ubicacion = $request->get('ubicacion');
 		$articulo->observaciones = $request->get('observaciones');
 		$articulo->update();
-		return Redirect::to('almacen/articulos');
+		return $this->show($id);
 	}
 
 	//Puede esliminarse este metodo

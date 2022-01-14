@@ -60,6 +60,7 @@
 
 		<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12" id="guardar">
 			<div class="form-group">
+				<a href="{{url('almacen/ingresos')}}"><button type="button" class="btn btn-primary">Aceptar</button></a>
 				<a href="#modal-activar-{{$ingresos->idingreso}}" data-toggle="modal"><button class="btn btn-success" id="activarbtn">Activar</button></a>
 				<button class="btn btn-link" id="btnsolicitar" type="submit">Descargar</button>
 			</div>

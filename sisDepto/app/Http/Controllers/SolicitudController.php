@@ -85,7 +85,7 @@ class SolicitudController extends Controller
 		$solicitud->actualizacion=$request->get('actualizacion');
         $solicitud->comentarios=$request->get('comentarios');
     	$solicitud->update();
-    	return Redirect::to('administracion/solicitudes');
+    	return $this->show($id);
     }
 
     public function show($id)

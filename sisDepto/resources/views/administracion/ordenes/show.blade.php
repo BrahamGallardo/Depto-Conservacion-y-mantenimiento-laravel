@@ -73,7 +73,8 @@
 		</div>
 		<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
 			<div class="form-group">
-				<a href="{{URL::action('OrdenesController@edit',$ordenes->num_orden)}}"><button type="button" class="btn btn-primary">Editar</button></a>
+				<a href="{{url('administracion/ordenes')}}"><button type="button" class="btn btn-primary">Aceptar</button></a>
+				<a href="{{URL::action('OrdenesController@edit',$ordenes->num_orden)}}"><button type="button" class="btn btn-warning">Editar</button></a>
 				<button class="btn btn-link" id="btnsolicitar" type="submit">Descargar</button>
 			</div>
 		</div>

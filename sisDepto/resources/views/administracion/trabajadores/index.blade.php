@@ -29,7 +29,7 @@
 						<td>
 						
 							<a href="{{URL::action('TrabajadorController@show',$tra->idtrabajador)}}"><button class="btn btn-default">Detalles</button></a>
-							<a href="{{URL::action('TrabajadorController@edit',$tra->idtrabajador)}}"><button class="btn btn-primary">Editar</button></a>
+							
 							<a href="" data-target="#modal-delete-{{$tra->idtrabajador}}" data-toggle="modal"><button class="btn btn-danger">Eliminar</button></a>
 						</td>
 					</tr>

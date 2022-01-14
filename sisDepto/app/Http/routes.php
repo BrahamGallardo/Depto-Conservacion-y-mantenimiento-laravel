@@ -19,6 +19,7 @@ Route::resource('administracion/trabajadores', 'TrabajadorController');
 Route::resource('administracion/solicitudes', 'SolicitudController');
 Route::resource('administracion/seguimiento', 'DetalleSolicitudController');
 Route::resource('administracion/ordenes', 'OrdenesController');
+Route::resource('administracion/proveedores', 'ProveedoresController');
 Route::resource('almacen/articulos', 'ArticuloController');
 Route::resource('almacen/ingresos', 'IngresosController');
 Route::resource('almacen/egresos', 'EgresosController');

@@ -66,6 +66,7 @@
                 <option value="{{$pro->rfc}}_{{$pro->domicilio}}">{{$pro->proveedor}}</option>
                 @endforeach
             </select>
+            <a href="{{url('administracion/proveedores/create')}}"><button  type="button" class="btn btn-link">Nuevo proveedor</button></a>
             <input type="hidden" value="" name="rfc" id="rfc">
         </div>
     </div>
@@ -75,6 +76,8 @@
             <input type="text" value="" id="domicilio" name="domicilio" class="form-control" placeholder="Domicilio">
         </div>
     </div>
+</div>
+<div class="row">
     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
         <div class="form-group">
             <label for="concepto">Concepto</label>

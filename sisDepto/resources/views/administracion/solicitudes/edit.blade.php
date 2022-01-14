@@ -52,7 +52,7 @@
             <label for="Estado">Estado</label>
             <select name="estado" class="form-control">
                 <option value="{{$solicitud->estado}}" selected>{{$solicitud->estado}}</option>
-                <option value="Atendido">En proceso</option>
+                <option value="En proceso">En proceso</option>
                 <option value="Atendido">Atendido</option>
                 <option value="Cumplido">Cumplido</option>
                 <option value="No procede">No procede</option>

@@ -72,6 +72,7 @@
 
 		<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12" id="guardar">
 			<div class="form-group">
+				<a href="{{url('almacen/egresos')}}"><button type="button" class="btn btn-primary">Aceptar</button></a>
 				<button class="btn btn-link" id="btnsolicitar" type="submit">Descargar</button>
 			</div>
 		</div>

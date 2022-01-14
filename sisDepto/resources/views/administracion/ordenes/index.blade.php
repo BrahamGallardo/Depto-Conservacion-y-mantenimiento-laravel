@@ -15,9 +15,9 @@
 				<thead>
 					<th >No. orden</th>
 					<th class="col-lg-2 col-md-2 col-sm-2 col-xs-12">Unidad</th>
-					<th class="col-lg-4 col-md-4 col-sm-4 col-xs-12">Concepto</th>
+					<th >Concepto</th>
 					<th class="col-lg-2 col-md-2 col-sm-2 col-xs-12">Proveedor</th>
-					<th>Fecha</th>
+					<th class="col-lg-1 col-md-1 col-sm-1 col-xs-12">Fecha</th>
 					<th>Opciones</th>
 				</thead>
 				@foreach($ordenes as $orden)
@@ -29,7 +29,7 @@
 					<td>{{ $orden->fecha}}</td>
 					<td>
 						<a href="{{URL::action('OrdenesController@show',$orden->num_orden)}}"><button class="btn btn-default">Detalles</button></a>
-						<a href="{{URL::action('OrdenesController@edit',$orden->num_orden)}}"><button class="btn btn-primary">Editar</button></a>
+						
 					</td>
 				</tr>
 				@endforeach

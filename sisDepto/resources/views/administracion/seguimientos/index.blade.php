@@ -31,7 +31,7 @@
 					<td>{{ $seg->fecha}}</td>
 					<td>
 						<a href="{{URL::action('DetalleSolicitudController@show',$seg->iddetalle_solicitud)}}"><button class="btn btn-default">Detalles</button></a>
-						<a href="{{URL::action('DetalleSolicitudController@edit',$seg->iddetalle_solicitud)}}"><button class="btn btn-primary">Editar</button></a>
+						
 					</td>
 				</tr>
 				@endforeach

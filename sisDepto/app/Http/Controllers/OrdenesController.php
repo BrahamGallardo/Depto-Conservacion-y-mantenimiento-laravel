@@ -22,6 +22,10 @@ use sisDepartamento\Proveedores;
 
 class OrdenesController extends Controller
 {
+	public function __construct()
+	{
+		$this->middleware('auth');
+	}
 	public function index(Request $request)
 	{
 		if ($request) {
@@ -122,7 +126,7 @@ class OrdenesController extends Controller
 		$proveedores = Proveedores::findOrFail($request->get('rfc'));
 		$proveedores->domicilio = $request->get('domicilio');
 		$proveedores->update();
-		return Redirect::to('administracion/ordenes');
+		return $this->show($id);
 	}
 
 	public function generar(Request $request)

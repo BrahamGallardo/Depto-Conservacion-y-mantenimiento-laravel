@@ -78,7 +78,7 @@ class TrabajadorController extends Controller
 		$trabajador->idrol=$request->get('rol');
         $trabajador->idhorario=$request->get('horario');
     	$trabajador->update();
-    	return Redirect::to('administracion/trabajadores');
+    	return $this->show($id);
 
     }
 

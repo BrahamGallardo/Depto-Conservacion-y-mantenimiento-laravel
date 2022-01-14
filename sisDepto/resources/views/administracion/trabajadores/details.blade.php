@@ -79,6 +79,7 @@
 	<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
 		<div class="form-group">
 			<a href="{{url('administracion/trabajadores')}}"><button class="btn btn-primary">Aceptar</button></a>
+			<a href="{{URL::action('TrabajadorController@edit',$trabajadores->idtrabajador)}}"><button class="btn btn-warning">Editar</button></a>
 		</div>
 	</div>
 </div>

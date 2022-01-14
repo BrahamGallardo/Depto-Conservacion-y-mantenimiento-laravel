@@ -25,7 +25,13 @@
 	.advertencia {
 		background-color: #f39c12;
 	}
+	.oculto {
+		pointer-events: none !important;
+		cursor: not-allowed !important;
+
+	}
 </style>
+
 <div class="row">
 	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 		<div class="table-responsive">
@@ -61,8 +67,11 @@
 							<td>
 
 								<a href="{{URL::action('SolicitudController@show',$soli->idsolicitud)}}"><button class="btn btn-default">Detalles</button></a>
-								<a href="{{URL::action('SolicitudController@edit',$soli->idsolicitud)}}"><button class="btn btn-primary">Editar</button></a>
+								@if($soli->estado == 'Cumplido')
+								<a class="oculto" href="" data-target="#modal-delete-{{$soli->idsolicitud}}" data-toggle="modal"><button class="btn btn-danger oculto disabled">Eliminar</button></a>
+								@elseif($soli->estado != 'Cumplido')
 								<a href="" data-target="#modal-delete-{{$soli->idsolicitud}}" data-toggle="modal"><button class="btn btn-danger">Eliminar</button></a>
+								@endif
 							</td>
 				</tr>
 				@include('administracion.solicitudes.modal')

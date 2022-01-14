@@ -31,15 +31,7 @@
 	<div class="col-lg-5 col-md-5 col-sm-5 col-xs-12">
 		<div class="form-group">
 			<label>Tipo de articulo</label>
-			<select name="idtipoArticulo" readonly id="ptipo_articulo" class="form-control">
-				@foreach($tipos as $tip)
-				@if($tip->idtipo_articulo==$articulos->tipo)
-				<option value="{{$tip->idtipo_articulo}}" selected>{{$tip->tipo_articulo}}</option>
-				@else
-				<option value="{{$tip->idtipo_articulo}}">{{$tip->tipo_articulo}}</option>
-				@endif
-				@endforeach
-			</select>
+			<input type="text" readonly value="{{$articulos->tipo_articulo}}" name="idtipoArticulo" class="form-control" placeholder="Tipo">
 		</div>
 	</div>
 	<div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
@@ -51,15 +43,7 @@
 	<div class="col-lg-5 col-md-5 col-sm-5 col-xs-12">
 		<div class="form-group">
 			<label>Tipo de unidad</label>
-			<select name="idtipoUnidad" readonly id="ptipo_unidad" class="form-control">
-				@foreach($unidad as $uni)
-				@if($uni->idunidad==$articulos->unidad)
-				<option value="{{$uni->idunidad}}" selected>{{$uni->unidad}}</option>
-				@else
-				<option value="{{$uni->idunidad}}">{{$uni->unidad}}</option>
-				@endif
-				@endforeach
-			</select>
+			<input type="text" readonly value="{{$articulos->nombre_unidad}}" name="idtipoUnidad" class="form-control" placeholder="Unidad">
 		</div>
 	</div>
 	<div class="col-lg-5 col-md-5 col-sm-5 col-xs-12">
@@ -77,6 +61,7 @@
 	<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
 		<div class="form-group">
 			<a href="{{url('almacen/articulos')}}"><button class="btn btn-primary">Aceptar</button></a>
+			<a href="{{URL::action('ArticuloController@edit',$articulos->codigo)}}"><button class="btn btn-warning">Editar</button></a>
 		</div>
 	</div>
 </div>

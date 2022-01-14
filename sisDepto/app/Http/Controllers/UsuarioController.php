@@ -47,7 +47,7 @@ class UsuarioController extends Controller
 		$usuario->email=$request->get('email');
 		$usuario->password=bcrypt($request->get('password'));
 		$usuario->update();
-		return Redirect::to('seguridad/usuario');
+		return $this->show($id);
     }
     public function destroy($id){
     	$usuario=DB::table('users')->where('id','=',$id)->delete();
