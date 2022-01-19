@@ -18,7 +18,11 @@ class UsuarioController extends Controller
     public function index(Request $request){
     	if($request){
     		$query=trim($request->get('searchText'));
-    		$usuarios=DB::table('users')->where('name','LIKE','%'.$query.'%')->orderBy('id','desc')->paginate(9);
+    		$usuarios=DB::table('users')
+			->join('trabajadores as tra', 'tra.idtrabajador','=','users.trabajador')
+			->select('users.id','users.name','tra.email','tra.nombre_trabajador')
+			->where('name','LIKE','%'.$query.'%')->orderBy('id','desc')
+			->paginate(9);
     		return view('seguridad.usuario.index',["usuarios"=>$usuarios,"searchText"=>$query]);
     	}
     }
@@ -35,7 +39,12 @@ class UsuarioController extends Controller
     }
 
 	public function show($id){
-    	return view("seguridad.usuario.show",["usuario"=>User::findOrFail($id)]);
+		$user = DB::table('users')
+		->join('trabajadores as tra', 'tra.idtrabajador','=','users.trabajador')
+		->select('users.id','users.name','tra.email','tra.nombre_trabajador')
+		->where('id','=',$id)
+		->first();
+    	return view("seguridad.usuario.show",["user"=>$user]);
     }
 
     public function edit($id){

@@ -26,7 +26,7 @@
 					<td>{{ $seg->iddetalle_solicitud}}</td>
 					<td><a href="{{URL::action('SolicitudController@show',$seg->solicitud)}}">{{ $seg->solicitud}}</a></td>
 					<td><a href="{{URL::action('EgresosController@show',$seg->egreso)}}">{{ $seg->egreso}}</a></td>
-					<td><a href="trabajador/detalles/{{$seg->idtrabajador}}">{{ $seg->nombre_trabajador}}</a></td>
+					<td><a href="{{URL::action('TrabajadorController@show',$seg->idtrabajador)}}">{{ $seg->nombre_trabajador}}</a></td>
 					<td>{{ $seg->estado}}</td>
 					<td>{{ $seg->fecha}}</td>
 					<td>

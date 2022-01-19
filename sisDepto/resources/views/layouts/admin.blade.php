@@ -123,7 +123,7 @@
               <i class="fa fa-angle-left pull-right"></i>
             </a>
             <ul class="treeview-menu">
-              <li><a href="#"><i class="fa fa-circle-o"></i> Fondo revolvente</a></li>
+              <li><a href="{{url('administracion/coordinacion')}}"><i class="fa fa-circle-o"></i> Fondo revolvente</a></li>
               <li><a href="#"><i class="fa fa-circle-o"></i> Remisiones</a></li>
             </ul>
           </li>

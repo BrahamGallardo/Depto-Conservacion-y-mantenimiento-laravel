@@ -13,8 +13,9 @@
 				<table class="table table-striped table-bordered table-condensed table-hover">
 					<thead>
 						<th>Id</th>
-						<th>Nombre</th>
+						<th>Nombre de usuario</th>
 						<th>Email</th>
+						<th>Trabajador</th>
 						<th>Opciones</th>
 					</thead>
 					@foreach($usuarios as $usu)
@@ -22,8 +23,9 @@
 						<td>{{ $usu->id}}</td>
 						<td>{{ $usu->name}}</td>
 						<td>{{ $usu->email}}</td>
+						<td>{{ $usu->nombre_trabajador}}</td>
 						<td>
-							<a href="{{URL::action('UsuarioController@edit',$usu->id)}}"><button class="btn btn-primary">Editar</button></a>
+							<a href="{{URL::action('UsuarioController@show',$usu->id)}}"><button class="btn btn-default">Detalles</button></a>
 							<a href="" data-target="#modal-delete-{{$usu->id}}" data-toggle="modal"><button class="btn btn-danger">Eliminar</button></a>
 						</td>
 					</tr>
