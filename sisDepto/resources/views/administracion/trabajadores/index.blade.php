@@ -16,16 +16,18 @@
 						<th>Nombre</th>
 						<th>Función</th>
 						<th>Estado</th>
+						<th>Email</th>
 						<th>Teléfono</th>
 						<th>Opciones</th>
 					</thead>
 					@foreach($trabajadores as $tra)
 					<tr>
-						<td>{{ $tra->idtrabajador}}</td>
-						<td>{{ $tra->nombre_trabajador}}</td>
-						<td>{{ $tra->nombre_rol}}</td>
-						<td>{{ $tra->estado_trabajador}}</td>
-						<td>{{ $tra->telefono}}</td>
+						<td>{{$tra->idtrabajador}}</td>
+						<td>{{$tra->nombre_trabajador}}</td>
+						<td>{{$tra->nombre_rol}}</td>
+						<td>{{$tra->estado_trabajador}}</td>
+						<td>{{$tra->email}}</td>
+						<td>{{$tra->telefono}}</td>
 						<td>
 						
 							<a href="{{URL::action('TrabajadorController@show',$tra->idtrabajador)}}"><button class="btn btn-default">Detalles</button></a>

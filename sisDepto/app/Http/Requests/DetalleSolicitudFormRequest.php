@@ -26,10 +26,9 @@ class DetalleSolicitudFormRequest extends Request
         return [
             'solicitud'=>'required|max:25',
             'egreso'=>'max:25',
-            'trabajador'=>'max:50',
-            'fecha'=>'max:25',
+            'trabajador'=>'required|max:50',
+            'fecha'=>'required|max:25',
             'total'=>'max:25',
-            'folio'=>'max:25',
             'documento'=>'max:50',
         ];
     }

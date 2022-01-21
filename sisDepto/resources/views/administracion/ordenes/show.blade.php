@@ -17,58 +17,60 @@
 <form action="/downloadorden" method="get">
 	<div class="row">
 		<input type="hidden" value="{{$ordenes->num_orden}}" name="num_orden">
-		<div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
+		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 			<div class="form-group">
 				<label for="Fecha">Fecha</label>
-				<input type="text" value="{{$ordenes->fecha}}" name="fecha" class="form-control" readonly>
+				<p>{{$ordenes->fecha}}</p>
 			</div>
 		</div>
-		<div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
-			<div class="form-group">
-				<label for="Unidad">Clave de la unidad</label>
-				<input type="text" value="{{$ordenes->num_oficina}}" name="unidad" class="form-control" readonly placeholder="Sin unidad">
-			</div>
-		</div>
-		<div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
-			<div class="form-group">
-				<label for="partida">Partida</label>
-				<input type="text" value="{{$ordenes->partida}}" name="partida" class="form-control" readonly placeholder="Sin partida">
-			</div>
-		</div>
-		<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-			<div class="form-group">
-				<label for="nombre">Unidad</label>
-				<input type="text" value="{{$ordenes->nombre_corto}}" name="nombre_unidad" class="form-control" readonly placeholder="Sin nombre corto">
-			</div>
-		</div>
-		<div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
+		<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
 			<div class="form-group">
 				<label for="programa">Programa</label>
-				<input type="text" value="{{$ordenes->programa}}" name="programa" class="form-control" readonly placeholder="Sin programa">
+				<p>{{$ordenes->programa}}</p>
 			</div>
 		</div>
 		<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
 			<div class="form-group">
-				<label for="concepto">Concepto</label>
-				<textarea class="form-control" readonly name="concepto" rows="4" placeholder="Sin concepto">{{$ordenes->concepto}}</textarea>
+				<label for="nombre">Unidad</label>
+				<p>{{$ordenes->nombre_corto}}</p>
 			</div>
 		</div>
 		<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
 			<div class="form-group">
-				<label for="descripcion">Descripcion</label>
-				<textarea class="form-control" readonly name="descripcion" rows="4" placeholder="Sin descripcion">{{$ordenes->descripcion}}</textarea>
+				<label for="partida">Partida</label>
+				<p>{{$ordenes->partida}}</p>
 			</div>
 		</div>
 		<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+			<div class="form-group">
+				<label for="Unidad">Clave de la unidad</label>
+				<p>{{$ordenes->num_oficina}}</p>
+			</div>
+		</div>
+		
+		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 			<div class="form-group">
 				<label for="proveedor">Proveedor</label>
-				<input type="text" value="{{$ordenes->proveedor}}" name="proveedor" class="form-control" readonly placeholder="Sin proveedor">
+				<p>{{$ordenes->proveedor}}</p>
 			</div>
 		</div>
-		<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 			<div class="form-group">
 				<label for="domicilio">Domicilio</label>
-				<input type="text" value="{{$ordenes->domicilio}}" name="domicilio" class="form-control" readonly placeholder="Sin domicilio">
+				<p>{{$ordenes->domicilio}}</p>	
+			</div>
+		</div>
+		
+		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+			<div class="form-group">
+				<label for="concepto">Concepto</label>
+				<p>{{$ordenes->concepto}}</p>
+			</div>
+		</div>
+		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+			<div class="form-group">
+				<label for="descripcion">Descripcion</label>
+				<p>{{$ordenes->descripcion}}</p>
 			</div>
 		</div>
 		<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">

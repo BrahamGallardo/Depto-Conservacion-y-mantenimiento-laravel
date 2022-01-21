@@ -56,7 +56,6 @@ class DetalleSolicitudController extends Controller
         $detalle->trabajador = $request->get('trabajador');
         $detalle->fecha = $request->get('fecha');
         $detalle->total = $request->get('total');
-        $detalle->folio = $request->get('folio');
         $detalle->documento = $request->get('documento');
         $detalle->save(); /* update*/
         return Redirect::to('administracion/seguimiento');
@@ -74,7 +73,7 @@ class DetalleSolicitudController extends Controller
         $detalle = DB::table('detalle_solicitud AS d')
             ->JOIN('solicitudes AS soli', 'd.solicitud', '=', 'soli.idsolicitud')
             ->JOIN('trabajadores AS tra', 'd.trabajador', '=', 'tra.idtrabajador')
-            ->SELECT('d.iddetalle_solicitud','d.solicitud', 'soli.asunto', 'soli.compromiso', 'soli.estado', 'd.egreso', 'tra.nombre_trabajador', 'd.fecha', 'd.total', 'd.folio', 'd.documento', 'soli.actualizacion', 'soli.comentarios')
+            ->SELECT('d.iddetalle_solicitud','d.solicitud', 'soli.asunto', 'soli.compromiso', 'soli.estado', 'd.egreso', 'tra.nombre_trabajador', 'd.fecha', 'd.total', 'd.documento', 'soli.actualizacion', 'soli.comentarios')
             ->WHERE('d.iddetalle_solicitud', '=', $id)
             ->first();
         return view("administracion.seguimientos.show", ["detalle" => $detalle]);
@@ -105,7 +104,6 @@ class DetalleSolicitudController extends Controller
         $detalle->trabajador = $request->get('trabajador');
         $detalle->fecha = $request->get('fecha');
         $detalle->total = $request->get('total');
-        $detalle->folio = $request->get('folio');
         $detalle->documento = $request->get('documento');
         $detalle->update();
         return $this->show($id);

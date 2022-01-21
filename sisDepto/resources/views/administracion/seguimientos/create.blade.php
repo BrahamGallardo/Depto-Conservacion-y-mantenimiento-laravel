@@ -17,7 +17,7 @@
 {!!Form::open(array('url'=>'administracion/seguimiento','method'=>'POST','autocomplete'=>'off'))!!}
 {{Form::token()}}
 <div class="row">
-    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
+    <div class="col-lg-1 col-md-1 col-sm-1 col-xs-12">
         <div class="form-group">
             <label for="solicitud">Solicitud</label>
             <select name="solicitud" class="form-control selectpicker" data-live-search="true">
@@ -27,7 +27,15 @@
             </select>
         </div>
     </div>
-    <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12">
+    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+        <div class="form-group">
+            <label for="Fecha">Fecha</label>
+            <input type="date" value="" name="fecha" class="form-control" placeholder="Fecha">
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
         <div class="form-group">
             <label for="egreso">Con la salida de materiales</label>
             <select name="egreso" class="form-control selectpicker" data-live-search="true">
@@ -37,7 +45,7 @@
             </select>
         </div>
     </div>
-    <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12">
+    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
         <div class="form-group">
             <label for="trabajador">Trabajador</label>
             <select name="trabajador" class="form-control selectpicker" data-live-search="true">
@@ -49,20 +57,8 @@
     </div>
     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
         <div class="form-group">
-            <label for="Fecha">Fecha</label>
-            <input type="date" value="" name="fecha" class="form-control" placeholder="Fecha">
-        </div>
-    </div>
-    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-        <div class="form-group">
             <label for="total">Total</label>
-            <input type="num" value="" name="total" class="form-control">
-        </div>
-    </div>
-    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-        <div class="form-group">
-            <label for="folio">Folio</label>
-            <input type="text" value="" name="folio" class="form-control">
+            <input type="number" value="" name="total" class="form-control">
         </div>
     </div>
     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">

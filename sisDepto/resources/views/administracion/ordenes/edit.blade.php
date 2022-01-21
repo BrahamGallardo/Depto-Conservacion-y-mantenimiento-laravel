@@ -66,7 +66,7 @@
             <input type="text" value="{{$orden->programa}}" name="programa" id="programa" class="form-control" placeholder="Programa">
         </div>
     </div>
-    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
         <div class="form-group">
             <label for="proveedor">Proveedor</label>
             <select name="proveedor" id="proveedor" class="form-control selectpicker" data-live-search="true">
@@ -81,19 +81,19 @@
             <input type="hidden" value="{{$orden->rfc}}" name="rfc" id="rfc">
         </div>
     </div>
-    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
         <div class="form-group">
             <label for="domicilio">Domicilio</label>
             <input type="text" value="{{$orden->domicilio}}" id="domicilio" name="domicilio" class="form-control" placeholder="Domicilio">
         </div>
     </div>
-    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
         <div class="form-group">
             <label for="concepto">Concepto</label>
             <textarea class="form-control" name="concepto" rows="4" placeholder="Concepto">{{$orden->concepto}}</textarea>
         </div>
     </div>
-    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
         <div class="form-group">
             <label for="descripcion">Descripcion</label>
             <textarea class="form-control" name="descripcion" rows="4" placeholder="Descripcion">{{$orden->descripcion}}</textarea>

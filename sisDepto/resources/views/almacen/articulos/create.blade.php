@@ -91,7 +91,7 @@
 	<div class="col-xs-12">
 		<div class="form-group">
 			<!--<input type="text" value="" name="observaciones" class="form-control" placeholder="Observaciones"> -->
-			<textarea class="form-control" value="" name="observaciones" rows="10" cols="12" placeholder="Observaciones"></textarea>
+			<textarea class="form-control" value="" name="observaciones" rows="6" placeholder="Observaciones"></textarea>
 		</div>
 	</div>
 	<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">

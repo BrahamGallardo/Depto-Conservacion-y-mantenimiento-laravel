@@ -28,9 +28,9 @@ class OrdenesFormRequest extends Request
             'partida'=>'required|max:30',
             'nombre_unidad'=>'max:100',
             'programa'=>'max:6',
-            'proveedor'=>'required|max:85',
+            'rfc'=>'max:45',
             'domicilio'=>'max:120',
-            'fecha'=>'max:25'
+            'fecha'=>'max:25|required'
         ];
     }
 }

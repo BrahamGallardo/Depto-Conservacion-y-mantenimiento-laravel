@@ -19,61 +19,37 @@
 	<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
 		<div class="form-group">
 			<label for="nombre">Nombre</label>
-			<input type="text" value="{{$trabajadores->nombre_trabajador}}" name="nombre" class="form-control" readonly placeholder="Nombre">
+			<p>{{$trabajadores->nombre_trabajador}}</p>
 		</div>
 	</div>
 	<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
 		<div class="form-group">
 			<label for="email">Email</label>
-			<input type="email" value="{{$trabajadores->email}}" name="email" class="form-control" readonly placeholder="Email">
+			<p>{{$trabajadores->email}}</p>
 		</div>
 	</div>
 	<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
 		<div class="form-group">
 			<label for="telefono">Teléfono</label>
-			<input type="text" value="{{$trabajadores->telefono}}" name="telefono" class="form-control" readonly placeholder="Teléfono">
+			<p>{{$trabajadores->telefono}}</p>
 		</div>
 	</div>
 	<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
 		<div class="form-group">
 			<label>Tipo de trabajador</label>
-			<select name="idtipoTrabajador" disabled class="form-control">
-				@foreach($tipos as $tip)
-				@if($tip->idtipo_trabajador==$trabajadores->idtipo_trabajador)
-				<option value="{{$tip->idtipo_trabajador}}" selected>{{$tip->tipo_trabajador}}</option>
-				@else
-				<option value="{{$tip->idtipo_trabajador}}">{{$tip->tipo_trabajador}}</option>
-				@endif
-				@endforeach
-			</select>
+			<p>{{$trabajadores->tipo_trabajador}}</p>
 		</div>
 	</div>
 	<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
 		<div class="form-group">
 			<label>Rol del trabajador</label>
-			<select name="rol" disabled class="form-control">
-				@foreach($roles as $rol)
-				@if($rol->idrol==$trabajadores->idrol)
-				<option value="{{$rol->idrol}}" selected>{{$rol->nombre_rol}}</option>
-				else
-				<option value="{{$rol->idrol}}">{{$rol->nombre_rol}}</option>
-				@endif
-				@endforeach
-			</select>
+			<p>{{$trabajadores->nombre_rol}}</p>
 		</div>
 	</div>
 	<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
 		<div class="form-group">
 			<label>Horario del trabajador</label>
-			<select name="horario" disabled class="form-control">
-				@foreach($horarios as $hor)
-				@if($hor->idhorario==$trabajadores->idhorario)
-				<option value="{{$hor->idhorario}}" selected>{{$hor->hora_entrada}} - {{$hor->hora_salida}}</option>
-				@else
-				<option value="{{$hor->idhorario}}">{{$hor->hora_entrada}} - {{$hor->hora_salida}}</option>
-				@endif
-				@endforeach
-			</select>
+			<p>{{$trabajadores->hora_entrada}} - {{$trabajadores->hora_salida}}</p>
 		</div>
 	</div>
 	<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">

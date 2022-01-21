@@ -19,49 +19,49 @@
 	<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
 		<div class="form-group">
 			<label for="nombre">Asunto</label>
-			<textarea class="form-control" readonly name="asunto" rows="8" placeholder="Sin asunto">{{$solicitud->asunto}}</textarea>
+			<p>{{$solicitud->asunto}}</p>
 		</div>
 	</div>
 	<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
 		<div class="form-group">
 			<label for="nombre">Compromiso</label>
-			<textarea class="form-control" readonly name="compromiso" rows="8" placeholder="Sin compromiso">{{$solicitud->compromiso}}</textarea>
+			<p>{{$solicitud->compromiso}}</p>
 		</div>
 	</div>
-	<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+	<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
 		<div class="form-group">
 			<label for="email">Unidad</label>
-			<input type="text" value="{{$solicitud->unidad}}" name="unidad" class="form-control" readonly placeholder="Sin unidad">
+			<p>{{$solicitud->unidad}}</p>
 		</div>
 	</div>
-	<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+	<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
 		<div class="form-group">
 			<label for="telefono">Jurisd. Sanit.</label>
-			<input type="text" value="{{$solicitud->jurisd_sanit}}" name="jurisd_sanit" class="form-control" readonly placeholder="Sin jurisdicción sanitaria">
+			<p>{{$solicitud->jurisd_sanit}}</p>
 		</div>
 	</div>
-	<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+	<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
 		<div class="form-group">
 			<label for="telefono">Fecha a realizar</label>
-			<input type="date" value="{{$solicitud->fecha_limite}}" name="fecha_limite" class="form-control" readonly>
+			<p>{{$solicitud->fecha_limite}}</p>
 		</div>
 	</div>
-	<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+	<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
 		<div class="form-group">
 			<label for="telefono">Estado</label>
-			<input type="text" value="{{$solicitud->estado}}" name="estado" class="form-control" readonly placeholder="Estado">
+			<p>{{$solicitud->estado}}</p>
 		</div>
 	</div>
-	<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 		<div class="form-group">
 			<label for="nombre">Actualización</label>
-			<textarea class="form-control" readonly name="actualizacion" rows="4" placeholder="Sin actualizaciones">{{$solicitud->actualizacion}}</textarea>
+			<p>{{$solicitud->actualizacion}}</p>
 		</div>
 	</div>
-	<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 		<div class="form-group">
 			<label for="nombre">Comentarios</label>
-			<textarea class="form-control" readonly name="comentarios" rows="4" placeholder="Sin comentarios">{{$solicitud->comentarios}}</textarea>
+			<p>{{$solicitud->comentarios}}</p>
 		</div>
 	</div>
 	

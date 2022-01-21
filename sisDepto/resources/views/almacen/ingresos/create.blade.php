@@ -28,7 +28,6 @@
 						<option value="{{$articulo->codigo}}_{{$articulo->unidad}}">{{$articulo->articulo}}</option>
 						@endforeach
 					</select>
-					
 				</div>
 			</div>
 			<div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">

@@ -23,7 +23,7 @@ class TrabajadorController extends Controller
     		$trabajadores=DB::table('trabajadores as t')
 			->join('roles as r', 't.idrol','=','r.idrol')
 			->join('estados_trabajador as et', 't.idestado','=','et.idestado_trabajador')
-			->select('idtrabajador','t.nombre_trabajador','r.nombre_rol','et.estado_trabajador','telefono')
+			->select('idtrabajador','t.nombre_trabajador','r.nombre_rol','et.estado_trabajador','email','telefono')
 			->where('t.nombre_trabajador','LIKE','%'.$query.'%')
 			->where('estado_trabajador','!=','Inactivo')
 			->orderBy('idtrabajador','desc')->paginate(9);
@@ -52,12 +52,15 @@ class TrabajadorController extends Controller
     }
 
 	public function show($id){
-		$trabajadores=Trabajadores::findOrFail($id);
-    	$tipos=DB::table('tipos_trabajador')->get();
-		$roles=DB::table('roles')->get();
-		$horarios=DB::table('horarios')->get();
-		$estados=DB::table('estados_trabajador')->get();
-    	return view("administracion.trabajadores.details",["trabajadores"=>$trabajadores,"tipos"=>$tipos,"roles"=>$roles,"horarios"=>$horarios,"estados"=>$estados]);
+		$trabajadores=DB::table('trabajadores as t')
+			->join('roles as r', 't.idrol','=','r.idrol')
+			->join('estados_trabajador as et', 't.idestado','=','et.idestado_trabajador')
+			->join('tipos_trabajador as ttra','ttra.idtipo_trabajador','=','t.idtipo_trabajador')
+			->join('horarios as h','h.idhorario','=','t.idhorario')
+			->select('idtrabajador','t.nombre_trabajador','email','telefono','ttra.tipo_trabajador','r.nombre_rol','h.hora_entrada','h.hora_salida','et.estado_trabajador')
+			->where('t.idtrabajador','=',$id)
+			->first();
+    	return view("administracion.trabajadores.details",["trabajadores"=>$trabajadores]);
     }
 	
     public function edit($id){
