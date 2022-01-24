@@ -1,56 +1,45 @@
 @extends('layouts.admin')
-
 @section('contenido')
+
 <div class="row">
     <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
         <h3>Tablero</h3>
     </div>
 </div>
+<input type="hidden" value="{{$atendidos->atendidos}}" id="aten">
+<input type="hidden" value="{{$proceso->proceso}}" id="proceso">
+<input type="hidden" value="{{$cumplido->cumplidos}}" id="cumplido">
+<input type="hidden" value="{{$detalleat->atendidos}}" id="daten">
+<input type="hidden" value="{{$detallepro->proceso}}" id="dproceso">
+<input type="hidden" value="{{$detallecum->cumplidos}}" id="dcumplido">
+
 <div class="row">
     <div class="col-xl-6 col-lg-6">
         <!-- Bar Chart -->
         <div class="card shadow mb-4">
-            <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary">Bar Chart</h6>
-            </div>
             <div class="card-body">
                 <div class="chart-bar">
                     <canvas id="myPieChart" height="280"></canvas>
                 </div>
                 <hr>
-                Styling for the bar chart can be found in the
-                <code>/js/demo/chart-bar-demo.js</code> file.
+                Relación de solicitudes por estado
+                <a href="administracion/solicitudes"><code>ver solicitudes</code></a>
             </div>
         </div>
-        <!-- Area Chart -->
-        <div class="card shadow mb-4">
-            <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary">Area Chart</h6>
-            </div>
-            <div class="card-body">
-                <div class="chart-area">
-                    <canvas id="myAreaChart" height="280"></canvas>
-                </div>
-                <hr>
-                Styling for the area chart can be found in the
-                <code>/js/demo/chart-area-demo.js</code> file.
-            </div>
-        </div>
+        <br>
+        <br>
     </div>
 
     <div class="col-xl-6 col-lg-6">
         <!-- Bar Chart -->
         <div class="card shadow mb-4">
-            <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary">Bar Chart</h6>
-            </div>
             <div class="card-body">
                 <div class="chart-bar">
                     <canvas id="myBarChart" width="500" height="280"></canvas>
                 </div>
                 <hr>
-                Styling for the bar chart can be found in the
-                <code>/js/demo/chart-bar-demo.js</code> file.
+                Numero de seguimientos por estado
+                <a href="administracion/seguimiento"><code>ver seguimientos</code></a>
             </div>
         </div>
     </div>
@@ -61,8 +50,84 @@
 <!-- Page level plugins -->
 <script src="{{asset('js/Chart.min.js')}}"></script>
 <!-- Page level custom scripts -->
-<script src="{{asset('js/chart-area-demo.js')}}"></script>
-<script src="{{asset('js/chart-pie-demo.js')}}"></script>
-<script src="{{asset('js/chart-bar-demo.js')}}"></script>
+<script>
+    var ctx = document.getElementById("myPieChart");
+    aten = $("#aten").val();
+    proceso = $("#proceso").val();
+    cumplido = $("#cumplido").val();
+    arreglo = [aten, proceso, cumplido];
+    var myPieChart = new Chart(ctx, {
+        type: 'pie',
+        data: {
+            labels: ["Atendidos", "En proceso", "Cumplido"],
+            datasets: [{
+                data: arreglo,
+                backgroundColor: ['#4e73df', '#1cc88a', '#36b9cc'],
+                hoverBackgroundColor: ['#2e59d9', '#17a673', '#2c9faf'],
+                hoverBorderColor: "rgba(234, 236, 244, 1)",
+            }],
+        },
+        options: {
+            maintainAspectRatio: false,
+            tooltips: {
+                backgroundColor: "rgb(255,255,255)",
+                bodyFontColor: "#858796",
+                borderColor: '#dddfeb',
+                borderWidth: 1,
+                xPadding: 15,
+                yPadding: 15,
+                displayColors: false,
+                caretPadding: 10,
+            },
+            legend: {
+                display: true
+            }
+        },
+    });
+</script>
+<script>
+    var ctx = document.getElementById("myBarChart");
+    aten = $("#daten").val();
+    proceso = $("#dproceso").val();
+    cumplido = $("#dcumplido").val();
+    arreglo = [aten, proceso, cumplido];
+    var myPieChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: ["Atendidos", "En proceso", "Cumplido"],
+            datasets: [{
+                data: arreglo,
+                backgroundColor: ['#4e73df', '#1cc88a', '#36b9cc'],
+                hoverBackgroundColor: ['#2e59d9', '#17a673', '#2c9faf'],
+                hoverBorderColor: "rgba(234, 236, 244, 1)",
+            }],
+        },
+        options: {
+            maintainAspectRatio: false,
+            layout: {
+                padding: {
+                    left: 10,
+                    right: 25,
+                    top: 25,
+                    bottom: 0
+                }
+            },
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        min: 0,
+                        maxTicksLimit: 1,
+                        padding: 10,
+                    },
+                    
+                }],
+            },
+            legend: {
+                display: true
+            },
+            
+        }
+    });
+</script>
 @endpush
 @endsection

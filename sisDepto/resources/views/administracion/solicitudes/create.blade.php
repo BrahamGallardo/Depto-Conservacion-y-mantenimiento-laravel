@@ -50,8 +50,9 @@
     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
         <div class="form-group">
             <label for="Estado">Estado</label>
-            <select name="estado" class="form-control">
-                <option value="En proceso" selected>En proceso</option>
+            <select name="estado" class="form-control" required>
+            <option value="" selected>Elige una opción</option>
+                <option value="En proceso">En proceso</option>
                 <option value="Atendido">Atendido</option>
                 <option value="Cumplido">Cumplido</option>
                 <option value="No procede">No procede</option>

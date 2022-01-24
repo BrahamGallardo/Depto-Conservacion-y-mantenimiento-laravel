@@ -25,6 +25,13 @@ Route::resource('almacen/articulos', 'ArticuloController');
 Route::resource('almacen/ingresos', 'IngresosController');
 Route::resource('almacen/egresos', 'EgresosController');
 Route::resource('seguridad/usuario', 'UsuarioController');
+
+Route::resource('evento', 'ControllerEvent');
+Route::get('evento/details/{id}','ControllerEvent@details');
+Route::get('evento/index','ControllerEvent@index');
+Route::get('evento/index/{month}','ControllerEvent@index_month');
+Route::post('evento/calendario','ControllerEvent@calendario');
+
 Route::get('almacen/solicitar/{id}', 'ArticuloController@solicitar');
 Route::get('/download', 'IngresosController@generar');
 Route::get('/downloadorden', 'OrdenesController@generar');
@@ -32,3 +39,4 @@ Route::get('/activar/{id}','IngresosController@activar');
 Route::auth();
 
 Route::get('/home', 'HomeController@index');
+Route::get('home/{month}','HomeController@index_month');

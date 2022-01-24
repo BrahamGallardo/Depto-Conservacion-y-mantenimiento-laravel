@@ -22,6 +22,7 @@
   <!--Aqui es de startbootstrap -->
   <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
+
 </head>
 
 <body class="hold-transition skin-blue sidebar-mini">
@@ -141,12 +142,11 @@
           </li>
           <li class="treeview">
             <a href="#">
-              <i class="fa fa-money"></i> <span>Viaticos</span>
+              <i class="fa fa-wrench"></i> <span>Mantenimiento</span>
               <i class="fa fa-angle-left pull-right"></i>
             </a>
             <ul class="treeview-menu">
-              <li><a href="#"><i class="fa fa-circle-o"></i> Inventario</a></li>
-              <li><a href="#"><i class="fa fa-circle-o"></i> Viaticos</a></li>
+              <li><a href="{{url('evento')}}"><i class="fa fa-circle-o"></i> Calendario</a></li>
             </ul>
           </li>
           <li class="treeview">
@@ -237,7 +237,7 @@
   <script src="{{asset('js/app.min.js')}}"></script>
   <script src="{{asset('js/jsimage.js')}}"></script>
   <script src="{{asset('js/bootstrap-select.min.js')}}"></script>
-  
+
 
 
 </body>

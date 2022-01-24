@@ -9,6 +9,7 @@ use sisDepartamento\DetalleSolicitud;
 use Illuminate\Support\Facades\Redirect;
 use sisDepartamento\Http\Requests\DetalleSolicitudFormRequest;
 use DB;
+use sisDepartamento\Solicitudes;
 
 class DetalleSolicitudController extends Controller
 {
@@ -58,9 +59,16 @@ class DetalleSolicitudController extends Controller
         $detalle->total = $request->get('total');
         $detalle->documento = $request->get('documento');
         $detalle->save(); /* update*/
+
+        if ($request->get('estado') != "") {
+            $solicitud = Solicitudes::findOrFail($detalle->solicitud);
+            $solicitud->estado = $request->get('estado');
+            $solicitud->update();
+        }
+
         return Redirect::to('administracion/seguimiento');
     }
-        /*
+    /*
         Consulta sql
         SELECT d.solicitud, soli.asunto, soli.compromiso, soli.estado, d.egreso, tra.nombre_trabajador, d.fecha, d.total, d.folio, d.documento, soli.actualizacion, soli.comentarios
         FROM detalle_solicitud AS d
@@ -73,7 +81,7 @@ class DetalleSolicitudController extends Controller
         $detalle = DB::table('detalle_solicitud AS d')
             ->JOIN('solicitudes AS soli', 'd.solicitud', '=', 'soli.idsolicitud')
             ->JOIN('trabajadores AS tra', 'd.trabajador', '=', 'tra.idtrabajador')
-            ->SELECT('d.iddetalle_solicitud','d.solicitud', 'soli.asunto', 'soli.compromiso', 'soli.estado', 'd.egreso', 'tra.nombre_trabajador', 'd.fecha', 'd.total', 'd.documento', 'soli.actualizacion', 'soli.comentarios')
+            ->SELECT('d.iddetalle_solicitud', 'd.solicitud', 'soli.asunto', 'soli.compromiso', 'soli.estado', 'd.egreso', 'tra.nombre_trabajador', 'd.fecha', 'd.total', 'd.documento', 'soli.actualizacion', 'soli.comentarios')
             ->WHERE('d.iddetalle_solicitud', '=', $id)
             ->first();
         return view("administracion.seguimientos.show", ["detalle" => $detalle]);
@@ -82,6 +90,11 @@ class DetalleSolicitudController extends Controller
     public function edit($id)
     {
         $detalle = DetalleSolicitud::findOrFail($id);
+        $estado = DB::table('detalle_solicitud as ds')
+            ->join('solicitudes as soli', 'soli.idsolicitud', '=', 'ds.solicitud')
+            ->SELECT('soli.estado')
+            ->where('iddetalle_solicitud', '=', $id)
+            ->first();
         $trabajadores = DB::table('trabajadores as tr')
             ->SELECT(DB::raw('CONCAT(tr.idtrabajador, " - ", tr.nombre_trabajador) AS trabajador'), 'tr.idtrabajador')
             ->WHERE('tr.idestado', '!=', '5')
@@ -93,7 +106,7 @@ class DetalleSolicitudController extends Controller
         $egresos = DB::table('egresos as e')
             ->SELECT(DB::raw('CONCAT(e.idegreso," - ",e.razon) AS egreso'), 'e.idegreso')
             ->get();
-        return view("administracion.seguimientos.edit", ["detalle" => $detalle, "trabajadores" => $trabajadores, "solicitudes" => $solicitudes, "egresos" => $egresos]);
+        return view("administracion.seguimientos.edit", ["detalle" => $detalle, "trabajadores" => $trabajadores, "solicitudes" => $solicitudes, "egresos" => $egresos, "estado" => $estado]);
     }
 
     public function update(DetalleSolicitudFormRequest $request, $id)
@@ -106,6 +119,9 @@ class DetalleSolicitudController extends Controller
         $detalle->total = $request->get('total');
         $detalle->documento = $request->get('documento');
         $detalle->update();
+        $solicitud = Solicitudes::findOrFail($detalle->solicitud);
+        $solicitud->estado = $request->get('estado');
+        $solicitud->update();
         return $this->show($id);
     }
 }

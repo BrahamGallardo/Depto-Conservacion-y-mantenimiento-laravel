@@ -5,6 +5,7 @@
         <h3> <a href="javascript:history.back()" class="fa fa-back" style="color: #222d32;"></a> Nuevo usuario</h3>
         @if(count($errors)>0)
         <div class="alert alert-danger">
+            <button type="button" class="close" data-dismiss="alert">×</button>
             <ul>
                 @foreach($errors->all() as $error)
                 <li>{{$error}}</li>
@@ -15,7 +16,7 @@
 
         {!!Form::open(array('url'=>'seguridad/usuario','method'=>'POST','autocomplete'=>'off'))!!}
         {{Form::token()}}
-        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="col-xs-12">
             <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
                 <label for="name" class="col-md-4 control-label">Nombre</label>
                 <div class="col-md-6">
@@ -29,9 +30,9 @@
             </div>
         </div>
 
-        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="col-md-12">
             <div class="form-group{{ $errors->has('trabajador') ? ' has-error' : '' }}">
-                <label for="trabajador" class="col-md-4 control-label">Trabajador a quien pertenece la nueva cuenta</label>
+                <label for="trabajador" class="col-md-4 control-label">Trabajador</label>
                 <div class="col-md-6">
                     <select name="trabajador" id="trabajador" class="form-control selectpicker" data-live-search="true">
                         @foreach($trabajador as $tra)
@@ -48,7 +49,7 @@
             </div>
         </div>
 
-        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="col-md-12">
             <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
                 <label for="email" class="col-md-4 control-label">E-Mail</label>
                 <div class="col-md-6">
@@ -62,7 +63,7 @@
             </div>
         </div>
 
-        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="col-md-12">
             <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
                 <label for="password" class="col-md-4 control-label">Contraseña</label>
                 <div class="col-md-6">
@@ -76,7 +77,7 @@
             </div>
         </div>
 
-        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="col-md-12">
             <div class="form-group{{ $errors->has('password_confirmation') ? ' has-error' : '' }}">
                 <label for="password-confirm" class="col-md-4 control-label">Confirmar contraseña</label>
 
