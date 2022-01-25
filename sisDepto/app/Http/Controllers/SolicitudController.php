@@ -7,18 +7,10 @@ use Illuminate\Http\Request;
 use sisDepartamento\Http\Requests;
 use sisDepartamento\Solicitudes;
 use Illuminate\Support\Facades\Redirect;
-use Illuminate\Support\Facades\Input;
 use sisDepartamento\Http\Requests\SolicitudFormRequest;
 use DB;
-use PhpOffice\PhpWord\Style\Language;
-use PhpOffice\PhpWord\Style\ListItem;
-use PhpOffice\PhpWord\SimpleType\Jc;
 use Carbon\Carbon;
-use sisDepartamento\DetalleEgreso;
-use Response;
-use Illuminate\Support\Collection;
-use Illuminate\Support\Facades\Redis;
-use sisDepartamento\Articulos;
+use sisDepartamento\Oficinas;
 
 class SolicitudController extends Controller
 {
@@ -39,11 +31,10 @@ class SolicitudController extends Controller
             $fechasemana = $fecha2->toDateString();
             $query = trim($request->get('searchText'));
             $solicitudes = DB::table('solicitudes AS soli')
-                ->SELECT('soli.idsolicitud', 'soli.asunto', 'soli.unidad', 'soli.fecha_limite', 'soli.estado')
+                ->SELECT('soli.idsolicitud', 'soli.tipo', 'soli.asunto', 'soli.unidad', 'soli.fecha_limite', 'soli.estado')
                 ->where('soli.estado', 'LIKE', '%' . $query . '%')
                 ->orwhere('soli.unidad', 'LIKE', '%' . $query . '%')
-                ->orwhere('soli.idsolicitud', 'LIKE', '%' . $query . '%')
-                ->orwhere('soli.asunto', 'LIKE', '%' . $query . '%')
+                ->orwhere('soli.tipo', 'LIKE', '%' . $query . '%')
                 ->orderBy('soli.idsolicitud', 'desc')->paginate(12);
             return view('administracion.solicitudes.index', ["solicitudes" => $solicitudes, "fechasemana" => $fechasemana, "fechahoy" => $fechahoy, "searchText" => $query]);
         }
@@ -51,7 +42,8 @@ class SolicitudController extends Controller
 
     public function create()
     {
-        return view("administracion.solicitudes.create");
+        $unidades = DB::table('oficinas')->get();
+        return view("administracion.solicitudes.create",["unidades" => $unidades]);
     }
 
     public function store(SolicitudFormRequest $request)
@@ -65,7 +57,13 @@ class SolicitudController extends Controller
         $solicitud->estado=$request->get('estado');
 		$solicitud->actualizacion=$request->get('actualizacion');
         $solicitud->comentarios=$request->get('comentarios');
+        $solicitud->tipo=$request->get('tipo');
 		$solicitud->save(); /* update*/
+        if($request->get('jurisd_sanit') != ""){
+            $unidad = Oficinas::findOrFail($request->get('num_oficina'));
+            $unidad->jurisdiccion=$request->get('jurisd_sanit');
+            $unidad->update();
+        }
 		return Redirect::to('administracion/solicitudes');
     }
 
@@ -79,6 +77,7 @@ class SolicitudController extends Controller
         $solicitud->asunto=$request->get('asunto');
 		$solicitud->unidad=$request->get('unidad');
 		$solicitud->jurisd_sanit=$request->get('jurisd_sanit');
+        $solicitud->tipo=$request->get('tipo');
 		$solicitud->compromiso=$request->get('compromiso');
 		$solicitud->fecha_limite=$request->get('fecha_limite');
         $solicitud->estado=$request->get('estado');

@@ -2,7 +2,7 @@
 @section('contenido')
 
 <div class="container">
-    <h3><a href="javascript:history.back()" class="fa fa-back" style="color: #222d32;"></a> Calendario - evento</h3>
+    <h3><a href="javascript:history.back()" class="fa fa-back" style="color: #222d32;"></a> Detalle de mantenimiento</h3>
     <hr>
     <div class="row header-calendar">
 

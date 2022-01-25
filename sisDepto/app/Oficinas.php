@@ -14,6 +14,7 @@ class Oficinas extends Model
     protected $fillable=[
     	'unidad',
     	'nombre_corto',
+        'jurisdiccion',
         'programa',
         'descripcion'
     ];

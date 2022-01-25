@@ -52,7 +52,7 @@
 
 
 <div class="container">
-    <h3> Calendario - evento <a class="btn btn-info" href="{{ asset('/evento/create') }}">Crear un evento</a></h3>
+    <h3> Calendario - mantenimiento <a class="btn btn-info" href="{{ asset('/evento/create') }}">Programar mantenimiento</a></h3>
     <hr>
     <div class="row header-calendar">
 

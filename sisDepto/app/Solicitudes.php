@@ -14,6 +14,7 @@ class Solicitudes extends Model
         'asunto',
         'unidad',
         'jurisd_sanit',
+        'tipo',
         'compromiso',
         'fecha_limite',
         'estado',

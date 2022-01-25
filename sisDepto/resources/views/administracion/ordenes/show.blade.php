@@ -21,30 +21,35 @@
 			<div class="form-group">
 				<label for="Fecha">Fecha</label>
 				<p>{{$ordenes->fecha}}</p>
+				<input type="hidden" value="{{$ordenes->fecha}}" name="fecha">
 			</div>
 		</div>
 		<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
 			<div class="form-group">
 				<label for="programa">Programa</label>
 				<p>{{$ordenes->programa}}</p>
+				<input type="hidden" value="{{$ordenes->programa}}" name="programa">
 			</div>
 		</div>
 		<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
 			<div class="form-group">
 				<label for="nombre">Unidad</label>
 				<p>{{$ordenes->nombre_corto}}</p>
+				<input type="hidden" value="{{$ordenes->nombre_corto}}" name="nombre_unidad">
 			</div>
 		</div>
 		<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
 			<div class="form-group">
 				<label for="partida">Partida</label>
 				<p>{{$ordenes->partida}}</p>
+				<input type="hidden" value="{{$ordenes->partida}}" name="partida">
 			</div>
 		</div>
 		<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
 			<div class="form-group">
 				<label for="Unidad">Clave de la unidad</label>
 				<p>{{$ordenes->num_oficina}}</p>
+				<input type="hidden" value="{{$ordenes->num_oficina}}" name="unidad">
 			</div>
 		</div>
 		
@@ -52,12 +57,14 @@
 			<div class="form-group">
 				<label for="proveedor">Proveedor</label>
 				<p>{{$ordenes->proveedor}}</p>
+				<input type="hidden" value="{{$ordenes->proveedor}}" name="proveedor">
 			</div>
 		</div>
 		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 			<div class="form-group">
 				<label for="domicilio">Domicilio</label>
-				<p>{{$ordenes->domicilio}}</p>	
+				<p>{{$ordenes->domicilio}}</p>
+				<input type="hidden" value="{{$ordenes->domicilio}}" name="domicilio">
 			</div>
 		</div>
 		
@@ -65,12 +72,14 @@
 			<div class="form-group">
 				<label for="concepto">Concepto</label>
 				<p>{{$ordenes->concepto}}</p>
+				<input type="hidden" value="{{$ordenes->concepto}}" name="concepto">
 			</div>
 		</div>
 		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 			<div class="form-group">
 				<label for="descripcion">Descripcion</label>
 				<p>{{$ordenes->descripcion}}</p>
+				<input type="hidden" value="{{$ordenes->descripcion}}" name="descripcion">
 			</div>
 		</div>
 		<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">

@@ -40,6 +40,7 @@
 					<th>ID</th>
 					<th class="col-lg-4 col-md-4 col-sm-4 col-xs-12">Asunto</th>
 					<th class="col-lg-2 col-md-2 col-sm-2 col-xs-12">Unidad</th>
+					<th>Tipo</th>
 					<th>Fecha a realizar</th>
 					<th>Estado</th>
 					<th>Opciones</th>
@@ -49,6 +50,7 @@
 					<td>{{ $soli->idsolicitud}}</td>
 					<td>{{ $soli->asunto}}</td>
 					<td>{{ $soli->unidad}}</td>
+					<td>{{ $soli->tipo}}</td>
 
 
 					@if($fechahoy >= $soli->fecha_limite && $soli->estado != 'Cumplido' && $soli->estado != 'No procede')
