@@ -43,60 +43,69 @@ class SolicitudController extends Controller
     public function create()
     {
         $unidades = DB::table('oficinas')->get();
-        return view("administracion.solicitudes.create",["unidades" => $unidades]);
+        return view("administracion.solicitudes.create", ["unidades" => $unidades]);
     }
 
     public function store(SolicitudFormRequest $request)
     {
-        $solicitud=new Solicitudes;
-		$solicitud->asunto=$request->get('asunto');
-		$solicitud->unidad=$request->get('unidad');
-		$solicitud->jurisd_sanit=$request->get('jurisd_sanit');
-		$solicitud->compromiso=$request->get('compromiso');
-		$solicitud->fecha_limite=$request->get('fecha_limite');
-        $solicitud->estado=$request->get('estado');
-		$solicitud->actualizacion=$request->get('actualizacion');
-        $solicitud->comentarios=$request->get('comentarios');
-        $solicitud->tipo=$request->get('tipo');
-		$solicitud->save(); /* update*/
-        if($request->get('jurisd_sanit') != ""){
+        $solicitud = new Solicitudes;
+        $solicitud->asunto = $request->get('asunto');
+        $solicitud->unidad = $request->get('unidad');
+        $solicitud->jurisd_sanit = $request->get('jurisd_sanit');
+        $solicitud->compromiso = $request->get('compromiso');
+        $solicitud->fecha_limite = $request->get('fecha_limite');
+        $solicitud->estado = $request->get('estado');
+        $solicitud->actualizacion = $request->get('actualizacion');
+        $solicitud->comentarios = $request->get('comentarios');
+        $solicitud->tipo = $request->get('tipo');
+        $solicitud->save(); /* update*/
+        if ($request->get('jurisd_sanit') != "") {
             $unidad = Oficinas::findOrFail($request->get('num_oficina'));
-            $unidad->jurisdiccion=$request->get('jurisd_sanit');
+            $unidad->jurisdiccion = $request->get('jurisd_sanit');
             $unidad->update();
         }
-		return Redirect::to('administracion/solicitudes');
+        return Redirect::to('administracion/solicitudes');
     }
 
-    public function edit($id){
-		$solicitud=Solicitudes::findOrFail($id);
-    	return view("administracion.solicitudes.edit",["solicitud"=>$solicitud]);
+    public function edit($id)
+    {
+        $solicitud = Solicitudes::findOrFail($id);
+        $unidades = DB::table('oficinas')->get();
+        return view("administracion.solicitudes.edit", ["solicitud" => $solicitud, "unidades" => $unidades]);
     }
 
-    public function update(SolicitudFormRequest $request, $id){
-    	$solicitud=Solicitudes::findOrFail($id);
-        $solicitud->asunto=$request->get('asunto');
-		$solicitud->unidad=$request->get('unidad');
-		$solicitud->jurisd_sanit=$request->get('jurisd_sanit');
-        $solicitud->tipo=$request->get('tipo');
-		$solicitud->compromiso=$request->get('compromiso');
-		$solicitud->fecha_limite=$request->get('fecha_limite');
-        $solicitud->estado=$request->get('estado');
-		$solicitud->actualizacion=$request->get('actualizacion');
-        $solicitud->comentarios=$request->get('comentarios');
-    	$solicitud->update();
-    	return $this->show($id);
+    public function update(SolicitudFormRequest $request, $id)
+    {
+        $solicitud = Solicitudes::findOrFail($id);
+        $solicitud->asunto = $request->get('asunto');
+        $solicitud->unidad = $request->get('unidad');
+        $solicitud->jurisd_sanit = $request->get('jurisd_sanit');
+        $solicitud->tipo = $request->get('tipo');
+        $solicitud->compromiso = $request->get('compromiso');
+        $solicitud->fecha_limite = $request->get('fecha_limite');
+        $solicitud->estado = $request->get('estado');
+        $solicitud->actualizacion = $request->get('actualizacion');
+        $solicitud->comentarios = $request->get('comentarios');
+        $solicitud->update();
+        if ($request->get('jurisd_sanit') != "") {
+            $unidad = Oficinas::findOrFail($request->get('num_oficina'));
+            $unidad->jurisdiccion = $request->get('jurisd_sanit');
+            $unidad->update();
+        }
+        return $this->show($id);
     }
 
     public function show($id)
-	{
-        $solicitud=Solicitudes::findOrFail($id);
-		return view("administracion.solicitudes.details", ["solicitud" => $solicitud]);
-	}
+    {
+        $solicitud = Solicitudes::findOrFail($id);
+        return view("administracion.solicitudes.details", ["solicitud" => $solicitud]);
+    }
 
-    public function destroy($id){
-    	$solicitud=Solicitudes::findOrFail($id);
-    	$solicitud->estado='No procede';
-    	$solicitud->update();
-    	return Redirect::to('administracion/solicitudes');
+    public function destroy($id)
+    {
+        $solicitud = Solicitudes::findOrFail($id);
+        $solicitud->estado = 'No procede';
+        $solicitud->update();
+        return Redirect::to('administracion/solicitudes');
     }
 }

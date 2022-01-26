@@ -21,11 +21,16 @@
         <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
             <div class="form-group">
                 <label for="solicitud">Solicitud</label>
-                <select name="solicitud" class="form-control selectpicker" data-live-search="true" id="idsolicitud">
+                <select name="dsolicitud" class="form-control selectpicker" data-live-search="true" id="idsolicitud">
+                    <option value="">id</option>
                     @foreach($solicitudes as $sol)
-                    <option value="{{$sol->idsolicitud}}">{{$sol->idsolicitud}}</option>
+                    <option value="{{$sol->idsolicitud}}_{{$sol->unidad}}_{{$sol->asunto}}_{{$sol->compromiso}}">{{$sol->idsolicitud}}</option>
+
                     @endforeach
+                    <?php $var = $sol->idsolicitud ?>
                 </select>
+                <input type="hidden" name="solicitud" id="solicitud" value="">
+
             </div>
         </div>
         <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12">
@@ -51,6 +56,7 @@
             <div class="form-group">
                 <label for="egreso">Con la salida de materiales</label>
                 <select name="egreso" class="form-control selectpicker" data-live-search="true">
+                    <option value="">Elija una opción</option>
                     @foreach($egresos as $e)
                     <option value="{{$e->idegreso}}">{{$e->egreso}}</option>
                     @endforeach
@@ -60,6 +66,7 @@
             <div class="form-group">
                 <label for="trabajador">Trabajador</label>
                 <select name="trabajador" class="form-control selectpicker" data-live-search="true">
+                    <option value="">Elija una opción</option>
                     @foreach($trabajadores as $tra)
                     <option value="{{$tra->idtrabajador}}">{{$tra->trabajador}}</option>
                     @endforeach
@@ -78,61 +85,60 @@
                 <input type="text" value="" name="documento" class="form-control">
             </div>
         </div>
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="form-group">
+                <label for="descripcion">Descripción</label>
+                <textarea class="form-control" name="descripcion" rows="4" placeholder="Descripción"></textarea>
+            </div>
+        </div>
 
         <div class="form-group">
             <a href="{{url('administracion/seguimiento')}}"><button class="btn btn-primary">Aceptar</button></a>
+            <a href="/administracion/seguimiento"> <button class="btn btn-danger" type="button">Cancelar</button></a>
         </div>
     </div>
 </div>
 
-
-
 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
     <div class="row">
-        <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <div class="form-group" id="dunidad">
                 <label for="unidad">Unidad</label>
                 <input type="text" class="form-control" name="unidad" value="" readonly id="idunidad">
             </div>
         </div>
-        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-            <div class="form-group" id="anios">
-                <label for="año">Año</label>
-                <select name="año" class="form-control" id="anio">
-                    <option value="">Elige una opción</option>
-                    <option value="2015">2015</option>
-                    <option value="2016">2016</option>
-                    <option value="2017">2017</option>
-                    <option value="2018">2018</option>
-                    <option value="2019">2019</option>
-                    <option value="2020">2020</option>
-                    <option value="2021">2021</option>
-                    <option value="2022">2022</option>
-                </select>
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="form-group" id="dasunto">
+                <label for="asunto">Asunto</label>
+                <input type="text" class="form-control" name="asunto" value="" readonly id="dasuntod">
+            </div>
+        </div>
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="form-group" id="comp">
+                <label for="compromiso">Compromiso</label>
+                <input type="text" class="form-control" value="" readonly id="compromiso">
             </div>
         </div>
     </div>
-
-
-
-
 </div>
 {!!Form::close()!!}
 @push ('scripts')
 <script>
-    $("#anios").hide();
     $("#dunidad").hide();
+    $("#dasunto").hide();
+    $("#comp").hide();
     $("#idsolicitud").change(mostrarValores);
 
     function mostrarValores() {
-        $("#anios").show();
+        detalles = document.getElementById('idsolicitud').value.split('_');
+        $("#solicitud").val(detalles[0]);
+        $("#idunidad").val(detalles[1]);
+        $("#dasuntod").val(detalles[2]);
+        $("#compromiso").val(detalles[3]);
+        $("#var").val(detalles[0]);
+        $("#comp").show();
         $("#dunidad").show();
-    }
-    $("#anio").change(mostrarDetalles);
-
-    function mostrarDetalles() {
-        anio = $("#anio option:selected").text()
-
+        $("#dasunto").show();
     }
 </script>
 @endpush

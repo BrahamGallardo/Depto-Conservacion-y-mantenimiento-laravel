@@ -24,6 +24,7 @@
 				<div class="form-group">
 					<label>Artículo</label>
 					<select name="pidarticulo" id="pidarticulo" class="form-control selectpicker" data-live-search="true">
+						<option value="">Elija un artículo</option>
 						@foreach($articulos as $articulo)
 						<option value="{{$articulo->codigo}}_{{$articulo->unidad}}">{{$articulo->articulo}}</option>
 						@endforeach
@@ -73,7 +74,7 @@
 		<div class="form-group">
 			<input name="_token" value="{{ csrf_token() }}" type="hidden"></input>
 			<button class="btn btn-primary" id="btnsolicitar" type="submit">Guardar</button>
-			<a href="{{url('almacen/ingresos')}}"> <button class="btn btn-danger" type="reset">Cancelar</button> </a>
+			<a href="{{url('almacen/ingresos')}}"> <button class="btn btn-danger" type="button">Cancelar</button> </a>
 		</div>
 	</div>
 </div>
@@ -98,7 +99,7 @@
 	}
 
 	function agregar() {
-		
+
 		articulo = $("#pidarticulo option:selected").text();
 		cantidad = $("#pcantidad").val();
 		unidad = $("#punidad").val();

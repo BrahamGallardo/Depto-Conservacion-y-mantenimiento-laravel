@@ -54,26 +54,32 @@
     </div>
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
         <div class="form-group">
-            <label for="nombre">Asunto</label>
+            <label for="Asunto">Asunto</label>
             <p>{{$detalle->asunto}}</p>
         </div>
     </div>
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
         <div class="form-group">
-            <label for="nombre">Compromiso</label>
+            <label for="Compromiso">Compromiso</label>
             <p>{{$detalle->compromiso}}</p>
         </div>
     </div>
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
         <div class="form-group">
-            <label for="nombre">Actualización</label>
+            <label for="Actualización">Actualización</label>
             <p>{{$detalle->actualizacion}}</p>
         </div>
     </div>
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
         <div class="form-group">
-            <label for="nombre">Comentarios</label>
+            <label for="Comentarios">Comentarios</label>
             <p>{{$detalle->comentarios}}</p>
+        </div>
+    </div>
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="form-group">
+            <label for="descripcion">Descripción del seguimiento</label>
+            <p>{{$detalle->descripcion}}</p>
         </div>
     </div>
 

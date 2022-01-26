@@ -4,6 +4,7 @@
 	<div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
 		<h3>Listado de seguimientos
 			<a href="seguimiento/create"><button class="btn btn-info">Realizar seguimiento</button></a>
+			<a href=""><button class="btn btn-success">Busqueda especial</button></a>
 		</h3>
 		@include('administracion.seguimientos.search')
 	</div>

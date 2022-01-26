@@ -5,9 +5,21 @@
 		<h3>Listado de articulos
 			<a href="articulos/create"><button class="btn btn-success">Nuevo</button></a>
 			<a href="ingresos/create"><button class="btn btn-info">Solicitar</button></a>
-			<a href="egresos/create"><button class="btn btn-warning">Requerir</button></a>
+			<a href="egresos/create"><button class="btn btn-warning">Salida</button></a>
 		</h3>
 		@include('almacen.articulos.search')
+		<?php
+		// comprobar si tenemos los parametros w1 y w2 en la URL
+		if (isset($_GET["searchText"])) {
+			// asignar w1 y w2 a dos variables
+			$vari = $_GET["searchText"];
+
+			// mostrar $vari y $phpVar2
+			echo "<p>Parameters: " . $vari .  "</p>";
+		} else {
+			echo "<p>No parameters</p>";
+		}
+		?>
 	</div>
 </div>
 
@@ -51,7 +63,7 @@
 							<td>{{ $art->unidad}}</td>
 							<td>
 								<a href="{{URL::action('ArticuloController@show',$art->codigo)}}"><button class="btn btn-default">Detalles</button></a>
-								
+
 							</td>
 				</tr>
 				@include('almacen.articulos.modal')
@@ -61,4 +73,12 @@
 		{{$articulos->render()}}
 	</div>
 </div>
+@push ('scripts')
+<script type="text/javascript">
+	function javascript_to_php() {
+		var vari = $("#searchText").val();
+		window.location.href = window.location.href + "?searchText=" + vari;
+	}
+</script>
+@endpush
 @endsection

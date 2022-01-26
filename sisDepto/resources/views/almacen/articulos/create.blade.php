@@ -35,6 +35,7 @@
 		<div class="form-group">
 			<label>Tipo de articulo</label>
 			<select name="idtipoArticulo" id="ptipo_articulo" class="form-control">
+				<option value="">Elija una opción</option>
 				@foreach($tipos as $tip)
 				<option value="{{$tip->idtipo_articulo}}">{{$tip->tipo_articulo}}</option>
 				@endforeach
@@ -76,6 +77,7 @@
 		<div class="form-group">
 			<label>Tipo de unidad</label>
 			<select name="idtipoUnidad" class="form-control">
+				<option value="">Elija una opción</option>
 				@foreach($unidad as $uni)
 				<option value="{{$uni->idunidad}}">{{$uni->unidad}}</option>
 				@endforeach

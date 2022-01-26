@@ -24,6 +24,7 @@
 				<div class="form-group">
 					<label>Artículo</label>
 					<select name="pidarticulo" id="pidarticulo" class="form-control selectpicker" data-live-search="true">
+						<option value="">Elija un artículo</option>
 						@foreach($articulos as $articulo)
 						<option value="{{$articulo->codigo}}_{{$articulo->unidad}}_{{$articulo->cantidad}}">{{$articulo->articulo}}</option>
 						@endforeach
@@ -47,6 +48,7 @@
 				<div class="form-group">
 					<label>Trabajador que realizó la salida</label>
 					<select name="trabajador" id="pidtrabajador" class="form-control selectpicker" data-live-search="true">
+						<option value="">Elija una opción</option>
 						@foreach($trabajadores as $tra)
 						<option value="{{$tra->idtrabajador}}">{{$tra->trabajador}}</option>
 						@endforeach
@@ -96,7 +98,7 @@
 		<div class="form-group">
 			<input name="_token" value="{{ csrf_token() }}" type="hidden"></input>
 			<button class="btn btn-primary" id="btnsolicitar" type="submit">Guardar</button>
-			<a href="{{url('almacen/egresos')}}"> <button class="btn btn-danger" type="reset">Cancelar</button> </a>
+			<a href="{{url('almacen/egresos')}}"> <button class="btn btn-danger" type="button">Cancelar</button> </a>
 		</div>
 	</div>
 </div>

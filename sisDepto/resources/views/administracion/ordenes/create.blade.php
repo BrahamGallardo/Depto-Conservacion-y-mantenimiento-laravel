@@ -29,6 +29,7 @@
         <div class="form-group">
             <label for="unidad">Oficina</label>
             <select name="unidad" id="unidad" class="form-control selectpicker" data-live-search="true">
+                <option value="">Elija una opción</option>
                 @foreach($oficinas as $ofice)
                 <option value="{{$ofice->num_oficina}}_{{$ofice->nombre_corto}}_{{$ofice->programa}}">{{$ofice->oficinas}}</option>
                 @endforeach
@@ -40,6 +41,7 @@
         <div class="form-group">
             <label for="partida">Partida</label>
             <select name="partida" class="form-control selectpicker" data-live-search="true">
+                <option value="">Elija una opción</option>
                 @foreach($partidas as $par)
                 <option value="{{$par->num_partida}}">{{$par->partidas}}</option>
                 @endforeach
@@ -62,11 +64,12 @@
         <div class="form-group">
             <label for="proveedor">Proveedor</label>
             <select name="proveedor" id="proveedor" class="form-control selectpicker" data-live-search="true">
-                @foreach($proveedores as $pro)
+            <option value="">Elija un proveedor</option>    
+            @foreach($proveedores as $pro)
                 <option value="{{$pro->rfc}}_{{$pro->domicilio}}">{{$pro->proveedor}}</option>
                 @endforeach
             </select>
-            <a href="{{url('administracion/proveedores/create')}}"><button  type="button" class="btn btn-link">Nuevo proveedor</button></a>
+            <a href="{{url('administracion/proveedores/create')}}"><button type="button" class="btn btn-link">Nuevo proveedor</button></a>
             <input type="hidden" value="" name="rfc" id="rfc">
         </div>
     </div>

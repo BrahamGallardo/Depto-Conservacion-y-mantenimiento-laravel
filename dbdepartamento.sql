@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 26-01-2022 a las 00:21:09
+-- Tiempo de generación: 26-01-2022 a las 22:07:53
 -- Versión del servidor: 10.4.22-MariaDB
 -- Versión de PHP: 7.4.26
 
@@ -1442,8 +1442,10 @@ INSERT INTO `detalle_solicitud` (`iddetalle_solicitud`, `solicitud`, `egreso`, `
 (5, 2, 1, 1, '2021-12-31', '0.00', 'Documento', ''),
 (8, 5, 2, 1, '2022-01-13', '12000.00', 'Doc', ''),
 (9, 272, 2, 2, '2022-01-01', '123456.00', 'qwerty', ''),
-(10, 56, 2, 2, '2022-01-24', '25000.00', 'Documento', ''),
-(11, 273, 2, 1, '2022-01-24', '2500.00', 'Doc', '');
+(10, 56, 2, 2, '2022-01-24', '25000.00', 'Documento', 'Una descripcion'),
+(11, 273, 2, 1, '2022-01-24', '2500.00', 'Doc', 'Se deberá realizar la busqueda'),
+(12, 273, 2, 1, '2022-01-27', '2100.00', 'Documento', 'Tomando en cuenta que se realizó la búsqueda, sólo queda implementar'),
+(13, 273, 1, 1, '2022-01-28', '1200.00', 'Documento', 'Fallos en la implementación');
 
 -- --------------------------------------------------------
 
@@ -3060,7 +3062,7 @@ ALTER TABLE `detalle_ingreso`
 -- AUTO_INCREMENT de la tabla `detalle_solicitud`
 --
 ALTER TABLE `detalle_solicitud`
-  MODIFY `iddetalle_solicitud` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `iddetalle_solicitud` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT de la tabla `egresos`

@@ -33,10 +33,10 @@ Route::get('evento/index/{month}','ControllerEvent@index_month');
 Route::post('evento/calendario','ControllerEvent@calendario');
 
 Route::get('almacen/solicitar/{id}', 'ArticuloController@solicitar');
+Route::get('seguimiento/buscar', 'DetalleSolicitudController@buscar');
 Route::get('/download', 'IngresosController@generar');
 Route::get('/downloadorden', 'OrdenesController@generar');
 Route::get('/activar/{id}','IngresosController@activar');
 Route::auth();
 
 Route::get('/home', 'HomeController@index');
-Route::get('home/{month}','HomeController@index_month');

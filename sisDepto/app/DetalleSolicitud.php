@@ -17,7 +17,8 @@ class DetalleSolicitud extends Model
         'trabajador',
         'fecha',
         'total',
-        'documento'
+        'documento',
+        'descripcion'
     ];
     protected $guarded=[
     	
