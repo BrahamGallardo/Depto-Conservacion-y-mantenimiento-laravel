@@ -47,9 +47,9 @@ class DetalleSolicitudController extends Controller
             ->SELECT(DB::raw('CONCAT(e.idegreso," - ",e.razon) AS egreso'), 'e.idegreso')
             ->get();
         $descripciones = DB::table('detalle_solicitud')
-            ->select('descripcion','solicitud')
+            ->select('descripcion', 'solicitud')
             ->get();
-        return view("administracion.seguimientos.create", ["descripciones"=>$descripciones,"trabajadores" => $trabajadores, "solicitudes" => $solicitudes, "egresos" => $egresos]);
+        return view("administracion.seguimientos.create", ["descripciones" => $descripciones, "trabajadores" => $trabajadores, "solicitudes" => $solicitudes, "egresos" => $egresos]);
     }
 
     public function store(DetalleSolicitudFormRequest $request)
@@ -132,7 +132,23 @@ class DetalleSolicitudController extends Controller
     }
     public function buscar()
     {
-
-        return Redirect::to('administracion/seguimiento');
+        $oficinas = DB::table('oficinas AS of')
+            ->SELECT(DB::raw('CONCAT(of.num_oficina," - ",of.unidad) AS oficinas'), 'of.num_oficina', 'of.unidad', 'of.nombre_corto', 'of.programa')
+            ->get();
+        return view('administracion.seguimientos.buscar', ["oficinas" => $oficinas]);
+    }
+    //SELECT descripcion FROM detalle_solicitud 
+    //JOIN solicitudes ON solicitudes.idsolicitud = detalle_solicitud.solicitud
+    //WHERE YEAR(detalle_solicitud.fecha) = 2022 AND solicitudes.unidad = "C.S. TEOTITLAN DEL VALLE"
+    public function resultado(Request $request)
+    {
+        $anio = $request->get('anio');
+        $unidad = $request->get('unidad');
+        $descripciones = DB::table('detalle_solicitud AS detalle')
+            ->JOIN('solicitudes', 'solicitudes.idsolicitud', '=', 'detalle.solicitud')
+            ->SELECT('detalle.descripcion','iddetalle_solicitud')
+            ->whereYear('detalle.fecha','=',$anio)
+            ->WHERE('solicitudes.unidad','=',$unidad)->get();
+        return view('administracion.seguimientos.resultado',["descripciones"=>$descripciones,"anio"=>$anio,"unidad"=>$unidad]);
     }
 }

@@ -3,7 +3,9 @@
 
 <div class="row">
     <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
-        <h3>Tablero</h3>
+        <h3>Tablero
+            <a href="/buscar"><button class="btn btn-success">Busqueda especial</button></a>
+        </h3>
     </div>
 </div>
 <input type="hidden" value="{{$atendidos->atendidos}}" id="aten">
@@ -119,13 +121,13 @@
                         maxTicksLimit: 1,
                         padding: 10,
                     },
-                    
+
                 }],
             },
             legend: {
                 display: true
             },
-            
+
         }
     });
 </script>

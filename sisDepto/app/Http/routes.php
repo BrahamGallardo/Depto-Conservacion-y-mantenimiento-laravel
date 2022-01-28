@@ -40,3 +40,5 @@ Route::get('/activar/{id}','IngresosController@activar');
 Route::auth();
 
 Route::get('/home', 'HomeController@index');
+Route::get('/buscar', 'DetalleSolicitudController@buscar');
+Route::post('/resultado', 'DetalleSolicitudController@resultado');
