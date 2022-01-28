@@ -2,7 +2,7 @@
 @section('contenido')
 <div class="row">
     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-        <h3><a href="javascript:history.back()" class="fa fa-back" style="color: #222d32;"></a> Seguimiento de solicitud {{$detalle->solicitud}}</h3>
+        <h3><a href="javascript:history.back()" class="fa fa-back" style="color: #222d32;"></a> Seguimiento de solicitud <a href="{{URL::action('SolicitudController@show',$detalle->solicitud)}}"> {{$detalle->solicitud}}</a></h3>
         @if(count($errors)>0)
         <div class="alert alert-danger">
             <ul>
@@ -46,12 +46,6 @@
             <p>{{$detalle->total}}</p>
         </div>
     </div>
-    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-        <div class="form-group">
-            <label for="Documento">Documento</label>
-            <p>{{$detalle->documento}}</p>
-        </div>
-    </div>
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
         <div class="form-group">
             <label for="Asunto">Asunto</label>
@@ -80,6 +74,13 @@
         <div class="form-group">
             <label for="descripcion">Descripción del seguimiento</label>
             <p>{{$detalle->descripcion}}</p>
+        </div>
+    </div>
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="form-group">
+            <label for="Documento">Documento</label>
+            <br>
+            <iframe src="{{asset('documentos/seguimientos/'.$detalle->documento)}}"  height="220px" width="150px"></iframe>
         </div>
     </div>
 

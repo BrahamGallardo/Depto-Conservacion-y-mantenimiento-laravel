@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 @section('contenido')
 <div class="row">
-    <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
         <h3>
             <a href="javascript:history.back()" class="fa fa-back" style="color: #222d32;"></a>
             Trabajos realizados para: {{$unidad}} en el año {{$anio}}

@@ -45,7 +45,7 @@ class UsuarioController extends Controller
 	public function show($id){
 		$user = DB::table('users')
 		->join('trabajadores as tra', 'tra.idtrabajador','=','users.trabajador')
-		->select('users.id','users.name','tra.email','tra.nombre_trabajador')
+		->select('users.id','users.name','tra.email','tra.nombre_trabajador','tra.idtrabajador')
 		->where('id','=',$id)
 		->first();
     	return view("seguridad.usuario.show",["user"=>$user]);

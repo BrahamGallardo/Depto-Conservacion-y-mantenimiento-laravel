@@ -6,7 +6,10 @@ use Illuminate\Http\Request;
 
 use sisDepartamento\Http\Requests;
 use sisDepartamento\DetalleSolicitud;
+use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\File;
 use sisDepartamento\Http\Requests\DetalleSolicitudFormRequest;
 use DB;
 use sisDepartamento\Solicitudes;
@@ -42,6 +45,7 @@ class DetalleSolicitudController extends Controller
         $solicitudes = DB::table('solicitudes')
             ->WHERE('estado', '!=', 'No procede')
             ->WHERE('estado', '!=', 'Cumplido')
+            ->orderBy('idsolicitud', 'desc')
             ->get();
         $egresos = DB::table('egresos as e')
             ->SELECT(DB::raw('CONCAT(e.idegreso," - ",e.razon) AS egreso'), 'e.idegreso')
@@ -60,7 +64,12 @@ class DetalleSolicitudController extends Controller
         $detalle->trabajador = $request->get('trabajador');
         $detalle->fecha = $request->get('fecha');
         $detalle->total = $request->get('total');
-        $detalle->documento = $request->get('documento');
+        if(Input::hasFile('imagen')){
+			$file=Input::file('imagen');
+			$file->move(public_path().'/documentos/seguimientos/',$file->getClientOriginalName());
+			$detalle->documento=$file->getClientOriginalName();
+
+		}
         $detalle->descripcion = $request->get('descripcion');
         $detalle->save(); /* update*/
 
@@ -122,7 +131,12 @@ class DetalleSolicitudController extends Controller
         $detalle->trabajador = $request->get('trabajador');
         $detalle->fecha = $request->get('fecha');
         $detalle->total = $request->get('total');
-        $detalle->documento = $request->get('documento');
+        if(Input::hasFile('imagen')){
+			$file=Input::file('imagen');
+			$file->move(public_path().'/documentos/seguimientos/',$file->getClientOriginalName());
+			
+			$detalle->documento=$file->getClientOriginalName();
+		}
         $detalle->descripcion = $request->get('descripcion');
         $detalle->update();
         $solicitud = Solicitudes::findOrFail($detalle->solicitud);
@@ -146,9 +160,9 @@ class DetalleSolicitudController extends Controller
         $unidad = $request->get('unidad');
         $descripciones = DB::table('detalle_solicitud AS detalle')
             ->JOIN('solicitudes', 'solicitudes.idsolicitud', '=', 'detalle.solicitud')
-            ->SELECT('detalle.descripcion','iddetalle_solicitud')
-            ->whereYear('detalle.fecha','=',$anio)
-            ->WHERE('solicitudes.unidad','=',$unidad)->get();
-        return view('administracion.seguimientos.resultado',["descripciones"=>$descripciones,"anio"=>$anio,"unidad"=>$unidad]);
+            ->SELECT('detalle.descripcion', 'iddetalle_solicitud')
+            ->whereYear('detalle.fecha', '=', $anio)
+            ->WHERE('solicitudes.unidad', '=', $unidad)->get();
+        return view('administracion.seguimientos.resultado', ["descripciones" => $descripciones, "anio" => $anio, "unidad" => $unidad]);
     }
 }

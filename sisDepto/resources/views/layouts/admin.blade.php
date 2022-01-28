@@ -69,9 +69,11 @@
                     {{ Auth::user()->name }}
                     <small>{{ Auth::user()->email }}</small>
                   </p>
-                  <a href="#" class="btn btn-default">Cambiar nombre</a>
+                  <a href="{{URL::action('UsuarioController@show',Auth::user()->id)}}" class="btn btn-default">Perfil</a>
                   <br>
-                  <a href="#" class="btn btn-default">Cambiar contraseña</a>
+                  <a href="{{URL::action('UsuarioController@edit',Auth::user()->id)}}" class="btn btn-default">Cambiar nombre</a>
+                  
+                  
                 </li>
 
                 <!-- Menu Footer-->

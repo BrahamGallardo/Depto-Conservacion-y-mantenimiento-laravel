@@ -29,7 +29,7 @@ class DetalleSolicitudFormRequest extends Request
             'trabajador'=>'required|max:50',
             'fecha'=>'required|max:25',
             'total'=>'max:25',
-            'documento'=>'max:50',
+            'imagen'=>'mimes:pdf,jpeg,png'
         ];
     }
 }

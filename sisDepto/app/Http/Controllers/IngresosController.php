@@ -160,13 +160,13 @@ class IngresosController extends Controller
 
     public function generar(Request $request)
     {
+        $idingreso = $request->get('vingreso');
         $detalles = DB::table('detalle_ingreso AS d')
             ->JOIN('articulos AS art', 'd.cod_articulo', '=', 'art.codigo')
             ->JOIN('unidades_articulo AS u', 'art.unidad', '=', 'u.idunidad')
-            ->SELECT('art.nombre_articulo', 'd.cantidad', 'art.codigo', 'u.unidad')
-            ->WHERE('d.idingreso', '=', $request->get('vingreso') )
+            ->SELECT('art.nombre_articulo', 'd.cantidad', 'art.codigo', 'u.unidad', 'd.idingreso')
+            ->WHERE('d.idingreso', '=', $idingreso)
             ->get();
-
         //Aqui inicia el documento
         $documento = new \PhpOffice\PhpWord\PhpWord();
         $propiedades = $documento->getDocInfo();
@@ -253,7 +253,7 @@ class IngresosController extends Controller
             "name" => "Arial",
             "size" => 10,
             "color" => "000000"
-        ]; 
+        ];
 
         // Guardarlo para usarlo más tarde
         $documento->addTableStyle("estilo2", $estiloTabla);
@@ -265,7 +265,7 @@ class IngresosController extends Controller
         $celda->addText("UNIDAD", $fuente3);
         $celda = $tabla->addCell();
         $celda->addText("CANTIDAD SOLICITADA", $fuente3);
-        foreach($detalles as $det) {
+        foreach ($detalles as $det) {
             $tabla->addRow(); #Nueva fila
             $celda = $tabla->addCell();
             $celda->addText($det->nombre_articulo);
@@ -301,6 +301,8 @@ class IngresosController extends Controller
 
         $filename = "Solicitud.docx"; // Nombre del archivo que se va a crear
         $documento->save($filename, "Word2007"); // Guardamos el archivo
+
+        
 
         header("Content-Disposition: attachment; filename=$filename"); // Vamos a dar la opcion para descargar el archivo
         readfile($filename);  // leemos el archivo para que se "descargue"

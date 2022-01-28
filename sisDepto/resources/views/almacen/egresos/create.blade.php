@@ -61,10 +61,11 @@
 					<input type="text" name="prazon" id="prazon" class="form-control" placeholder="Justificación de la salida de articulos">
 				</div>
 			</div>
+			
 			<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
 				<div class="form-group">
-					<label>Archivo</label>
-					<input type="text" name="parchivo" id="parchivo" class="form-control" placeholder="Archivo">
+					<label for="imagen">Documento</label>
+					<input id="imgInp" type="file" name="parchivo" class="form-control">
 				</div>
 			</div>
 			<div class="col-xs-12">

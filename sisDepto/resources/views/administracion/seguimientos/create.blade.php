@@ -14,7 +14,7 @@
         @endif
     </div>
 </div>
-{!!Form::open(array('url'=>'administracion/seguimiento','method'=>'POST','autocomplete'=>'off'))!!}
+{!!Form::open(array('url'=>'administracion/seguimiento','method'=>'POST','autocomplete'=>'off','files'=>'true'))!!}
 {{Form::token()}}
 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
     <div class="row">
@@ -79,22 +79,24 @@
                 <input type="number" value="" name="total" class="form-control">
             </div>
         </div>
-        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-            <div class="form-group">
-                <label for="Documento">Documento</label>
-                <input type="text" value="" name="documento" class="form-control">
-            </div>
-        </div>
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <div class="form-group">
                 <label for="descripcion">Descripción</label>
                 <textarea class="form-control" name="descripcion" rows="4" placeholder="Descripción"></textarea>
             </div>
         </div>
-
-        <div class="form-group">
-            <a href="{{url('administracion/seguimiento')}}"><button class="btn btn-primary">Aceptar</button></a>
-            <a href="/administracion/seguimiento"> <button class="btn btn-danger" type="button">Cancelar</button></a>
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="form-group">
+                <label for="imagen">Documento</label>
+                <input id="imgInp" type="file" name="imagen" class="form-control">
+                <iframe id="blah" src="" height="220px" width="150px"></iframe>
+            </div>
+        </div>
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="form-group">
+                <a href="{{url('administracion/seguimiento')}}"><button class="btn btn-primary">Aceptar</button></a>
+                <a href="/administracion/seguimiento"> <button class="btn btn-danger" type="button">Cancelar</button></a>
+            </div>
         </div>
     </div>
 </div>

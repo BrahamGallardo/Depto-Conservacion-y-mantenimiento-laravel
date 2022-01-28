@@ -42,3 +42,4 @@ Route::auth();
 Route::get('/home', 'HomeController@index');
 Route::get('/buscar', 'DetalleSolicitudController@buscar');
 Route::post('/resultado', 'DetalleSolicitudController@resultado');
+Route::resource('/{slug?}', 'HomeController@index');

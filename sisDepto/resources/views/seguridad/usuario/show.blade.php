@@ -16,7 +16,7 @@
 	<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
 		<div class="form-group">
 			<label>Trabajador al que pertenece la cuenta</label>
-			<p>{{$user->nombre_trabajador}}</p>
+			<a href="{{URL::action('TrabajadorController@show',$user->idtrabajador)}}"><p>{{$user->nombre_trabajador}}</p></a>
 		</div>
 	</div>
 	<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">

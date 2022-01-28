@@ -14,7 +14,7 @@
         @endif
     </div>
 </div>
-{!!Form::model($detalle,['method'=>'PATCH','route'=>['administracion.seguimiento.update',$detalle->iddetalle_solicitud]])!!}
+{!!Form::model($detalle,['method'=>'PATCH','route'=>['administracion.seguimiento.update',$detalle->iddetalle_solicitud],'files'=>'true'])!!}
 {{Form::token()}}
 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
     <div class="row">
@@ -84,22 +84,26 @@
                 <input type="number" value="{{$detalle->total}}" name="total" class="form-control">
             </div>
         </div>
-        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-            <div class="form-group">
-                <label for="Documento">Documento</label>
-                <input type="text" value="{{$detalle->documento}}" name="documento" class="form-control">
-            </div>
-        </div>
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <div class="form-group">
                 <label for="descripcion">Descripción</label>
                 <textarea class="form-control" name="descripcion" rows="4" placeholder="Descripción">{{$detalle->descripcion}}</textarea>
             </div>
         </div>
-
-        <div class="form-group">
-            <button class="btn btn-primary">Aceptar</button>
-            <a href="/administracion/seguimiento"> <button class="btn btn-danger" type="button">Cancelar</button></a>
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="form-group">
+                <label for="imagen">Documento</label>
+                <input id="imgInp" type="file" name="imagen" class="form-control">
+                @if(($detalle->documento)!="")
+                <iframe id="blah" src="{{asset('documentos/seguimientos/'.$detalle->documento)}}" height="220px" width="150px"></iframe>
+                @endif
+            </div>
+        </div>
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="form-group">
+                <button class="btn btn-primary">Aceptar</button>
+                <a href="/administracion/seguimiento"> <button class="btn btn-danger" type="button">Cancelar</button></a>
+            </div>
         </div>
     </div>
 </div>

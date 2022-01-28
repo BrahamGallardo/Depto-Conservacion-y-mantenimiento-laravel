@@ -10,9 +10,6 @@ use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Input;
 use sisDepartamento\Http\Requests\EgresoFormRequest;
 use DB;
-use PhpOffice\PhpWord\Style\Language;
-use PhpOffice\PhpWord\Style\ListItem;
-use PhpOffice\PhpWord\SimpleType\Jc;
 use Carbon\Carbon;
 use sisDepartamento\DetalleEgreso;
 use Response;
@@ -31,7 +28,7 @@ class EgresosController extends Controller
         if ($request) {
             $query = trim($request->get('searchText'));
             $egresos = DB::table('egresos AS e')
-                ->SELECT('e.idegreso', 'e.fecha', 'e.razon', 'e.archivo','e.comentarios')
+                ->SELECT('e.idegreso', 'e.fecha', 'e.razon', 'e.archivo', 'e.comentarios')
                 ->where('e.idegreso', 'LIKE', '%' . $query . '%')
                 ->orwhere('e.razon', 'LIKE', '%' . $query . '%')
                 ->orderBy('e.idegreso', 'desc')->paginate(9);
@@ -42,48 +39,53 @@ class EgresosController extends Controller
     {
         $tipo = DB::table('tipos_articulo')->get();
         $trabajadores = DB::table('trabajadores as tra')
-        ->SELECT(DB::raw('CONCAT(tra.idtrabajador, " ", tra.nombre_trabajador) AS trabajador'), 'tra.idtrabajador')
-        ->GET();
+            ->SELECT(DB::raw('CONCAT(tra.idtrabajador, " ", tra.nombre_trabajador) AS trabajador'), 'tra.idtrabajador')
+            ->GET();
 
         $articulos = DB::table('articulos as art')
             ->join('tipos_articulo as t', 'art.tipo', '=', 't.idtipo_articulo')
             ->join('unidades_articulo as u', 'art.unidad', '=', 'u.idunidad')
-            ->select(DB::raw('CONCAT(art.codigo," ",art.nombre_articulo) AS articulo'),'art.cantidad', 'art.nombre_articulo', 'art.codigo', 't.tipo_articulo', 'u.unidad')
+            ->select(DB::raw('CONCAT(art.codigo," ",art.nombre_articulo) AS articulo'), 'art.cantidad', 'art.nombre_articulo', 'art.codigo', 't.tipo_articulo', 'u.unidad')
             ->get();
         return view("almacen.egresos.create", ["tipo" => $tipo, "articulos" => $articulos, "trabajadores" => $trabajadores]);
     }
 
     public function store(EgresoFormRequest $request)
     {
-            //code...
-            DB::beginTransaction();
-            $egreso = new Egresos;
-            $mytime = Carbon::now('America/Mexico_City');
-            $egreso->fecha = $mytime->toDateString();
-            $egreso->trabajador = $request->get('trabajador');
-            $egreso->razon = $request->get('prazon');
-            $egreso->archivo = $request->get('parchivo');
-            $egreso->comentarios = $request->get('comentarios');
-            $egreso->save();
+        //code...
+        DB::beginTransaction();
+        $egreso = new Egresos;
+        $mytime = Carbon::now('America/Mexico_City');
+        $egreso->fecha = $mytime->toDateString();
+        $egreso->trabajador = $request->get('trabajador');
+        $egreso->razon = $request->get('prazon');
+        $egreso->archivo = $request->get('parchivo');
+        if (Input::hasFile('parchivo')) {
+            $file = Input::file('parchivo');
+            $file->move(public_path() . '/documentos/seguimientos/', $file->getClientOriginalName());
+            $egreso->documento = $file->getClientOriginalName();
+        }
+        $egreso->comentarios = $request->get('comentarios');
+        $egreso->save();
 
-            $cantidad = $request->get('cantidad');
-            $codigo = $request->get('codigo');
+        $cantidad = $request->get('cantidad');
+        $codigo = $request->get('codigo');
 
-            $cont = 0;
-            while ($cont < count($codigo)) {
-                $detalle = new DetalleEgreso();
-                $detalle->idegreso = $egreso->idegreso;
-                $detalle->cod_articulo = $codigo[$cont];
-                $detalle->cantidad = $cantidad[$cont];
-                $detalle->save();
-                $cont = $cont + 1;
-            }
+        $cont = 0;
+        while ($cont < count($codigo)) {
+            $detalle = new DetalleEgreso();
+            $detalle->idegreso = $egreso->idegreso;
+            $detalle->cod_articulo = $codigo[$cont];
+            $detalle->cantidad = $cantidad[$cont];
+            $detalle->save();
+            $cont = $cont + 1;
+        }
 
-            DB::commit();
-       
-            //throw $th;
-            DB::rollback();
-        
+        DB::commit();
+
+        //throw $th;
+        DB::rollback();
+
         return Redirect::to('almacen/egresos');
     }
 
@@ -116,5 +118,4 @@ class EgresosController extends Controller
             ->first();
         return view("almacen.egresos.show", ["egreso" => $egreso, "detalles" => $detalles, "arts" => $arts]);
     }
-
 }
