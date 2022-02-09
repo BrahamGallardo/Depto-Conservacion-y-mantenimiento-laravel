@@ -25,12 +25,10 @@
                     <option value="">id</option>
                     @foreach($solicitudes as $sol)
                     <option value="{{$sol->idsolicitud}}_{{$sol->unidad}}_{{$sol->asunto}}_{{$sol->compromiso}}">{{$sol->idsolicitud}}</option>
-
                     @endforeach
                     <?php $var = $sol->idsolicitud ?>
                 </select>
                 <input type="hidden" name="solicitud" id="solicitud" value="">
-
             </div>
         </div>
         <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12">

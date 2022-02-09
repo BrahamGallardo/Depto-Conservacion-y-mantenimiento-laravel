@@ -2,7 +2,9 @@
 @section('contenido')
 <div class="row">
     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-        <h3>Fondo revolvente</h3>
+        <h3>Fondo revolvente
+            <a href="{{URL('administración/gastos')}}"><button type="button" class="btn btn-success">Nuevo</button></a>
+        </h3>
         <div class="row">
             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
                 <h4>Total:</h4>

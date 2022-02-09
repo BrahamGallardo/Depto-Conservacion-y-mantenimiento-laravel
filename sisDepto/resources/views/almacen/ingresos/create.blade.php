@@ -14,7 +14,6 @@
 		@endif
 	</div>
 </div>
-<!-- <form action="/download" method="GET"> -->
 {!!Form::open(array('url'=>'almacen/ingresos','method'=>'POST','autocomplete'=>'off'))!!}
 {{Form::token()}}
 <div class="row">
@@ -107,7 +106,10 @@
 		codigo = datosArticulo1[0];
 
 		if (codigo != "" && cantidad != "" && cantidad > 0) {
-			var fila = '<tr class="selected" id="fila' + cont + '" name="fila' + cont + '"> <td><button type="button" class="btn btn-warning" onclick="eliminar(' + cont + ');">x</button></td>  <td><input type="hidden" name="codigo[]" value="' + codigo + '"> ' + articulo + '</td>  <td><input type="hidden" name="cantidad[]" value="' + cantidad + '">' + cantidad + '</td> <td><input type="hidden" name="unidad[]" value="' + unidad + '">' + unidad + 's</td>   </tr>';
+			var fila = '<tr class="selected" id="fila' + cont + '" name="fila' + cont +
+				'"> <td><button type="button" class="btn btn-warning" onclick="eliminar(' + cont + ');">x</button></td>  <td><input type="hidden" name="codigo[]" value="' +
+				codigo + '"> ' + articulo + '</td>  <td><input type="hidden" name="cantidad[]" value="' + cantidad + '">' +
+				cantidad + '</td> <td><input type="hidden" name="unidad[]" value="' + unidad + '">' + unidad + 's</td>   </tr>';
 			cont++;
 			limpiar();
 			evaluar();
