@@ -3,8 +3,10 @@
 <div class="row">
 	<div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
 		<h3>Listado de solicitudes
+		@if(Auth::user()->rol != 2 && Auth::user()->rol != 4)
 			<a href="solicitudes/create"><button class="btn btn-success">Nuevo</button></a>
 			<a href="seguimiento/create"><button class="btn btn-info">Realizar seguimiento</button></a>
+		@endif
 		</h3>
 		@include('administracion.solicitudes.search')
 	</div>
@@ -69,10 +71,12 @@
 							<td>
 
 								<a href="{{URL::action('SolicitudController@show',$soli->idsolicitud)}}"><button class="btn btn-default">Detalles</button></a>
+								@if(Auth::user()->rol != 2 && Auth::user()->rol != 4)
 								@if($soli->estado == 'Cumplido')
 								<a class="oculto" href="" data-target="#modal-delete-{{$soli->idsolicitud}}" data-toggle="modal"><button class="btn btn-danger oculto disabled">Eliminar</button></a>
 								@elseif($soli->estado != 'Cumplido')
 								<a href="" data-target="#modal-delete-{{$soli->idsolicitud}}" data-toggle="modal"><button class="btn btn-danger">Eliminar</button></a>
+								@endif
 								@endif
 							</td>
 				</tr>

@@ -20,7 +20,7 @@
     <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
         <div class="form-group">
             <label for="rfc">RFC</label>
-            <input type="text" value="" name="rfc" class="form-control" placeholder="RFC">
+            <input required type="text" value="" name="rfc" class="form-control" placeholder="RFC">
         </div>
     </div>
 </div>

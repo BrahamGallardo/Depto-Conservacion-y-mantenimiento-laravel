@@ -4,7 +4,9 @@
 <div class="row">
     <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
         <h3>Tablero
+            @if(Auth::user()->rol != 2 && Auth::user()->rol != 4)
             <a href="/buscar"><button class="btn btn-success">Busqueda especial</button></a>
+            @endif
         </h3>
     </div>
 </div>
@@ -45,7 +47,6 @@
             </div>
         </div>
     </div>
-
 </div>
 @push ('scripts')
 <!-- Startboostrap-->
@@ -94,7 +95,7 @@
     cumplido = $("#dcumplido").val();
     arreglo = [aten, proceso, cumplido];
     var myPieChart = new Chart(ctx, {
-        type: 'bar',
+        type: 'pie',
         data: {
             labels: ["Atendidos", "En proceso", "Cumplido"],
             datasets: [{
@@ -106,29 +107,20 @@
         },
         options: {
             maintainAspectRatio: false,
-            layout: {
-                padding: {
-                    left: 10,
-                    right: 25,
-                    top: 25,
-                    bottom: 0
-                }
-            },
-            scales: {
-                yAxes: [{
-                    ticks: {
-                        min: 0,
-                        maxTicksLimit: 1,
-                        padding: 10,
-                    },
-
-                }],
+            tooltips: {
+                backgroundColor: "rgb(255,255,255)",
+                bodyFontColor: "#858796",
+                borderColor: '#dddfeb',
+                borderWidth: 1,
+                xPadding: 15,
+                yPadding: 15,
+                displayColors: false,
+                caretPadding: 10,
             },
             legend: {
                 display: true
-            },
-
-        }
+            }
+        },
     });
 </script>
 @endpush

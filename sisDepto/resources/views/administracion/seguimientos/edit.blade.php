@@ -18,13 +18,13 @@
 {{Form::token()}}
 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
     <div class="row">
-        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <div class="form-group">
                 <label for="solicitud">Solicitud</label>
-                <select name="solicitud" class="form-control selectpicker" data-live-search="true">
+                <select required name="solicitud" class="form-control selectpicker" data-live-search="true">
                     @foreach($solicitudes as $sol)
                     @if($sol->idsolicitud == $detalle->solicitud)
-                    <option value="{{$detalle->solicitud}}" selected>{{$detalle->solicitud}}</option>
+                    <option value="{{$detalle->solicitud}}" selected>{{$detalle->solicitud}} - {{$sol->unidad}}</option>
                     @else
                     <option value="{{$sol->idsolicitud}}">{{$sol->idsolicitud}}</option>
                     @endif
@@ -35,7 +35,7 @@
         <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12">
             <div class="form-group">
                 <label for="Fecha">Fecha</label>
-                <input type="date" value="{{$detalle->fecha}}" name="fecha" class="form-control" placeholder="Fecha">
+                <input required type="date" value="{{$detalle->fecha}}" name="fecha" class="form-control" placeholder="Fecha">
             </div>
         </div>
         <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12">
@@ -54,7 +54,7 @@
         <div class="col-xs-12">
             <div class="form-group">
                 <label for="egreso">Con la salida de materiales</label>
-                <select name="egreso" class="form-control selectpicker" data-live-search="true">
+                <select required name="egreso" class="form-control selectpicker" data-live-search="true">
                     @foreach($egresos as $e)
                     @if($e->idegreso == $detalle->egreso)
                     <option value="{{$detalle->egreso}}" selected>{{$e->egreso}}</option>
@@ -67,7 +67,7 @@
 
             <div class="form-group">
                 <label for="trabajador">Trabajador</label>
-                <select name="trabajador" class="form-control selectpicker" data-live-search="true">
+                <select required name="trabajador" class="form-control selectpicker" data-live-search="true">
                     @foreach($trabajadores as $tra)
                     @if($detalle->trabajador == $tra->idtrabajador)
                     <option value="{{$detalle->trabajador}}">{{$tra->trabajador}}</option>
@@ -92,15 +92,6 @@
         </div>
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <div class="form-group">
-                <label for="imagen">Documento</label>
-                <input id="imgInp" type="file" name="imagen" class="form-control">
-                @if(($detalle->documento)!="")
-                <iframe id="blah" src="{{asset('documentos/seguimientos/'.$detalle->documento)}}" height="220px" width="150px"></iframe>
-                @endif
-            </div>
-        </div>
-        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-            <div class="form-group">
                 <button class="btn btn-primary">Aceptar</button>
                 <a href="/administracion/seguimiento"> <button class="btn btn-danger" type="button">Cancelar</button></a>
             </div>
@@ -119,6 +110,15 @@
             <div class="form-group" id="dasunto">
                 <label for="asunto">Asunto</label>
                 <p>{{$estado->asunto}}</p>
+            </div>
+        </div>
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="form-group">
+                <label for="imagen">Documento</label>
+                <input id="imgInp" type="file" name="imagen" class="form-control">
+                @if(($detalle->documento)!="")
+                <iframe id="blah" src="{{asset('documentos/seguimientos/'.$detalle->documento)}}" height="300px" width="100%"></iframe>
+                @endif
             </div>
         </div>
     </div>

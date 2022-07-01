@@ -3,7 +3,9 @@
 <div class="row">
 	<div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
 		<h3>Listado de solicitudes de articulos
+			@if(Auth::user()->rol != 1 && Auth::user()->rol != 3 && Auth::user()->rol != 5)
 			<a href="ingresos/create"><button class="btn btn-success">Solicitar</button></a>
+			@endif
 		</h3>
 		@include('almacen.ingresos.search')
 	</div>
@@ -34,10 +36,12 @@
 					<td>{{$ing->estado}}</td>
 					<td id="btns">
 						<a href="{{URL::action('IngresosController@show',$ing->idingreso)}}"><button class="btn btn-default">Detalles</button></a>
+						@if(Auth::user()->rol != 1 && Auth::user()->rol != 3 && Auth::user()->rol != 5)
 						@if($ing->estado != 'Pendiente')
 						<button class="btn btn-danger oculto disabled" id="cancelbtn">Anular</button>
 						@elseif($ing->estado == 'Pendiente')
 						<a href="#modal-delete-{{$ing->idingreso}}" data-toggle="modal"><button class="btn btn-danger" id="cancelbtn">Anular</button></a>
+						@endif
 						@endif
 					</td>
 				</tr>

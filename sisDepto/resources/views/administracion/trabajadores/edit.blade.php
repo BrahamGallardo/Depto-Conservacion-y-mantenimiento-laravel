@@ -38,7 +38,7 @@
 	<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
 		<div class="form-group">
 			<label>Tipo de trabajador</label>
-			<select name="idtipoTrabajador" class="form-control">
+			<select required name="idtipoTrabajador" class="form-control">
 				@foreach($tipos as $tip)
 				@if($tip->idtipo_trabajador==$trabajadores->idtipo_trabajador)
 				<option value="{{$tip->idtipo_trabajador}}" selected>{{$tip->tipo_trabajador}}</option>
@@ -52,7 +52,7 @@
 	<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
 		<div class="form-group">
 			<label>Rol del trabajador</label>
-			<select name="rol" class="form-control">
+			<select required name="rol" class="form-control">
 				@foreach($roles as $rol)
 				@if($rol->idrol==$trabajadores->idrol)
 				<option value="{{$rol->idrol}}" selected>{{$rol->nombre_rol}}</option>
@@ -66,7 +66,7 @@
 	<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
 		<div class="form-group">
 			<label>Horario del trabajador</label>
-			<select name="horario" class="form-control">
+			<select required name="horario" class="form-control">
 				@foreach($horarios as $hor)
 				@if($hor->idhorario==$trabajadores->idhorario)
 				<option value="{{$hor->idhorario}}" selected>{{$hor->hora_entrada}} - {{$hor->hora_salida}}</option>

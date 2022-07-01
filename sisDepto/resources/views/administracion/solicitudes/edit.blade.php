@@ -20,13 +20,13 @@
     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
         <div class="form-group">
             <label for="asunto">Asunto</label>
-            <textarea class="form-control" name="asunto" rows="8" placeholder="Asunto">{{$solicitud->asunto}}</textarea>
+            <textarea required class="form-control" name="asunto" rows="8" placeholder="Asunto">{{$solicitud->asunto}}</textarea>
         </div>
     </div>
     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
         <div class="form-group">
             <label for="compromiso">Compromiso</label>
-            <textarea class="form-control" name="compromiso" rows="8" placeholder="Compromiso">{{$solicitud->compromiso}}</textarea>
+            <textarea required class="form-control" name="compromiso" rows="8" placeholder="Compromiso">{{$solicitud->compromiso}}</textarea>
         </div>
     </div>
     <div class="row">
@@ -72,7 +72,7 @@
         <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
             <div class="form-group">
                 <label for="Estado">Estado</label>
-                <select name="estado" class="form-control">
+                <select required name="estado" class="form-control">
                     <option value="{{$solicitud->estado}}" selected>{{$solicitud->estado}}</option>
                     <option value="En proceso">En proceso</option>
                     <option value="Atendido">Atendido</option>

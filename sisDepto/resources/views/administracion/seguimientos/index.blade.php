@@ -3,8 +3,10 @@
 <div class="row">
 	<div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
 		<h3>Listado de seguimientos
+			@if(Auth::user()->rol != 2 && Auth::user()->rol != 4)
 			<a href="seguimiento/create"><button class="btn btn-info">Realizar seguimiento</button></a>
 			<a href="/buscar"><button class="btn btn-success">Busqueda especial</button></a>
+			@endif
 		</h3>
 		@include('administracion.seguimientos.search')
 	</div>
@@ -32,7 +34,7 @@
 					<td>{{ $seg->fecha}}</td>
 					<td>
 						<a href="{{URL::action('DetalleSolicitudController@show',$seg->iddetalle_solicitud)}}"><button class="btn btn-default">Detalles</button></a>
-						
+
 					</td>
 				</tr>
 				@endforeach

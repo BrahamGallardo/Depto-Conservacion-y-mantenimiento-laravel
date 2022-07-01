@@ -94,7 +94,21 @@ class DetalleSolicitudController extends Controller
         $detalle = DB::table('detalle_solicitud AS d')
             ->JOIN('solicitudes AS soli', 'd.solicitud', '=', 'soli.idsolicitud')
             ->JOIN('trabajadores AS tra', 'd.trabajador', '=', 'tra.idtrabajador')
-            ->SELECT('d.iddetalle_solicitud', 'd.solicitud', 'soli.asunto', 'soli.compromiso', 'soli.estado', 'd.egreso', 'tra.nombre_trabajador', 'd.fecha', 'd.total', 'd.documento', 'soli.actualizacion', 'soli.comentarios', 'd.descripcion')
+            ->SELECT(
+                'd.iddetalle_solicitud',
+                'd.solicitud',
+                'soli.asunto',
+                'soli.compromiso',
+                'soli.estado',
+                'soli.unidad',
+                'd.egreso',
+                'tra.nombre_trabajador',
+                'd.fecha',
+                'd.total',
+                'd.documento',
+                'soli.actualizacion',
+                'soli.comentarios',
+                'd.descripcion')
             ->WHERE('d.iddetalle_solicitud', '=', $id)
             ->first();
 

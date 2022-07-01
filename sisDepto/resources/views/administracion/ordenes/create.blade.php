@@ -20,7 +20,7 @@
     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
         <div class="form-group">
             <label for="fecha">Fecha</label>
-            <input type="date" value="" name="fecha" class="form-control" placeholder="Fecha">
+            <input required type="date" value="" name="fecha" class="form-control" placeholder="Fecha">
         </div>
     </div>
 </div>
@@ -28,7 +28,7 @@
     <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
         <div class="form-group">
             <label for="unidad">Oficina</label>
-            <select name="unidad" id="unidad" class="form-control selectpicker" data-live-search="true">
+            <select required name="unidad" id="unidad" class="form-control selectpicker" data-live-search="true">
                 <option value="">Elija una opción</option>
                 @foreach($oficinas as $ofice)
                 <option value="{{$ofice->num_oficina}}_{{$ofice->nombre_corto}}_{{$ofice->programa}}">{{$ofice->oficinas}}</option>
@@ -40,7 +40,7 @@
     <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
         <div class="form-group">
             <label for="partida">Partida</label>
-            <select name="partida" class="form-control selectpicker" data-live-search="true">
+            <select required name="partida" class="form-control selectpicker" data-live-search="true">
                 <option value="">Elija una opción</option>
                 @foreach($partidas as $par)
                 <option value="{{$par->num_partida}}">{{$par->partidas}}</option>
@@ -51,21 +51,21 @@
     <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
         <div class="form-group">
             <label for="nombre">Unidad</label>
-            <input type="text" value="" name="nombre_unidad" id="nombre_unidad" class="form-control" placeholder="Nombre unidad">
+            <input required type="text" value="" name="nombre_unidad" id="nombre_unidad" class="form-control" placeholder="Nombre unidad">
         </div>
     </div>
     <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
         <div class="form-group">
             <label for="programa">Programa</label>
-            <input type="text" value="" name="programa" id="programa" class="form-control" placeholder="Programa">
+            <input required type="text" value="" name="programa" id="programa" class="form-control" placeholder="Programa">
         </div>
     </div>
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
         <div class="form-group">
             <label for="proveedor">Proveedor</label>
-            <select name="proveedor" id="proveedor" class="form-control selectpicker" data-live-search="true">
-            <option value="">Elija un proveedor</option>    
-            @foreach($proveedores as $pro)
+            <select required name="proveedor" id="proveedor" class="form-control selectpicker" data-live-search="true">
+                <option value="">Elija un proveedor</option>
+                @foreach($proveedores as $pro)
                 <option value="{{$pro->rfc}}_{{$pro->domicilio}}">{{$pro->proveedor}}</option>
                 @endforeach
             </select>

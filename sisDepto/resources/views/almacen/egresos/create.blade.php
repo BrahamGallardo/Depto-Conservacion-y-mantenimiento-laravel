@@ -47,7 +47,7 @@
 			<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
 				<div class="form-group">
 					<label>Trabajador que realizó la salida</label>
-					<select name="trabajador" id="pidtrabajador" class="form-control selectpicker" data-live-search="true">
+					<select required name="trabajador" id="pidtrabajador" class="form-control selectpicker" data-live-search="true">
 						<option value="">Elija una opción</option>
 						@foreach($trabajadores as $tra)
 						<option value="{{$tra->idtrabajador}}">{{$tra->trabajador}}</option>

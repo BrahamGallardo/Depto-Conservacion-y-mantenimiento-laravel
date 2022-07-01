@@ -28,7 +28,8 @@ class UsuarioController extends Controller
     }
     public function create(){
 		$trabajador=DB::table('trabajadores')
-			->select('idtrabajador','nombre_trabajador','email')
+			->select('idtrabajador','nombre_trabajador','email','idrol')
+			->where('idestado','!=',5)
 			->get();
     	return view("seguridad.usuario.create",["trabajador"=>$trabajador]);
     }
@@ -38,6 +39,7 @@ class UsuarioController extends Controller
 		$usuario->email=$request->get('email');
 		$usuario->password=bcrypt($request->get('password'));
 		$usuario->trabajador=$request->get('idtrabajador');
+		$usuario->rol=$request->get('idrol');
 		$usuario->save();
 		return Redirect::to('seguridad/usuario');
     }
@@ -45,7 +47,7 @@ class UsuarioController extends Controller
 	public function show($id){
 		$user = DB::table('users')
 		->join('trabajadores as tra', 'tra.idtrabajador','=','users.trabajador')
-		->select('users.id','users.name','tra.email','tra.nombre_trabajador','tra.idtrabajador')
+		->select('users.id','users.name','users.email','tra.nombre_trabajador','tra.idtrabajador')
 		->where('id','=',$id)
 		->first();
     	return view("seguridad.usuario.show",["user"=>$user]);

@@ -61,7 +61,9 @@
 	<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
 		<div class="form-group">
 			<a href="{{url('almacen/articulos')}}"><button class="btn btn-primary">Aceptar</button></a>
+			@if(Auth::user()->rol != 1 && Auth::user()->rol != 3 && Auth::user()->rol != 5)
 			<a href="{{URL::action('ArticuloController@edit',$articulos->codigo)}}"><button class="btn btn-warning">Editar</button></a>
+			@endif
 		</div>
 	</div>
 </div>

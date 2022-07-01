@@ -52,10 +52,6 @@
                 <!-- /.col -->
             </div>
         </form>
-
-        <p class="mb-1">
-            <a href="{{ url('password/reset') }}">Olvidó su contraseña?</a>
-        </p>
     </div>
     <!-- /.login-card-body -->
 </div>

@@ -3,7 +3,9 @@
 <div class="row">
 	<div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
 		<h3>Listado de salidas de articulos
+		@if(Auth::user()->rol != 1 && Auth::user()->rol != 3 && Auth::user()->rol != 5)
 			<a href="egresos/create"><button class="btn btn-success">Requerir</button></a>
+		@endif
 		</h3>
 		@include('almacen.egresos.search')
 	</div>

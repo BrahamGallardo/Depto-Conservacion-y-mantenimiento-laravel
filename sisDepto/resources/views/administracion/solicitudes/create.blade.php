@@ -20,13 +20,13 @@
     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
         <div class="form-group">
             <label for="asunto">Asunto</label>
-            <textarea class="form-control" name="asunto" rows="8" placeholder="Asunto"></textarea>
+            <textarea required class="form-control" name="asunto" rows="8" placeholder="Asunto"></textarea>
         </div>
     </div>
     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
         <div class="form-group">
             <label for="compromiso">Compromiso</label>
-            <textarea class="form-control" name="compromiso" rows="8" placeholder="Compromiso"></textarea>
+            <textarea required class="form-control" name="compromiso" rows="8" placeholder="Compromiso"></textarea>
         </div>
     </div>
     <div class="row">
@@ -73,8 +73,7 @@
             <div class="form-group">
                 <label for="Estado">Estado</label>
                 <select name="estado" class="form-control" required>
-                    <option value="" selected>Elige un estado</option>
-                    <option value="En proceso">En proceso</option>
+                    <option value="En proceso" selected>En proceso</option>
                     <option value="Atendido">Atendido</option>
                     <option value="Cumplido">Cumplido</option>
                     <option value="No procede">No procede</option>

@@ -24,15 +24,15 @@
 
         <div class="fomr-group">
             <label>Titulo</label>
-            <input type="text" class="form-control" name="titulo">
+            <input required type="text" class="form-control" name="titulo">
         </div>
         <div class="fomr-group">
             <label>Descripcion del Evento</label>
-            <textarea class="form-control" name="descripcion" rows="4" placeholder="Descripcion"></textarea>
+            <textarea required class="form-control" name="descripcion" rows="4" placeholder="Descripcion"></textarea>
         </div>
         <div class="fomr-group">
             <label>Fecha</label>
-            <input type="date" class="form-control" name="fecha">
+            <input required type="date" class="form-control" name="fecha">
         </div>
         <br>
         <input type="hidden" name="_token" value="{{ csrf_token() }}">

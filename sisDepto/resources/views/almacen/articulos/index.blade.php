@@ -3,9 +3,11 @@
 <div class="row">
 	<div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
 		<h3>Listado de articulos
+		@if(Auth::user()->rol != 1 && Auth::user()->rol != 3 && Auth::user()->rol != 5)
 			<a href="articulos/create"><button class="btn btn-success">Nuevo</button></a>
 			<a href="ingresos/create"><button class="btn btn-info">Solicitar</button></a>
 			<a href="egresos/create"><button class="btn btn-warning">Salida</button></a>
+		@endif
 		</h3>
 		@include('almacen.articulos.search')
 		<?php

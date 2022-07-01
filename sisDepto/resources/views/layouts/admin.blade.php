@@ -104,7 +104,8 @@
         <!-- sidebar menu: : style can be found in sidebar.less -->
         <ul class="sidebar-menu">
           <li class="header"></li>
-
+          
+          @if(Auth::user()->rol != 4 && Auth::user()->rol != 2)
           <li class="treeview">
             <a href="#">
               <i class="fa fa-laptop"></i>
@@ -115,11 +116,11 @@
               <li><a href="{{url('administracion/seguimiento')}}"><i class="fa fa-circle-o"></i> Seguimientos</a></li>
               <li><a href="{{url('administracion/solicitudes')}}"><i class="fa fa-circle-o"></i> Solicitudes</a></li>
               <li><a href="{{url('administracion/ordenes')}}"><i class="fa fa-circle-o"></i> Ordenes</a></li>
-              <li><a href="#"><i class="fa fa-circle-o"></i> Folios</a></li>
             </ul>
           </li>
+          @endif
 
-          <li class="treeview">
+          <!--<li class="treeview">
             <a href="#">
               <i class="fa fa-th"></i>
               <span>Coord administrativa</span>
@@ -129,7 +130,8 @@
               <li><a href="{{url('administracion/coordinacion')}}"><i class="fa fa-circle-o"></i> Fondo revolvente</a></li>
               <li><a href="#"><i class="fa fa-circle-o"></i> Remisiones</a></li>
             </ul>
-          </li>
+          </li> -->
+          @if(Auth::user()->rol != 4 && Auth::user()->rol != 2)
           <li class="treeview">
             <a href="#">
               <i class="fa fa-user"></i>
@@ -142,6 +144,9 @@
               <li><a href="{{url('seguridad/usuario')}}"><i class="fa fa-circle-o"></i> Usuarios</a></li>
             </ul>
           </li>
+          @endif
+
+          @if(Auth::user()->rol != 1 && Auth::user()->rol != 3 && Auth::user()->rol != 5)
           <li class="treeview">
             <a href="#">
               <i class="fa fa-wrench"></i> <span>Mantenimiento</span>
@@ -151,6 +156,7 @@
               <li><a href="{{url('evento')}}"><i class="fa fa-circle-o"></i> Calendario</a></li>
             </ul>
           </li>
+          @endif
           <li class="treeview">
             <a href="#">
               <i class="fa fa-industry"></i> <span>Almacen</span>
@@ -159,11 +165,13 @@
             <ul class="treeview-menu">
               <li><a href="{{url('almacen/articulos')}}"><i class="fa fa-circle-o"></i> Articulo</a></li>
               <li><a href="{{url('almacen/ingresos')}}"><i class="fa fa-circle-o"></i> Ingresos</a></li>
+              @if(Auth::user()->rol != 1 && Auth::user()->rol != 3 && Auth::user()->rol != 5)
               <li><a href="{{url('almacen/egresos')}}"><i class="fa fa-circle-o"></i> Egresos</a></li>
+              @endif
             </ul>
           </li>
           <li>
-            <a href="#">
+            <a href="{{url('home/ayuda')}}">
               <i class="fa fa-plus-square"></i> <span>Ayuda</span>
               <small class="label pull-right bg-red">PDF</small>
             </a>
@@ -239,6 +247,7 @@
   <script src="{{asset('js/app.min.js')}}"></script>
   <script src="{{asset('js/jsimage.js')}}"></script>
   <script src="{{asset('js/bootstrap-select.min.js')}}"></script>
+  <script src="{{asset('js/access.js')}}"></script>
 
 
 

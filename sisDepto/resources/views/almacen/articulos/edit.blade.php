@@ -26,7 +26,7 @@
 	<div class="col-lg-5 col-md-5 col-sm-5 col-xs-12">
 		<div class="form-group">
 			<label>Tipo de articulo</label>
-			<select name="idtipoArticulo" id="ptipo_articulo" class="form-control">
+			<select required name="idtipoArticulo" id="ptipo_articulo" class="form-control">
 				@foreach($tipos as $tip)
 				@if($tip->idtipo_articulo==$articulos->tipo)
 				<option value="{{$tip->idtipo_articulo}}" selected>{{$tip->tipo_articulo}}</option>
@@ -40,7 +40,7 @@
 	<div class="col-lg-5 col-md-5 col-sm-5 col-xs-12">
 		<div class="form-group">
 			<label>Tipo de unidad</label>
-			<select name="idtipoUnidad" id="ptipo_unidad" class="form-control">
+			<select required name="idtipoUnidad" id="ptipo_unidad" class="form-control">
 				@foreach($unidad as $uni)
 				@if($uni->idunidad==$articulos->unidad)
 				<option value="{{$uni->idunidad}}" selected>{{$uni->unidad}}</option>

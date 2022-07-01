@@ -3,7 +3,9 @@
 <div class="row">
     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
         <h3>Fondo revolvente
+            @if(Auth::user()->rol != 2 && Auth::user()->rol != 4)
             <a href="{{URL('administración/gastos')}}"><button type="button" class="btn btn-success">Nuevo</button></a>
+            @endif
         </h3>
         <div class="row">
             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
@@ -40,7 +42,7 @@
     var ctx = document.getElementById("myPieChart");
     usado = $("#usado").val();
     disponible = $("#disponible").val();
-    arreglo=[usado,disponible];
+    arreglo = [usado, disponible];
     var myPieChart = new Chart(ctx, {
         type: 'pie',
         data: {

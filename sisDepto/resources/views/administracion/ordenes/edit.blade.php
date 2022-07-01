@@ -20,7 +20,7 @@
     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
         <div class="form-group">
             <label for="fecha">Fecha</label>
-            <input type="date" value="{{$orden->fecha}}" name="fecha" class="form-control" placeholder="Fecha">
+            <input required type="date" value="{{$orden->fecha}}" name="fecha" class="form-control" placeholder="Fecha">
         </div>
     </div>
 </div>
@@ -28,7 +28,7 @@
     <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
         <div class="form-group">
             <label for="unidad">Oficina</label>
-            <select name="unidad" id="unidad" class="form-control selectpicker" data-live-search="true">
+            <select required name="unidad" id="unidad" class="form-control selectpicker" data-live-search="true">
                 @foreach($oficinas as $ofice)
                 @if($ofice->num_oficina == $orden->num)
                 <option value="{{$ofice->num_oficina}}_{{$ofice->nombre_corto}}_{{$ofice->programa}}" selected>{{$ofice->oficinas}}</option>
@@ -43,7 +43,7 @@
     <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
         <div class="form-group">
             <label for="partida">Partida</label>
-            <select name="partida" class="form-control selectpicker" data-live-search="true">
+            <select required name="partida" class="form-control selectpicker" data-live-search="true">
                 @foreach($partidas as $par)
                 @if($par->num_partida == $orden->partida)
                 <option value="{{$par->num_partida}}" selected>{{$par->partidas}}</option>
@@ -57,7 +57,7 @@
     <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
         <div class="form-group">
             <label for="nombre">Unidad</label>
-            <input type="text" value="{{$orden->nombre_corto}}" name="nombre_unidad" id="nombre_unidad" class="form-control" placeholder="Nombre unidad">
+            <input required type="text" value="{{$orden->nombre_corto}}" name="nombre_unidad" id="nombre_unidad" class="form-control" placeholder="Nombre unidad">
         </div>
     </div>
     <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
@@ -69,7 +69,7 @@
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
         <div class="form-group">
             <label for="proveedor">Proveedor</label>
-            <select name="proveedor" id="proveedor" class="form-control selectpicker" data-live-search="true">
+            <select required name="proveedor" id="proveedor" class="form-control selectpicker" data-live-search="true">
                 @foreach($proveedores as $pro)
                 @if($pro->rfc == $orden->rfc)
                 <option value="{{$pro->rfc}}_{{$pro->domicilio}}" selected>{{$pro->proveedor}}</option>

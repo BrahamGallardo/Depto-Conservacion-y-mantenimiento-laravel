@@ -28,7 +28,6 @@ class EgresoFormRequest extends Request
             'cantidad'=>'max:20',
             'cod_articulo'=>'max:20',
             'prazon'=>'max:180',
-            'parchivo'=>'mimes:pdf,jpeg,png'
         ];
     }
 }

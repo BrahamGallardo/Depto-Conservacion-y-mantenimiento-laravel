@@ -38,7 +38,7 @@
 	<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
 		<div class="form-group">
 			<label>Tipo de trabajador</label>
-			<select name="idtipoTrabajador" class="form-control">
+			<select required name="idtipoTrabajador" class="form-control">
 				<option value="">Elija una opción</option>
 				@foreach($tipos as $tip)
 				<option value="{{$tip->idtipo_trabajador}}">{{$tip->tipo_trabajador}}</option>
@@ -49,7 +49,7 @@
 	<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
 		<div class="form-group">
 			<label>Rol del trabajador</label>
-			<select name="rol" class="form-control">
+			<select required name="rol" class="form-control">
 				<option value="">Elija una opción</option>
 				@foreach($roles as $rol)
 				<option value="{{$rol->idrol}}">{{$rol->nombre_rol}}</option>
@@ -60,7 +60,7 @@
 	<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
 		<div class="form-group">
 			<label>Horario del trabajador</label>
-			<select name="horario" class="form-control">
+			<select required name="horario" class="form-control">
 				<option value="">Elija un horario</option>
 				@foreach($horarios as $hor)
 				<option value="{{$hor->idhorario}}">{{$hor->hora_entrada}} - {{$hor->hora_salida}}</option>

@@ -21,10 +21,10 @@
         <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
             <div class="form-group">
                 <label for="solicitud">Solicitud</label>
-                <select name="dsolicitud" class="form-control selectpicker" data-live-search="true" id="idsolicitud">
+                <select required name="dsolicitud" class="form-control selectpicker" data-live-search="true" id="idsolicitud">
                     <option value="">id</option>
                     @foreach($solicitudes as $sol)
-                    <option value="{{$sol->idsolicitud}}_{{$sol->unidad}}_{{$sol->asunto}}_{{$sol->compromiso}}">{{$sol->idsolicitud}}</option>
+                    <option value="{{$sol->idsolicitud}}_{{$sol->unidad}}_{{$sol->asunto}}_{{$sol->compromiso}}_{{$sol->estado}}">{{$sol->idsolicitud}} - {{$sol->unidad}}</option>
                     @endforeach
                     <?php $var = $sol->idsolicitud ?>
                 </select>
@@ -34,13 +34,13 @@
         <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12">
             <div class="form-group">
                 <label for="Fecha">Fecha</label>
-                <input type="date" value="" name="fecha" class="form-control" placeholder="Fecha">
+                <input required type="date" value="" name="fecha" class="form-control" placeholder="Fecha">
             </div>
         </div>
         <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12">
             <div class="form-group">
                 <label for="Estado">Estado</label>
-                <select name="estado" class="form-control">
+                <select id="idestado" name="estado" class="form-control">
                     <option value="">Elige una opción</option>
                     <option value="En proceso">En proceso</option>
                     <option value="Atendido">Atendido</option>
@@ -53,7 +53,7 @@
         <div class="col-md-12">
             <div class="form-group">
                 <label for="egreso">Con la salida de materiales</label>
-                <select name="egreso" class="form-control selectpicker" data-live-search="true">
+                <select required name="egreso" class="form-control selectpicker" data-live-search="true">
                     <option value="">Elija una opción</option>
                     @foreach($egresos as $e)
                     <option value="{{$e->idegreso}}">{{$e->egreso}}</option>
@@ -63,7 +63,7 @@
 
             <div class="form-group">
                 <label for="trabajador">Trabajador</label>
-                <select name="trabajador" class="form-control selectpicker" data-live-search="true">
+                <select required name="trabajador" class="form-control selectpicker" data-live-search="true">
                     <option value="">Elija una opción</option>
                     @foreach($trabajadores as $tra)
                     <option value="{{$tra->idtrabajador}}">{{$tra->trabajador}}</option>
@@ -81,13 +81,6 @@
             <div class="form-group">
                 <label for="descripcion">Descripción</label>
                 <textarea class="form-control" name="descripcion" rows="4" placeholder="Descripción"></textarea>
-            </div>
-        </div>
-        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-            <div class="form-group">
-                <label for="imagen">Documento</label>
-                <input id="imgInp" type="file" name="imagen" class="form-control">
-                <iframe id="blah" src="" height="220px" width="150px"></iframe>
             </div>
         </div>
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -119,6 +112,13 @@
                 <input type="text" class="form-control" value="" readonly id="compromiso">
             </div>
         </div>
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="form-group">
+                <label for="imagen">Documento</label>
+                <input id="imgInp" type="file" name="imagen" class="form-control">
+                <iframe id="blah" src="" height="300px" width="100%"></iframe>
+            </div>
+        </div>
     </div>
 </div>
 {!!Form::close()!!}
@@ -127,7 +127,12 @@
     $("#dunidad").hide();
     $("#dasunto").hide();
     $("#comp").hide();
+    $("#blah").hide();
     $("#idsolicitud").change(mostrarValores);
+    $("#imgInp").change(muestraimg);
+    function muestraimg() {
+        $("#blah").show();
+    }
 
     function mostrarValores() {
         detalles = document.getElementById('idsolicitud').value.split('_');
@@ -135,6 +140,7 @@
         $("#idunidad").val(detalles[1]);
         $("#dasuntod").val(detalles[2]);
         $("#compromiso").val(detalles[3]);
+        $("#idestado").val(detalles[4]);
         $("#var").val(detalles[0]);
         $("#comp").show();
         $("#dunidad").show();

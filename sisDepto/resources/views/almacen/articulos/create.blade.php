@@ -34,7 +34,7 @@
 	<div class="col-lg-5 col-md-5 col-sm-5 col-xs-12">
 		<div class="form-group">
 			<label>Tipo de articulo</label>
-			<select name="idtipoArticulo" id="ptipo_articulo" class="form-control">
+			<select required name="idtipoArticulo" id="ptipo_articulo" class="form-control">
 				<option value="">Elija una opción</option>
 				@foreach($tipos as $tip)
 				<option value="{{$tip->idtipo_articulo}}">{{$tip->tipo_articulo}}</option>
@@ -70,13 +70,13 @@
 	<div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
 		<div class="form-group">
 			<label for="cantidad">Cantidad</label>
-			<input type="number" name="cantidad" id="pcantidad" class="form-control" placeholder="Cantidad" min="1" step="1">
+			<input required type="number" name="cantidad" id="pcantidad" class="form-control" placeholder="Cantidad" min="0" step="1">
 		</div>
 	</div>
 	<div class="col-lg-5 col-md-5 col-sm-5 col-xs-12">
 		<div class="form-group">
 			<label>Tipo de unidad</label>
-			<select name="idtipoUnidad" class="form-control">
+			<select required name="idtipoUnidad" class="form-control">
 				<option value="">Elija una opción</option>
 				@foreach($unidad as $uni)
 				<option value="{{$uni->idunidad}}">{{$uni->unidad}}</option>

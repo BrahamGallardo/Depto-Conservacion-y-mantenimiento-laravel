@@ -17,77 +17,82 @@
 
 <div class="row">
     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-        <div class="form-group">
-            <label for="Fecha">Fecha</label>
-            <p>{{$detalle->fecha}}</p>
+        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+            <div class="form-group">
+                <label for="Fecha">Fecha</label>
+                <p>{{$detalle->fecha}}</p>
+            </div>
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+            <div class="form-group">
+                <label for="estado">Estado</label>
+                <p>{{$detalle->estado}}</p>
+            </div>
+        </div>
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="form-group">
+                <label for="egreso">Materiales</label>
+                <p>{{$detalle->egreso}}</p>
+            </div>
+        </div>
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="form-group">
+                <label for="trabajador">Trabajador</label>
+                <p>{{$detalle->nombre_trabajador}}</p>
+            </div>
+        </div>
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="form-group">
+                <label for="total">Total</label>
+                <p>{{$detalle->total}}</p>
+            </div>
+        </div>
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="form-group">
+                <label for="Asunto">Asunto</label>
+                <p>{{$detalle->asunto}}</p>
+            </div>
+        </div>
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="form-group">
+                <label for="Comentarios">Comentarios</label>
+                <p>{{$detalle->comentarios}}</p>
+            </div>
+        </div>
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="form-group">
+                <label for="descripcion">Descripción del seguimiento</label>
+                <p>{{$detalle->descripcion}}</p>
+            </div>
         </div>
     </div>
     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-        <div class="form-group">
-            <label for="estado">Estado</label>
-            <p>{{$detalle->estado}}</p>
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="form-group">
+                <label for="Compromiso">Compromiso</label>
+                <p>{{$detalle->compromiso}}</p>
+            </div>
+        </div>
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="form-group">
+                <label for="Actualización">Actualización</label>
+                <p>{{$detalle->actualizacion}}</p>
+            </div>
+        </div>
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="form-group">
+                <label for="Documento">Documento</label>
+                <br>
+                <iframe src="{{asset('documentos/seguimientos/'.$detalle->documento)}}" height="300px" width="100%"></iframe>
+            </div>
         </div>
     </div>
-    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-        <div class="form-group">
-            <label for="egreso">Materiales</label>
-            <p>{{$detalle->egreso}}</p>
-        </div>
-    </div>
-    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-        <div class="form-group">
-            <label for="trabajador">Trabajador</label>
-            <p>{{$detalle->nombre_trabajador}}</p>
-        </div>
-    </div>
-    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-        <div class="form-group">
-            <label for="total">Total</label>
-            <p>{{$detalle->total}}</p>
-        </div>
-    </div>
-    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-        <div class="form-group">
-            <label for="Asunto">Asunto</label>
-            <p>{{$detalle->asunto}}</p>
-        </div>
-    </div>
-    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-        <div class="form-group">
-            <label for="Compromiso">Compromiso</label>
-            <p>{{$detalle->compromiso}}</p>
-        </div>
-    </div>
-    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-        <div class="form-group">
-            <label for="Actualización">Actualización</label>
-            <p>{{$detalle->actualizacion}}</p>
-        </div>
-    </div>
-    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-        <div class="form-group">
-            <label for="Comentarios">Comentarios</label>
-            <p>{{$detalle->comentarios}}</p>
-        </div>
-    </div>
-    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-        <div class="form-group">
-            <label for="descripcion">Descripción del seguimiento</label>
-            <p>{{$detalle->descripcion}}</p>
-        </div>
-    </div>
-    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-        <div class="form-group">
-            <label for="Documento">Documento</label>
-            <br>
-            <iframe src="{{asset('documentos/seguimientos/'.$detalle->documento)}}"  height="220px" width="150px"></iframe>
-        </div>
-    </div>
-
     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
         <div class="form-group">
             <a href="{{url('administracion/seguimiento')}}"><button class="btn btn-primary">Aceptar</button></a>
+            @if(Auth::user()->rol != 2 && Auth::user()->rol != 4)
             <a href="{{URL::action('DetalleSolicitudController@edit',$detalle->iddetalle_solicitud)}}"><button class="btn btn-warning">Editar</button></a>
+            @endif
         </div>
     </div>
 </div>

@@ -22,9 +22,15 @@ Route::resource('administracion/ordenes', 'OrdenesController');
 Route::resource('administracion/proveedores', 'ProveedoresController');
 Route::resource('administracion/coordinacion', 'CoordinacionController');
 Route::resource('administracion/remisiones', 'CoordinacionController');
+
+Route::get('seguimiento/buscar', 'DetalleSolicitudController@buscar');
+Route::post('/resultado', 'DetalleSolicitudController@resultado');
+Route::get('/buscar', 'DetalleSolicitudController@buscar');
+
 Route::resource('almacen/articulos', 'ArticuloController');
 Route::resource('almacen/ingresos', 'IngresosController');
 Route::resource('almacen/egresos', 'EgresosController');
+Route::get('almacen/solicitar/{id}', 'ArticuloController@solicitar');
 Route::resource('seguridad/usuario', 'UsuarioController');
 
 Route::resource('evento', 'ControllerEvent');
@@ -33,14 +39,13 @@ Route::get('evento/index','ControllerEvent@index');
 Route::get('evento/index/{month}','ControllerEvent@index_month');
 Route::post('evento/calendario','ControllerEvent@calendario');
 
-Route::get('almacen/solicitar/{id}', 'ArticuloController@solicitar');
-Route::get('seguimiento/buscar', 'DetalleSolicitudController@buscar');
 Route::get('/download', 'IngresosController@generar');
 Route::get('/downloadorden', 'OrdenesController@generar');
 Route::get('/activar/{id}','IngresosController@activar');
+
+Route::get('home/ayuda', 'HomeController@download');
+
 Route::auth();
 
 Route::get('/home', 'HomeController@index');
-Route::get('/buscar', 'DetalleSolicitudController@buscar');
-Route::post('/resultado', 'DetalleSolicitudController@resultado');
 Route::resource('/{slug?}', 'HomeController@index');

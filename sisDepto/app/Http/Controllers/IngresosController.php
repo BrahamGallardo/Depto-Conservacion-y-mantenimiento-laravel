@@ -18,6 +18,7 @@ use sisDepartamento\DetalleIngreso;
 use Response;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Redis;
+use SebastianBergmann\Environment\Console;
 use sisDepartamento\Articulos;
 
 class IngresosController extends Controller
@@ -130,26 +131,30 @@ class IngresosController extends Controller
             ->WHERE('di.idingreso', '=', $id)
             ->get();
 
-        foreach ($codigos as $canti) {
+        foreach ($codigos as $cod) {
             if ($ingreso->estado != 'Realizado') {
                 $cont = 0;
-                $articulo = Articulos::findOrFail($canti->codigo);
+                $articulo = Articulos::findOrFail($cod->codigo);
                 $newcantidad = DB::table('detalle_ingreso AS di')
                     ->JOIN('articulos AS art', 'di.cod_articulo', '=', 'art.codigo')
-                    ->SELECT('art.cantidad')
-                    ->WHERE('di.cod_articulo', '=', $canti->codigo)
+                    ->SELECT('di.cantidad')
+                    ->WHERE('di.cod_articulo', '=', $cod->codigo)
                     ->get();
                 $oldcantidad = DB::table('detalle_ingreso AS di')
                     ->JOIN('articulos AS art', 'di.cod_articulo', '=', 'art.codigo')
-                    ->SELECT('di.cantidad')
-                    ->WHERE('di.cod_articulo', '=', $canti->codigo)
+                    ->SELECT('art.cantidad')
+                    ->WHERE('di.cod_articulo', '=', $cod->codigo)
+                    ->get();
+                $old = DB::table('articulos AS art')
+                    ->Select('art.cantidad')
+                    ->Where('art.codigo', '=', $cod->codigo)
                     ->get();
                 var_dump($newcantidad);
-                var_dump($oldcantidad);
-                $cantidadtotal = $newcantidad[$cont]->cantidad + $oldcantidad[$cont]->cantidad;
+                var_dump($old);
+                $cantidadtotal = $newcantidad[$cont]->cantidad + $old[$cont]->cantidad;
                 $articulo->cantidad = $cantidadtotal;
                 $articulo->update();
-                $cont = $cont + 1;
+                //$cont = $cont + 1;
             }
         }
 

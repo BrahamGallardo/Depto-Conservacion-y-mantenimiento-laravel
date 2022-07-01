@@ -20,7 +20,7 @@
             <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
                 <label for="name" class="col-md-4 control-label">Nombre</label>
                 <div class="col-md-6">
-                    <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}">
+                    <input required id="name" type="text" class="form-control" name="name" value="{{ old('name') }}">
                     @if ($errors->has('name'))
                     <span class="help-block">
                         <strong>{{ $errors->first('name') }}</strong>
@@ -29,14 +29,15 @@
                 </div>
             </div>
         </div>
-
+        <br>
+        <br>
         <div class="col-md-12">
             <div class="form-group{{ $errors->has('trabajador') ? ' has-error' : '' }}">
                 <label for="trabajador" class="col-md-4 control-label">Trabajador</label>
                 <div class="col-md-6">
-                    <select name="trabajador" id="trabajador" class="form-control selectpicker" data-live-search="true">
+                    <select required name="trabajador" id="trabajador" class="form-control selectpicker" data-live-search="true">
                         @foreach($trabajador as $tra)
-                        <option value="{{$tra->idtrabajador}}_{{$tra->email}}">{{$tra->nombre_trabajador}}</option>
+                        <option value="{{$tra->idtrabajador}}+{{$tra->email}}+{{$tra->idrol}}">{{$tra->nombre_trabajador}}</option>
                         @endforeach
                     </select>
                     @if ($errors->has('trabajador'))
@@ -45,15 +46,17 @@
                     </span>
                     @endif
                     <input type="hidden" value="" name="idtrabajador" id="idtrabajador">
+                    <input type="hidden" value="" name="idrol" id="idrol">
                 </div>
             </div>
         </div>
-
+        <br>
+        <br>
         <div class="col-md-12">
             <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
                 <label for="email" class="col-md-4 control-label">E-Mail</label>
                 <div class="col-md-6">
-                    <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}">
+                    <input required id="email" type="email" class="form-control" name="email" value="{{ old('email') }}">
                     @if ($errors->has('email'))
                     <span class="help-block">
                         <strong>{{$errors->first('email')}}</strong>
@@ -62,12 +65,13 @@
                 </div>
             </div>
         </div>
-
+        <br>
+        <br>
         <div class="col-md-12">
             <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
                 <label for="password" class="col-md-4 control-label">Contraseña</label>
                 <div class="col-md-6">
-                    <input id="password" type="password" class="form-control" name="password">
+                    <input required id="password" type="password" class="form-control" name="password">
                     @if ($errors->has('password'))
                     <span class="help-block">
                         <strong>{{ $errors->first('password') }}</strong>
@@ -76,13 +80,14 @@
                 </div>
             </div>
         </div>
-
+        <br>
+        <br>
         <div class="col-md-12">
             <div class="form-group{{ $errors->has('password_confirmation') ? ' has-error' : '' }}">
                 <label for="password-confirm" class="col-md-4 control-label">Confirmar contraseña</label>
 
                 <div class="col-md-6">
-                    <input id="password-confirm" type="password" class="form-control" name="password_confirmation">
+                    <input required id="password-confirm" type="password" class="form-control" name="password_confirmation">
 
                     @if ($errors->has('password_confirmation'))
                     <span class="help-block">
@@ -92,7 +97,8 @@
                 </div>
             </div>
         </div>
-
+        <br>
+        <br>
         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
             <button class="btn btn-primary" type="submit">Guardar</button>
             <button class="btn btn-danger" type="reset">Borrar cambios</button>
@@ -107,9 +113,10 @@
     $("#trabajador").change(mostrarValores);
 
     function mostrarValores() {
-        email = document.getElementById('trabajador').value.split('_');
+        email = document.getElementById('trabajador').value.split('+');
         $("#idtrabajador").val(email[0]);
         $("#email").val(email[1]);
+        $("#idrol").val(email[2]);
     }
 </script>
 @endpush
